@@ -1,0 +1,41 @@
+// Color
+$color-white:     #ffffff !default;
+$color-black:     #000000 !default;
+$color-light:     #e9ecef !default; // 边框色
+$color-dark:      #495057 !default; // 全局字体色
+$color-gray:      #718096 !default; // 字体辅助色
+$color-gray-100:  #74818d !default; // 阴影色
+
+$color-blue:      #007bff !default; // 主题色
+$color-red:       #dc3545 !default; // 危险色
+
+// Theme `default` Color
+$color-primary:     $color-blue !default;
+$color-danger:      $color-red  !default;
+
+// Basic | Font
+$text-color:        $color-dark !default;
+$text-aux-color:    $color-gray !default;
+// Basic | Border
+$border-color:      $color-light !default;
+// Basic | Space
+$space:             10px !default;
+
+// Link
+$link-color:        $color-primary !default;
+$link-color-hover:  darken($color-primary, 10%) !default;
+
+// Transition
+$transition-duration: 300ms;
+$transition-timing:   cubic-bezier(.215, .61, .355, 1) !default;
+$transition: $transition-duration $transition-timing;
+
+// Grid
+$grid-sm    : 768px !default;
+$grid-md    : 996px !default;
+$grid-lg    : 1200px !default;
+
+// Header
+$header-height:  80px !default;
+$header-fill-color: $color-white !default;
+$header-shadow:  0 3px 8px 0 rgba($color-gray-100, .1) !default;
