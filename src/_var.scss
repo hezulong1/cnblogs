@@ -3,6 +3,7 @@ $color-white:     #ffffff !default;
 $color-black:     #000000 !default;
 $color-light:     #e9ecef !default; // 边框色
 $color-dark:      #495057 !default; // 全局字体色
+$color-dark-300:  #333c44 !default;
 $color-gray:      #718096 !default; // 字体辅助色
 $color-gray-100:  #74818d !default; // 阴影色
 
@@ -36,6 +37,12 @@ $grid-md    : 996px !default;
 $grid-lg    : 1200px !default;
 
 // Header
+$header-color: $text-color !default;
+$header-color-hover: darken($text-color, 30%) !default;
 $header-height:  80px !default;
 $header-fill-color: $color-white !default;
 $header-shadow:  0 3px 8px 0 rgba($color-gray-100, .1) !default;
+
+// Footer
+$footer-color: rgba($color-white, .6) !default;
+$footer-fill-color: $color-dark-300 !default;
