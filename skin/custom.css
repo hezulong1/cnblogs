@@ -166,6 +166,29 @@ a:focus {
 }
 
 /**
+ * @description   aside's style
+ * @date          2019/10/29 13:44
+ */
+#sideBar {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  z-index: 100;
+  width: 360px;
+  height: 100%;
+  padding-left: 2.5em;
+  background-color: #ffffff;
+  overflow: hidden;
+  box-shadow: 5px 0 10px rgba(0, 0, 0, 0.08);
+}
+
+@media screen and (min-width: grid-lg) {
+  #sideBar {
+    box-shadow: 1px 0 5px 0 rgba(0, 0, 0, 0.1);
+  }
+}
+
+/**
  * @description   footer's style
  * @date          2019/10/29 13:26
  */

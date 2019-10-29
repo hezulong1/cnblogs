@@ -1,0 +1,23 @@
+/**
+ * @description   aside's style
+ * @date          2019/10/29 13:44
+ */
+
+#sideBar {
+  position: fixed;
+  top: $header-height;
+  left: 0;
+  z-index: 100;
+  width: $aside-width;
+  height: 100%;
+  padding-left: 2.5em;
+  background-color: $aside-fill-color;
+  overflow: hidden;
+  box-shadow: $aside-shadow;
+}
+
+@media screen and (min-width: #{grid-lg}) {
+  #sideBar {
+    box-shadow: $aside-shadow-md;
+  }
+}

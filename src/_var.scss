@@ -43,6 +43,12 @@ $header-height:  80px !default;
 $header-fill-color: $color-white !default;
 $header-shadow:  0 3px 8px 0 rgba($color-gray-100, .1) !default;
 
+// Aside
+$aside-width: 360px !default;
+$aside-fill-color: $color-white !default;
+$aside-shadow: 5px 0 10px rgba($color-black, .08) !default;
+$aside-shadow-md: 1px 0 5px 0 rgba($color-black, .1) !default;
+
 // Footer
 $footer-color: rgba($color-white, .6) !default;
 $footer-fill-color: $color-dark-300 !default;
