@@ -120,12 +120,6 @@ a:focus {
   color: #718096;
 }
 
-#blogTitle .subtitle:before {
-  content: "\00bb";
-  display: inline;
-  padding-right: .22em;
-}
-
 #navigator {
   float: right;
 }
