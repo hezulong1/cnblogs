@@ -15,7 +15,7 @@ function build(cb) {
     .pipe(autoprefixer())
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError)) // 嵌套输出方式 nested, 展开输出方式 expanded, 紧凑输出方式 compact, 压缩输出方式 compressed
     .pipe(gulpif(isProd, cleanCss()))
-    .pipe(rename(`custom${isProd ? '.min' : ''}.css`))
+    .pipe(rename(isProd ? `style-${Math.random().toString(36).slice(4)}.min.css` : 'custom.css'))
     .pipe(dest(isProd ? 'dist' : 'skin'));
 }
 
