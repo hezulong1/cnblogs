@@ -255,7 +255,7 @@ table {
   font-size: 14px;
 }
 
-#calendar {
+#calendar, #blog-calendar {
   display: block;
   margin: 2em 0 1.143em;
   padding: 0;
@@ -266,55 +266,55 @@ table {
   box-shadow: 1px 2px 3px rgba(116, 129, 141, 0.1);
 }
 
-#calendar table {
+#calendar table, #blog-calendar table {
   width: 100%;
 }
 
-#calendar td:not([colspan]), #calendar th {
+#calendar td:not([colspan]), #calendar th, #blog-calendar td:not([colspan]), #blog-calendar th {
   position: relative;
   padding: .5em 0;
   text-align: center;
   font-weight: 400;
 }
 
-#calendar td:not([colspan]) a, #calendar th a {
+#calendar td:not([colspan]) a, #calendar th a, #blog-calendar td:not([colspan]) a, #blog-calendar th a {
   display: block;
 }
 
-#calendar td:not([colspan]) a u, #calendar th a u {
+#calendar td:not([colspan]) a u, #calendar th a u, #blog-calendar td:not([colspan]) a u, #blog-calendar th a u {
   text-decoration: none;
 }
 
-#calendar th {
+#calendar th, #blog-calendar th {
   color: #495057;
 }
 
-#calendar td.CalOtherMonthDay {
+#calendar td.CalOtherMonthDay, #blog-calendar td.CalOtherMonthDay {
   color: #d2d2d2;
 }
 
-#calendar td.CalWeekendDay {
+#calendar td.CalWeekendDay, #blog-calendar td.CalWeekendDay {
   font-weight: 700;
 }
 
-#calendar .CalTitle {
+#calendar .CalTitle, #blog-calendar .CalTitle {
   border-bottom: 1px solid #e9ecef;
   padding-bottom: .875em;
 }
 
-#calendar .CalTitle td {
+#calendar .CalTitle td, #blog-calendar .CalTitle td {
   padding: .5em 0;
   min-height: 42px;
 }
 
-#calendar .CalNextPrev {
+#calendar .CalNextPrev, #blog-calendar .CalNextPrev {
   text-align: center;
   line-height: 1;
   vertical-align: middle;
   font-weight: 700;
 }
 
-#calendar .CalNextPrev > a {
+#calendar .CalNextPrev > a, #blog-calendar .CalNextPrev > a {
   display: inline-block;
   width: 100%;
   height: 16px;
@@ -323,11 +323,11 @@ table {
   color: #495057 !important;
 }
 
-#calendar .CalNextPrev > a:hover {
+#calendar .CalNextPrev > a:hover, #blog-calendar .CalNextPrev > a:hover {
   color: #007bff !important;
 }
 
-#calendar .CalNextPrev > a:before {
+#calendar .CalNextPrev > a:before, #blog-calendar .CalNextPrev > a:before {
   content: "\00ab";
   position: absolute;
   top: calc(50% - 16px);
@@ -336,13 +336,13 @@ table {
   color: currentColor;
 }
 
-#calendar .CalNextPrev:last-child > a:before {
+#calendar .CalNextPrev:last-child > a:before, #blog-calendar .CalNextPrev:last-child > a:before {
   content: "\00bb";
   left: auto;
   right: 14px;
 }
 
-#calendar .CalNextPrev ~ [align="center"] {
+#calendar .CalNextPrev ~ [align="center"], #blog-calendar .CalNextPrev ~ [align="center"] {
   padding: 1em 0;
   line-height: 1;
   vertical-align: middle;
