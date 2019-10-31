@@ -1,11 +1,11 @@
 .os-theme-dark > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle {
-  background: rgba($color-black, .2);
+  background: rgba($color-black, .2) !important;
 }
 
 .os-theme-dark > .os-scrollbar:hover > .os-scrollbar-track > .os-scrollbar-handle {
-  background: rgba($color-black, .45);
+  background: rgba($color-black, .45) !important;
 }
 
 .os-theme-dark > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle.active {
-  background: rgba($color-black, .55);
+  background: rgba($color-black, .55) !important;
 }
