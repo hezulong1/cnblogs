@@ -84,6 +84,12 @@
     padding: 0 .5em .875em;
     border-bottom: 1px dashed $border-color;
   }
+
+  .liScore, .liRank {
+    padding: 0.25em 0 0.25em 1em;
+    color: $text-color;
+    font-weight: 500;
+  }
 }
 
 #sideBarMain {
