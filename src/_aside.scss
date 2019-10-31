@@ -12,11 +12,159 @@
   height: calc(100% - #{$header-height});
   padding-left: 2.5em;
   background-color: $aside-fill-color;
-  box-shadow: $aside-shadow;
+  // box-shadow: $aside-shadow;
+
+  .catListTitle {
+    display: block;
+    margin: .857em 0 0;
+    padding: 1em 0 .875em;
+    font-size: 14px;
+    font-weight: 700;
+
+    & ~ ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      background-color: $color-white;
+      font-size: 12px;
+
+      li {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: clip;
+
+        & > a {
+          display: inline-block;
+          padding: 0.25em 0 0.25em 1em;
+          color: $text-color;
+          font-weight: 500;
+          transition: transform $transition, color $transition;
+  
+          &:hover {
+            color: $color-primary;
+          }
+        }
+      }
+    }
+  }
+
+  .newsItem {
+    font-size: 12px;
+
+    .catListTitle {
+      margin-top: 0;
+      font-size: 14px;
+    }
+  }
+}
+
+#calendar {
+  display: block;
+  margin: 2em 0 1.143em;
+  padding: 0;
+  border: 1px solid $border-color;
+  border-radius: 2px;
+  color: $text-aux-color;
+  background-color: $color-white;
+  box-shadow: 1px 2px 3px rgba($color-gray-100, 0.1);
+
+  table {
+    width: 100%;
+  }
+
+  td:not([colspan]), th {
+    position: relative;
+    padding: .5em 0;
+    text-align: center;
+    font-weight: 400;
+
+    a {
+      display: block;
+
+      u {
+        text-decoration: none;
+      }
+    }
+  }
+
+  th {
+    color: $text-color;
+  }
+
+  td.CalOtherMonthDay {
+    color: $color-gray-600;
+  }
+
+  td.CalWeekendDay {
+    font-weight: 700;
+  }
+
+  .CalTitle {
+    border-bottom: 1px solid $border-color;
+    padding-bottom: .875em;
+
+    td {
+      padding: .5em 0;
+      min-height: 42px;
+    }
+  }
+
+  .CalNextPrev {
+    text-align: center;
+    line-height: 1;
+    vertical-align: middle;
+    font-weight: 700;
+
+    & > a {
+      display: inline-block;
+      width: 100%;
+      height: 16px;
+      min-width: 42px;
+      font-size: 0;
+      color: $text-color !important;
+
+      &:hover {
+        color: $color-primary !important;
+      }
+
+      &:before {
+        content: "\00ab";
+        position: absolute;
+        top: calc(50% - 16px);
+        left: 14px;
+        font-size: 24px;
+        color: currentColor;
+      }
+    }
+
+    &:last-child > a:before{
+      content: "\00bb";
+      left: auto;
+      right: 14px;
+    }
+
+    & ~ [align="center"] {
+      padding: 1em 0;
+      line-height: 1;
+      vertical-align: middle;
+      letter-spacing: .1em;
+      font-weight: 700;
+      font-size: 1em;
+      cursor: text;
+    }
+  }
 }
 
 #sideBarMain {
   height: 100%;
+  padding-right: 1em;
+  padding-bottom: 3rem;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 @media screen and (min-width: #{grid-lg}) {
