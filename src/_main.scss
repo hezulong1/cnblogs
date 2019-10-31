@@ -9,4 +9,94 @@
   margin-top: $header-height;
   margin-left: $aside-width;
   padding: 30px 40px;
+  font-size: 1em;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    list-style: none;
+    padding-left: 1.5em;
+
+    &:before {
+      content: "\20";
+      position: absolute;
+      top: 50%;
+      left: .5em;
+      margin-top: -1px;
+      display: block;
+      width: 2px;
+      height: 2px;
+      background-color: $text-color;
+    }
+  }
+}
+
+.day {
+  margin-bottom: 5.5em;
+
+  .dayTitle {
+    padding-bottom: 12px;
+    border-bottom: 1px solid $border-color;
+    font-size: 18px;
+    color: darken($text-color, 20%);
+
+    &:hover {
+      color: $text-color;
+    }
+  }
+
+  .postTitle {
+    position: relative;
+    padding: 1em 0 .5em 2em;
+    color: darken($text-color, 20%);
+
+    &:hover {
+      color: $color-primary;
+    }
+    
+    .postTitle2, .postTitle2:hover {
+      font-size: 16px;
+      color: currentColor;
+    }
+
+    &:before {
+      content: "\20";
+      position: absolute;
+      top: 50%;
+      left: 8px;
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 100%;
+      background-color: mix($color-white, $color-primary, 80%);
+    }
+
+    &:hover:before {
+      background-color: $color-primary;
+    }
+  }
+
+  .postCon {
+    display: block;
+    margin-bottom: 1em;
+    padding-left: 2em;
+  }
+
+  .postDesc {
+    text-align: right;
+    font-size: 12px;
+    color: $text-aux-color;
+  }
+
+  .postSeparator {
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: 1em 0 .875em;
+  }
 }

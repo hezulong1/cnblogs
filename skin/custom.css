@@ -421,6 +421,96 @@ table {
   margin-top: 80px;
   margin-left: 360px;
   padding: 30px 40px;
+  font-size: 1em;
+}
+
+#mainContent ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#mainContent li {
+  position: relative;
+  list-style: none;
+  padding-left: 1.5em;
+}
+
+#mainContent li:before {
+  content: "\20";
+  position: absolute;
+  top: 50%;
+  left: .5em;
+  margin-top: -1px;
+  display: block;
+  width: 2px;
+  height: 2px;
+  background-color: #495057;
+}
+
+.day {
+  margin-bottom: 5.5em;
+}
+
+.day .dayTitle {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 18px;
+  color: #1a1d20;
+}
+
+.day .dayTitle:hover {
+  color: #495057;
+}
+
+.day .postTitle {
+  position: relative;
+  padding: 1em 0 .5em 2em;
+  color: #1a1d20;
+}
+
+.day .postTitle:hover {
+  color: #007bff;
+}
+
+.day .postTitle .postTitle2, .day .postTitle .postTitle2:hover {
+  font-size: 16px;
+  color: currentColor;
+}
+
+.day .postTitle:before {
+  content: "\20";
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  background-color: #cce5ff;
+}
+
+.day .postTitle:hover:before {
+  background-color: #007bff;
+}
+
+.day .postCon {
+  display: block;
+  margin-bottom: 1em;
+  padding-left: 2em;
+}
+
+.day .postDesc {
+  text-align: right;
+  font-size: 12px;
+  color: #718096;
+}
+
+.day .postSeparator {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 1em 0 .875em;
 }
 
 /**

@@ -11,11 +11,15 @@ console.log('环境：', process.env.NODE_ENV);
 function build(cb) {
   cb();
 
+  const hash = Math.random().toString(36).slice(4);
+  const fileName = isProd ? `${hash}.min.css` : 'custom.css';
+  console.log('文件名：', fileName);
+
   return src('src/index.scss')
     .pipe(autoprefixer())
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError)) // 嵌套输出方式 nested, 展开输出方式 expanded, 紧凑输出方式 compact, 压缩输出方式 compressed
     .pipe(gulpif(isProd, cleanCss()))
-    .pipe(rename(isProd ? `style-${Math.random().toString(36).slice(4)}.min.css` : 'custom.css'))
+    .pipe(rename(fileName))
     .pipe(dest(isProd ? 'dist' : 'skin'));
 }
 
