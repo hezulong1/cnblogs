@@ -9,11 +9,14 @@
   left: 0;
   z-index: 100;
   width: $aside-width;
-  height: 100%;
+  height: calc(100% - #{$header-height});
   padding-left: 2.5em;
   background-color: $aside-fill-color;
-  overflow: hidden;
   box-shadow: $aside-shadow;
+}
+
+#sideBarMain {
+  height: 100%;
 }
 
 @media screen and (min-width: #{grid-lg}) {

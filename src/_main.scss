@@ -1,0 +1,12 @@
+/**
+ * @description   body's style
+ * @date          2019/10/31 9:20
+ */
+
+#mainContent {
+  display: block;
+  max-width: $body-max-width;
+  margin-top: $header-height;
+  margin-left: $aside-width;
+  padding: 30px 40px;
+}

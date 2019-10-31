@@ -49,6 +49,12 @@ $aside-fill-color: $color-white !default;
 $aside-shadow: 5px 0 10px rgba($color-black, .08) !default;
 $aside-shadow-md: 1px 0 5px 0 rgba($color-black, .1) !default;
 
+// Body
+$body-max-width: 700px !default;
+
+// Scroll
+$scroll-fill-color: $color-black !default;
+
 // Footer
-$footer-color: rgba($color-white, .6) !default;
-$footer-fill-color: $color-dark-300 !default;
+$footer-color: $text-aux-color !default;
+$footer-fill-color: $color-white !default;
