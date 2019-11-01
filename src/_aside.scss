@@ -92,19 +92,13 @@
     font-weight: 500;
   }
 
-  .mySearch > div {
+  #sidebar_search_box .div_my_zzk {
     display: flex;
     flex-direction: row;
-    
-    .cnblogs-input {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-      margin-right: -1px;
-    }
+    margin: .5em 0;
 
-    .cnblogs-btn {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
+    .input_my_zzk {
+      flex: 0 1 200px;
     }
   }
 }
