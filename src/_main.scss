@@ -100,3 +100,26 @@
     margin: 1em 0 .875em;
   }
 }
+
+.topicListFooter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+
+  a {
+    align-self: stretch;
+    padding: .65em 1em;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    color: $text-color;
+    background-color: $color-white;
+    box-shadow: 0 2px 7px 0 rgba($text-aux-color, .1);
+
+    &:hover {
+      border-color: $color-primary;
+      color: $color-primary;
+    }
+  }
+}

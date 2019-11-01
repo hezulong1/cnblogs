@@ -21,6 +21,7 @@ $text-color:        $color-dark !default;
 $text-aux-color:    $color-gray !default;
 // Basic | Border
 $border-color:      $color-light !default;
+$border-radius:     3px;
 // Basic | Space
 $space:             10px !default;
 
@@ -37,6 +38,9 @@ $transition: $transition-duration $transition-timing;
 $grid-sm    : 768px !default;
 $grid-md    : 996px !default;
 $grid-lg    : 1200px !default;
+
+// Form
+
 
 // Header
 $header-color: $text-color !default;

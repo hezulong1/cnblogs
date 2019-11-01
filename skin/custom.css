@@ -54,15 +54,101 @@ table {
 }
 
 .os-theme-dark > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle {
-  background: rgba(0, 0, 0, 0.2) !important;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .os-theme-dark > .os-scrollbar:hover > .os-scrollbar-track > .os-scrollbar-handle {
-  background: rgba(0, 0, 0, 0.45) !important;
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .os-theme-dark > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle.active {
-  background: rgba(0, 0, 0, 0.55) !important;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.cnblogs-input {
+  display: inline-block;
+  width: 100%;
+  min-width: 80px;
+  height: 36px;
+  margin: 0;
+  padding: 8px 12px 8px 8px;
+  border: 1px solid #e9ecef;
+  border-radius: 3px;
+  font-size: 14px;
+  color: #718096;
+  background-color: #ffffff;
+  transition: color 300ms cubic-bezier(0.215, 0.61, 0.355, 1), border-color 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.cnblogs-input:hover {
+  border-color: #cbd3da;
+}
+
+.cnblogs-input:focus {
+  border-color: #718096;
+}
+
+.cnblogs-btn {
+  display: inline-flex;
+  height: 36px;
+  padding: 8px 1em;
+  border: 1px solid #007bff;
+  border-radius: 3px;
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #007bff;
+  cursor: pointer;
+}
+
+.cnblogs-btn:hover, .cnblogs-btn:focus {
+  background-color: #3395ff;
+}
+
+.cnblogs-btn:active {
+  background-color: #1a88ff;
+}
+
+.cnblogs-btn.is-ghost {
+  color: #007bff;
+  background-color: #ffffff;
+}
+
+.cnblogs-btn.is-ghost:hover, .cnblogs-btn.is-ghost:focus {
+  color: #3395ff;
+  border-color: #3395ff;
+}
+
+.cnblogs-btn.is-ghost:active {
+  color: #1a88ff;
+  border-color: #1a88ff;
+}
+
+.cnblogs-btn.is-danger {
+  border-color: #dc3545;
+  background-color: #dc3545;
+}
+
+.cnblogs-btn.is-danger:hover, .cnblogs-btn.is-danger:focus {
+  background-color: #e35d6a;
+}
+
+.cnblogs-btn.is-danger:active {
+  background-color: #e04958;
+}
+
+.cnblogs-btn.is-danger.is-ghost {
+  color: #dc3545;
+  background-color: #ffffff;
+}
+
+.cnblogs-btn.is-danger.is-ghost:hover, .cnblogs-btn.is-danger.is-ghost:focus {
+  color: #e35d6a;
+  border-color: #e35d6a;
+}
+
+.cnblogs-btn.is-danger.is-ghost:active {
+  color: #e04958;
+  border-color: #e04958;
 }
 
 /**
@@ -103,7 +189,21 @@ table {
 }
 
 #blogTitle {
+  position: relative;
+  min-width: 340px;
   float: left;
+}
+
+#blogTitle:after {
+  content: "\20";
+  position: absolute;
+  top: 20px;
+  right: 0;
+  bottom: 20px;
+  display: block;
+  width: 1px;
+  height: auto;
+  background-color: #e9ecef;
 }
 
 #blogTitle #lnkBlogLogo {
@@ -205,6 +305,7 @@ table {
   width: 360px;
   height: calc(100% - 80px);
   padding-left: 2.5em;
+  border-right: 1px solid #e9ecef;
   background-color: #ffffff;
 }
 
@@ -285,6 +386,22 @@ table {
   padding: 0.25em 0 0.25em 1em;
   color: #495057;
   font-weight: 500;
+}
+
+#sideBar .mySearch > div {
+  display: flex;
+  flex-direction: row;
+}
+
+#sideBar .mySearch > div .cnblogs-input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-right: -1px;
+}
+
+#sideBar .mySearch > div .cnblogs-btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 #sideBarMain {
@@ -511,6 +628,29 @@ table {
   width: 100%;
   height: 1px;
   margin: 1em 0 .875em;
+}
+
+.topicListFooter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.topicListFooter a {
+  align-self: stretch;
+  padding: .65em 1em;
+  border: 1px solid #e9ecef;
+  border-radius: 3px;
+  color: #495057;
+  background-color: #ffffff;
+  box-shadow: 0 2px 7px 0 rgba(113, 128, 150, 0.1);
+}
+
+.topicListFooter a:hover {
+  border-color: #007bff;
+  color: #007bff;
 }
 
 /**

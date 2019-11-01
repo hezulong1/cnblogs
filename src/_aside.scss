@@ -11,6 +11,7 @@
   width: $aside-width;
   height: calc(100% - #{$header-height});
   padding-left: 2.5em;
+  border-right: 1px solid $border-color;
   background-color: $aside-fill-color;
   // box-shadow: $aside-shadow;
 
@@ -89,6 +90,22 @@
     padding: 0.25em 0 0.25em 1em;
     color: $text-color;
     font-weight: 500;
+  }
+
+  .mySearch > div {
+    display: flex;
+    flex-direction: row;
+    
+    .cnblogs-input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      margin-right: -1px;
+    }
+
+    .cnblogs-btn {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
   }
 }
 

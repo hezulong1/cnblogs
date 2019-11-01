@@ -29,7 +29,21 @@
 }
 
 #blogTitle {
+  position: relative;
+  min-width: $aside-width - 20px;
   float: left;
+
+  &:after {
+    content: "\20";
+    position: absolute;
+    top: 20px;
+    right: 0;
+    bottom: 20px;
+    display: block;
+    width: 1px;
+    height: auto;
+    background-color: $border-color;
+  }
 
   #lnkBlogLogo {
     display: none;
