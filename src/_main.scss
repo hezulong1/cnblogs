@@ -42,11 +42,13 @@
   .dayTitle {
     padding-bottom: 12px;
     border-bottom: 1px solid $border-color;
-    font-size: 18px;
-    color: darken($text-color, 20%);
+    font-size: 22px;
+    a {
+      color: darken($text-color, 20%);
 
-    &:hover {
-      color: $text-color;
+      &:hover {
+        color: $text-color;
+      }
     }
   }
 

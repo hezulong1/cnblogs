@@ -14,3 +14,26 @@ input.btn_my_zzk.cnblogs-btn {
   font-size: 12px;
   padding: 8px 1em;
 }
+
+.c_b_p_desc {
+  font-size: 12px;
+}
+
+.c_b_p_desc_readmore {
+  position: relative;
+  padding: 0;
+  margin: 0;
+
+  &:before {
+    content: "\20";
+    position: absolute;
+    top: 0;
+    left: -24px;
+    z-index: 1;
+    display: block;
+    width: 24px;
+    height: 100%;
+    pointer-events: none;
+    background-image: linear-gradient(to right, rgba($color-white, .3) 0%, rgba($color-white, .8) 80%);
+  }
+}
