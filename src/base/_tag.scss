@@ -1,0 +1,25 @@
+%tag {
+  display: inline-block;
+  margin: 0;
+  padding: 4px 8px;
+  background-color: mix($color-white, $color-primary, 80%);
+  border: none;
+  border-radius: 2px;
+  color: $color-primary;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover {
+    background-color: mix($color-white, $color-primary, 70%);
+  }
+}
+
+.vv-tag {
+  @extend %tag;
+
+  & + & {
+    margin-left: .5em;
+  }
+}

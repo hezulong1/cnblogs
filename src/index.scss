@@ -1,9 +1,11 @@
 @import "var";
 @import "mixin";
 
-@import "boot";
-@import "scroll";
-@import "form";
+@import "base/reboot";
+@import "base/input";
+@import "base/button";
+@import "base/tag";
+
 @import "header";
 @import "aside";
 @import "main";

@@ -2,6 +2,7 @@
  * @description   aside's style
  * @date          2019/10/29 13:44
  */
+$aside-gutter: 16px;
 
 #sideBar {
   position: fixed;
@@ -11,95 +12,37 @@
   width: $aside-width;
   height: calc(100% - #{$header-height});
   padding-left: 2.5em;
-  border-right: 1px solid $border-color;
+  border-right: 1px solid $color-border;
   background-color: $aside-fill-color;
   // box-shadow: $aside-shadow;
 
+  // 全局标题
   .catListTitle {
     display: block;
-    margin: .857em 0 0;
-    padding: 1em 0 .875em;
-    font-size: 14px;
-    font-weight: 700;
-  }
-
-  .catListTitle ~ ul,
-  .divRecentCommentAticle {
-    list-style: none;
     margin: 0;
     padding: 0;
-    font-size: 12px;
-    background-color: $color-white;
+    font-size: 18px;
+    font-weight: 400;
+    color: darken($color-text, $hover-percent);
   }
 
-  .catListTitle ~ ul li,
-  .divRecentComment {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    flex-wrap: nowrap;
-    width: 100%;
-    overflow: hidden;
-    font-size: 12px;
-    text-overflow: clip;
-
-    & > a {
-      display: inline-block;
-      padding: 0.25em 0 0.25em 1em;
-      color: $text-color;
-      font-weight: 500;
-      transition: transform $transition, color $transition;
-
-      &:hover {
-        color: $color-primary;
-      }
-    }
+  // 内容缩进 18px
+  #blog-news,
+  #sidebar_search_box,
+  #leftcontentcontainer .sidebar-block ul{
+    padding-top: $aside-gutter / 3;
+    padding-left: $aside-gutter / 2;
   }
 
-  .divRecentCommentAticle {
-    position: relative;
-    margin-bottom: .2em;
-    text-indent: 1em;
-
-    &:after {
-      content: "\20";
-      display: block;
-      width: 0;
-      height: 0;
-      border: 3px solid transparent;
-      border-left-color: $link-color;
-      border-left-width: 5px;
-      position: absolute;
-      top: .5em;
-      left: 0;
-    }
-
-    &:hover:after {
-      border-left-color: $link-color-hover;
-    }
+  .input_my_zzk {
+    @extend .vv-input;
   }
 
-  .divRecentComment {
-    text-indent: 2em;
-    margin-bottom: .875em;
-    padding: 0 .5em .875em;
-    border-bottom: 1px dashed $border-color;
-  }
+  .btn_my_zzk {
+    height: auto;
 
-  .liScore, .liRank {
-    padding: 0.25em 0 0.25em 1em;
-    color: $text-color;
-    font-weight: 500;
-  }
-
-  #sidebar_search_box .div_my_zzk {
-    display: flex;
-    flex-direction: row;
-    margin: .5em 0;
-
-    .input_my_zzk {
-      flex: 0 1 200px;
-    }
+    @extend .vv-button;
+    @extend .vv-button-primary;
   }
 }
 
@@ -110,25 +53,24 @@
   overflow-y: auto;
 }
 
-#sideBarMain .newsItem {
-  margin-top: 16px;
-  font-size: 12px;
-
-  .catListTitle {
-    margin-top: 0;
-    font-size: 14px;
-  }
+// 公告
+#sidebar_news {
+  display: block;
+  margin-top: $aside-gutter;
 }
 
+// 日历
 #calendar, #blog-calendar {
   display: block;
-  margin: 2em 0 1.143em;
+  margin: $aside-gutter * 2 0;
   padding: 0;
-  border: 1px solid $border-color;
+  border: 1px solid $color-border;
   border-radius: 2px;
-  color: $text-aux-color;
-  background-color: $color-white;
-  box-shadow: 1px 2px 3px rgba($color-gray-100, 0.1);
+  color: $color-text-aux;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  background-color: mix($color-white, $color-blue, 98%);
+  box-shadow: 1px 2px 3px rgba($color-text-aux, .1);
 
   table {
     width: 100%;
@@ -142,6 +84,7 @@
 
     a {
       display: block;
+      border-bottom: 0;
 
       u {
         text-decoration: none;
@@ -150,11 +93,11 @@
   }
 
   th {
-    color: $text-color;
+    color: $color-text;
   }
 
   td.CalOtherMonthDay {
-    color: $color-gray-600;
+    color: mix($color-white, $color-text-aux, 70%);
   }
 
   td.CalWeekendDay {
@@ -162,7 +105,7 @@
   }
 
   .CalTitle {
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid $color-border;
     padding-bottom: .875em;
 
     td {
@@ -183,19 +126,21 @@
       height: 16px;
       min-width: 42px;
       font-size: 0;
-      color: $text-color !important;
+      color: $color-text !important;
+      border-bottom: 0;
 
       &:hover {
-        color: $color-primary !important;
+        color: $link-color-hover !important;
       }
 
       &:before {
         content: "\00ab";
         position: absolute;
-        top: calc(50% - 16px);
+        top: 50%;
         left: 14px;
-        font-size: 24px;
+        font-size: 18px;
         color: currentColor;
+        transform: translateY(-50%);
       }
     }
 
@@ -217,8 +162,90 @@
   }
 }
 
+// 搜索以下的内容
 #leftcontentcontainer {
-  margin-bottom: 3em;
+  padding-bottom: $aside-gutter * 3;
+
+  .sidebar-block {
+    margin-bottom: $aside-gutter * 2;
+
+    // 搜索框长度重新设置
+    .input_my_zzk {
+      width: 60%;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      background-color: $color-white;
+
+      li {
+        overflow: hidden;
+        text-overflow: clip;
+
+        > a {
+          display: inline-block;
+          padding-top: $aside-gutter / 4;
+          padding-bottom: $aside-gutter / 4;
+          color: $color-text;
+          transition: transform $transition, color $transition;
+
+          &:hover {
+            color: $link-color-hover;
+          }
+        }
+      }
+    }
+
+    // 标签
+    &#sidebar_toptags ul li {
+      margin: 0 $aside-gutter / 3 $aside-gutter / 3 0;
+
+      @extend %tag;
+
+      > a {
+        padding: 0;
+        color: inherit;
+        font-size: inherit;
+        border-bottom: 1px dashed currentColor;
+
+        &:hover,
+        &:focus {
+          border-bottom-style: solid;
+        }
+      }
+    }
+
+    // 评论
+    &#sidebar_recentcomments ul li {
+
+      &.recent_comment_title {
+        font-weight: 700;
+
+        > a {
+          color: $link-color;
+
+          &:hover,
+          &:focus {
+            color: $link-color-hover;
+          }
+        }
+      }
+
+      &.recent_comment_author {
+        text-align: right;
+        margin-right: 0;
+        margin-bottom: $aside-gutter;
+        font-size: 12px;
+        letter-spacing: .1em;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (min-width: #{grid-lg}) {

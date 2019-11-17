@@ -1,0 +1,56 @@
+%input {
+  display: inline-block;
+  width: 100%;
+  min-width: 5em;
+  margin: 0;
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  background-color: $color-white;
+  color: $color-text-aux;
+  font-size: 1em;
+  transition: color $transition, border-color $transition, box-shadow $transition;
+  -webkit-appearance: none;
+  outline: none;
+
+  &::placeholder {
+    color: $color-placeholder;
+  }
+
+  &:hover {
+    border-color: darken($color-border, 10%);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, .25);
+  }
+
+  &[readonly] {
+    background-color: mix($color-white, $color-border, 10%);
+  }
+
+  &:disabled,
+  &[disabled] {
+    background-color: mix($color-white, $color-border, 5%);
+    border-color: darken($color-border, 10%);
+    cursor: not-allowed;
+  }
+}
+
+.vv-input {
+  height: calc(1.25em + 1em + 2px);
+  padding: .5em .75em .5em .5em;
+  line-height: 1.25;
+
+  @extend %input;
+}
+
+.vv-textarea {
+  padding: .5em 1em;
+  line-height: 1.125;
+  vertical-align: bottom;
+  resize: vertical;
+
+  @extend %input;
+}

@@ -2,6 +2,28 @@
  * @description   body's style
  * @date          2019/10/31 9:20
  */
+$main-gutter: 16px !default;
+$main-purple: #816ad6 !default;
+$main-pink:   #ff94ab !default;
+$main-blue:   #2b92e4 !default;
+$main-weibo:  #0e2746 !default;
+$main-wechat: #51b035 !default;
+
+@mixin main-btn-style($color) {
+  background-color: $color;
+  border: 1px solid darken($color, 2%) !important;
+  box-shadow: 4px 4px 0 rgba($color,.2);
+  transition: $transition-duration ease;
+
+  &:hover {
+    opacity: .8;
+    box-shadow: none;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+}
 
 #mainContent {
   display: block;
@@ -10,6 +32,30 @@
   margin-left: $aside-width;
   padding: 30px 40px;
   font-size: 1em;
+
+  h1 {
+    font-size: 22px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  h4 {
+    font-size: $font-size-base;
+  }
+
+  h5 {
+    font-size: 13px;
+  }
+
+  h6 {
+    font-size: 12px;
+  }
 
   ul {
     margin: 0;
@@ -31,7 +77,7 @@
       display: block;
       width: 2px;
       height: 2px;
-      background-color: $text-color;
+      background-color: $color-text;
     }
   }
 }
@@ -41,29 +87,28 @@
 
   .dayTitle {
     padding-bottom: 12px;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid $color-border;
     font-size: 22px;
     a {
-      color: darken($text-color, 20%);
+      color: darken($color-text, 20%);
 
       &:hover {
-        color: $text-color;
+        color: $color-text;
       }
     }
   }
+}
 
-  .postTitle {
+// 博客
+.post {
+  &Title {
     position: relative;
-    padding: 1em 0 .5em 2em;
-    color: darken($text-color, 20%);
-
-    &:hover {
-      color: $color-primary;
-    }
+    margin: 0;
+    padding: 0;
+    color: darken($color-text, $hover-percent);
     
-    .postTitle2, .postTitle2:hover {
-      font-size: 16px;
-      color: currentColor;
+    &2, &2:hover {
+      color: inherit;
     }
 
     &:before {
@@ -83,25 +128,170 @@
     }
   }
 
-  .postCon {
+  &Con {
     display: block;
     margin-bottom: 1em;
     padding-left: 2em;
   }
 
-  .postDesc {
-    text-align: right;
-    font-size: 12px;
-    color: $text-aux-color;
+  &Body {
+
   }
 
-  .postSeparator {
+  &Desc {
+    text-align: right;
+    font-size: 12px;
+    color: $color-text-aux;
+  }
+
+  &Separator {
     display: block;
     width: 100%;
     height: 1px;
     margin: 1em 0 .875em;
   }
+
+  // 签名
+  #MySignature {
+    position: relative;
+    padding: $main-gutter / 2 0 $main-gutter / 2 $main-gutter;
+    background-color: lighten($color-border, 2%);
+    border-left: 5px solid $color-border;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -5px;
+      bottom: 0;
+      z-index: 0;
+      display: block;
+      width: 5px;
+      background-image: linear-gradient(135deg, $main-blue, $main-pink, $main-purple);
+    }
+  }
+
+  // 博客底部信息
+  #blog_post_info_block {
+    margin-top: $main-gutter * 2;
+
+    // 标签
+    #EntryTag {
+      margin-bottom: $main-gutter;
+
+      a {
+        @extend .vv-tag;
+      }
+    }
+
+    // 分享按钮
+    #blog_post_info {
+
+      #green_channel {
+        display: inline-block;
+        margin: 0 0 $main-gutter 0;
+        padding: 0;
+        border: 0;
+        font-size: 12px;
+        text-align: left;
+
+        a {
+          padding: 4px 8px;
+          background-image: none;
+          border-radius: 0;
+          box-shadow: none;
+          text-shadow: none;
+
+          &#green_channel_digg {
+            @include main-btn-style($main-blue);
+          }
+
+          &#green_channel_follow {
+            @include main-btn-style($main-pink);
+          }
+
+          &#green_channel_favorite {
+            @include main-btn-style($main-purple);
+          }
+
+          &#green_channel_weibo,
+          &#green_channel_wechat {
+            padding: 1px 4px;
+
+            img {
+              margin: 0;
+            }
+          }
+
+          &#green_channel_weibo {
+            @include main-btn-style($main-weibo);
+          }
+
+          &#green_channel_wechat {
+            @include main-btn-style($main-wechat);
+          }
+        }
+      }
+    }
+  }
+
+  // 分页
+  #post_next_prev {
+    margin-bottom: 10px;
+
+    .p_n_p_prefix {
+      display: none;
+    }
+  }
 }
+
+// .post {
+//   &Title {
+//     position: relative;
+//     margin: 0;
+//     padding: 1em 0 .5em 2em;
+//     color: darken($color-text, $hover-percent);
+    
+//     &2, &2:hover {
+//       color: inherit;
+//     }
+
+//     &:before {
+//       content: "\20";
+//       position: absolute;
+//       top: 50%;
+//       left: 8px;
+//       display: block;
+//       width: 8px;
+//       height: 8px;
+//       border-radius: 100%;
+//       background-color: mix($color-white, $color-primary, 80%);
+//     }
+
+//     &:hover:before {
+//       background-color: $color-primary;
+//     }
+//   }
+
+//   &Con {
+//     display: block;
+//     margin-bottom: 1em;
+//     padding-left: 2em;
+//   }
+
+//   &Desc {
+//     text-align: right;
+//     font-size: 12px;
+//     color: $color-text-aux;
+//   }
+
+//   &Separator {
+//     display: block;
+//     width: 100%;
+//     height: 1px;
+//     margin: 1em 0 .875em;
+//   }
+// }
 
 .topicListFooter {
   display: flex;
@@ -113,15 +303,266 @@
   a {
     align-self: stretch;
     padding: .65em 1em;
-    border: 1px solid $border-color;
-    border-radius: $border-radius;
-    color: $text-color;
+    border: 1px solid $color-border;
+    border-radius: 3px;
+    color: $color-text;
     background-color: $color-white;
-    box-shadow: 0 2px 7px 0 rgba($text-aux-color, .1);
+    box-shadow: 0 2px 7px 0 rgba($color-text-aux, .1);
 
     &:hover {
       border-color: $color-primary;
       color: $color-primary;
+    }
+  }
+}
+
+////////////////////////////////
+
+%main-comment {
+  position: relative;
+  display: block;
+  margin-top: $main-gutter * 3;
+  padding: $main-gutter;
+  background-color: mix($color-white, $color-blue, 98%);
+  border-radius: 8px;
+  border: 1px solid $color-border;
+}
+// 评论列表
+#blog-comments-placeholder {
+  @extend %main-comment;
+
+  > br {
+    display: none;
+  }
+
+  .feedback_area_title {
+    display: inline-block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    background-image: none;
+  }
+
+  .feedbackItem {
+    position: relative;
+    margin-top: $main-gutter / 2;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid $color-border;
+    background-color: $color-white;
+
+    .feedbackListSubtitle {
+      padding-bottom: 5px;
+      border-bottom: 1px solid $color-border;
+    }
+
+    .feedbackManage {
+      position: absolute;
+      right: 15px;
+    }
+
+    .feedbackCon .blog_comment_body {
+      padding: 10px 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// 评论表单
+#comment_form {
+  @extend %main-comment;
+
+  #divCommentShow {
+    .comment_my_posted {
+      margin-bottom: $main-gutter;
+
+      .bq_post_comment {
+        margin: $main-gutter / 2 0 0 0;
+        padding: $main-gutter / 4 $main-gutter / 2;
+        border: 1px solid $color-border;
+      }
+    }
+  }
+
+  #comment_nav {
+    position: absolute;
+    top: $main-gutter;
+    right: $main-gutter;
+  }
+
+  &_container {
+    #commentform_title {
+      display: inline-block;
+      width: 100%;
+      padding: 0 0 5px 0;
+      margin: 0;
+      border-bottom: 1px solid $color-border;
+      font-size: 18px;
+      background-image: none;
+    }
+
+    #tip_comment,
+    #tip_comment2 {
+      font-size: 12px;
+      color: $color-primary !important;
+    }
+  }
+
+  &.commentform {
+    p {
+      margin-top: 10px;
+      margin-bottom: 10px;
+  
+      input.author {
+        width: 40%;
+        min-width: 2em;
+        background-image: none;
+        
+        @extend .vv-input;
+      }
+    }
+
+    .commentbox_main {
+
+      .commentbox_title {
+        width: 100%;
+        padding-top: $main-gutter / 2;
+        padding-bottom: $main-gutter / 2;
+      }
+
+      textarea.comment_textarea {
+        font-family: inherit;
+        @extend .vv-textarea;
+      }
+    }
+
+    #commentbox_opt {
+      .comment_btn {
+        width: auto;
+        height: auto;
+
+        @extend .vv-button;
+        @extend .vv-button-primary;
+      }
+
+      a {
+        @extend .vv-button;
+        @extend .vv-button-primary;
+        @extend .vv-button-ghost;
+      }
+    }
+
+    // 相关博文, 最新 it 新闻
+    #under_post_news,
+    #under_post_kb {
+      display: none;
+      margin-top: $main-gutter * 2;
+      margin-bottom: $main-gutter;
+      font-size: 12px;
+      
+      a {
+        color: $color-text;
+
+        &:hover {
+          color: darken($color-text, $hover-percent);
+        }
+      }
+    }
+
+    // 广告
+    #ad_t2,
+    #cnblogs_c1,
+    #cnblogs_c2 {
+      display: none;
+      font-size: 12px;
+    }
+  }
+}
+
+////////////////////////////////
+#mainContent h1.PostListTitle,
+#mainContent h3#taglist_title {
+  display: block;
+  margin: 0 0 $main-gutter 0;
+  padding-bottom: $main-gutter / 2;
+  border-bottom: 1px solid $color-border;
+  font-size: 18px;
+  color: darken($color-text, $hover-percent);
+  text-align: center;
+}
+
+#myposts {
+  margin: 0;
+
+  .PostList {
+    position: relative;
+    margin: 20px 0 0 0;
+    font-size: $font-size-base;
+  }
+
+  .postTitl2 {
+    max-width: 50%;
+    font-size: 16px;
+    @include ellipsis;
+  }
+
+  .postDesc2 {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    max-width: 48%;
+    background-color: $color-white;
+    color: $color-text-aux;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: right;
+
+    @include ellipsis;
+
+    &:before {
+      content: "\20";
+      position: absolute;
+      top: 0;
+      left: -18px;
+      display: block;
+      width: 18px;
+      height: 100%;
+      background-image: linear-gradient(to right, rgba($color-white,0) 0%, $color-white 100%);
+    }
+  }
+
+  .postText2 {
+    color: $color-text;
+    font-size: 12px;
+  }
+}
+
+#taglist {
+  a {
+    @extend %tag;
+    padding-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    &:hover {
+      background-color: mix($color-white, $color-primary, 80%);
+    }
+  }
+
+  .small {
+    @extend %tag;
+    margin: -4px;
+    padding-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+    &:hover {
+      background-color: mix($color-white, $color-primary, 80%);
     }
   }
 }

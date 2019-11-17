@@ -6,6 +6,8 @@
 
 鄙人称此皮肤为 `pure`，主打清新自然。
 
+> 这是一个测试表现的网站：[https://accessible-colors.com/](https://accessible-colors.com/)
+
 
 ## 字号
 

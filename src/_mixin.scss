@@ -2,7 +2,6 @@
   $selector: &;
 
   @at-root {
-
     #{$selector}:before,
     #{$selector}:after {
       content: "\20";
