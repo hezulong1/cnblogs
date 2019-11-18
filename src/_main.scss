@@ -57,6 +57,26 @@ $main-wechat: #51b035 !default;
     font-size: 12px;
   }
 
+  p {
+    margin: 12px auto;
+  }
+
+  blockquote {
+    position: relative;
+    width: 100%;
+    margin: 0 0 50px 0;
+    padding: 20px 30px;
+    border: none;
+    border-left: 5px solid $color-danger;
+    border-radius: 5px 0 0 5px;
+    background-color: $color-white;
+    box-shadow: 0 2px 25px rgba($color-black, .1);
+
+    &:before {
+
+    }
+  }
+
   ul {
     margin: 0;
     padding: 0;
@@ -109,22 +129,6 @@ $main-wechat: #51b035 !default;
     
     &2, &2:hover {
       color: inherit;
-    }
-
-    &:before {
-      content: "\20";
-      position: absolute;
-      top: 50%;
-      left: 8px;
-      display: block;
-      width: 8px;
-      height: 8px;
-      border-radius: 100%;
-      background-color: mix($color-white, $color-primary, 80%);
-    }
-
-    &:hover:before {
-      background-color: $color-primary;
     }
   }
 

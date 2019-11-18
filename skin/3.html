@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    <meta property="og:description" content="本文编辑于2019 02 27 首次发布 花了 3 天时间，趁着我还没有忘记，先记录下来 效果 目前有 2 个项目（ , ），还有一个 自带的 ，我添加了对应的链接代码（稍后粘贴出来），为了统一管理子">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>使用 nginx 同域名下部署多个 vue 项目，并使用反向代理 - 黑猫o - 博客园</title>
+    
+    <link type="text/css" rel="stylesheet" href="./blog.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css">
+  <link type="text/css" rel="stylesheet" href="./custom.css?v=+s6j95t5LqYKQ/awQHns+R3qNB0=">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/blackcat/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/blackcat/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/blackcat/wlwmanifest.xml">
+    <script src="https://cdn.ampproject.org/rtv/011910251950120/amp4ads-host-v0.js"></script><script src="https://securepubads.g.doubleclick.net/gpt/pubads_impl_rendering_2019111201.js"></script><script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script><style type="text/css" abt="234"></style>
+    <script src="/js/blog-common.min.js?v=b7sM0DJziDHg1bHu-IBV4-VgBUQ7XTgLDoGlmGpzIwo"></script>
+    <script>
+        var currentBlogId = 554732;
+        var currentBlogApp = 'blackcat';
+        var cb_enable_mathjax = false;
+        var isLogined = true;
+    </script>
+    
+    
+    
+<link rel="preload" href="https://adservice.google.com/adsid/integrator.js?domain=www.cnblogs.com" as="script"><script type="text/javascript" src="https://adservice.google.com/adsid/integrator.js?domain=www.cnblogs.com"></script><script src="https://securepubads.g.doubleclick.net/gpt/pubads_impl_2019111201.js" async=""></script><script>//remove baidu search ad
+var _countAA = 0
+function doBBBd(){
+    var alla = document.getElementsByTagName('a')
+    for(var i = 0; i < alla.length; i++){
+        if(/baidu.com\/(baidu.php\?url=|adrc.php\?t)/.test(alla[i].href)){
+            var _temp = alla[i].parentElement, loop = 0
+            while(loop < 5){
+                _temp = _temp.parentElement
+                loop++
+                if(_temp.parentElement.id == 'content_left'){
+                    _temp.remove()
+                    break
+                }
+            }
+        }
+    }
+    
+    if(_countAA++ < 20){
+        setTimeout(doBBBd, 500)
+    }
+    
+}
+doBBBd()
+document.addEventListener('keyup', function(){_countAA-=10;doBBBd()}, false)
+document.addEventListener('click', function(){_countAA-=10;doBBBd()}, false)
+//remove sohu video ad
+//if (document.URL.indexOf("tv.sohu.com") >= 0){
+//    if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+//}
+//remove 56.com video ad
+//if (document.URL.indexOf("56.com") >= 0){
+//    if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+//}
+</script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-36/html/container.html"></head>
+<body>
+    <a name="top"></a>
+    
+    
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/blackcat/"><img id="blogLogo" src="/skins/custom/images/logo.gif" alt="返回主页"></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/blackcat/">黑猫o</a>
+</h1>
+<h2>
+賞心悅目、討人喜歡。
+</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/blackcat/">
+首页</a>
+</li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E9%BB%91%E7%8C%ABo">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/blackcat/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			
+			<span id="stats_post_count">随笔 - 
+3&nbsp; </span>
+<span id="stats_article_count">文章 - 
+1&nbsp; </span>
+<span id="stats-comment_count">评论 - 
+3</span>
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/blackcat/articles/11724544.html">使用 nginx 同域名下部署多个 vue 项目，并使用反向代理</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                
+<div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown">
+    <p><small>本文编辑于2019-02-27 首次发布</small></p>
+<blockquote style="
+    margin: 0;
+">
+<p>花了 3 天时间，趁着我还没有忘记，先记录下来</p>
+</blockquote>
+<h2 id="效果">效果</h2>
+<p>目前有 2 个项目（<code>project1</code>, <code>project2</code>），还有一个 <code>nginx</code> 自带的 <code>index.html</code>，我添加了对应的链接代码（稍后粘贴出来），为了统一管理子项目的路由。</p>
+<p>我期望实现下面的效果（假设 <code>ip: localhost</code>，<code>port: 8080</code>）：</p>
+<pre class="javascript"><code class="hljs">http:<span class="hljs-comment">//localhost:8080/ 进入最外层的 index.html</span>
+http:<span class="hljs-comment">//localhost:8080/project1 进入项目一</span>
+http:<span class="hljs-comment">//localhost:8080/project2 进入项目二</span></code></pre>
+<p>废话不多说，开始配置</p>
+<h2 id="vue-的配置">Vue 的配置</h2>
+<blockquote>
+<p>本人使用的是 <code>vue-cli2</code> 搭建的项目，所以对应的需要修改一些 <code>vue</code> 的配置参数。</p>
+</blockquote>
+<ul>
+<li>config 文件夹下的 index.js，因为是打包，所以我们需要在 <code>build.assetsPublicPath</code> 更改对应项目名，譬如</li>
+</ul>
+<pre class="javascript"><code class="hljs"><span class="hljs-comment">// project1</span>
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">dev</span>: {},
+  <span class="hljs-attr">build</span>: {
+    <span class="hljs-attr">assetsPublicPath</span>: <span class="hljs-string">'/project1/'</span> <span class="hljs-comment">// 注意前后的 ‘/’</span>
+  }
+}
+
+<span class="hljs-comment">// project2</span>
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">dev</span>: {},
+  <span class="hljs-attr">build</span>: {
+    <span class="hljs-attr">assetsPublicPath</span>: <span class="hljs-string">'/project2/'</span> <span class="hljs-comment">// 注意前后的 ‘/’</span>
+  }
+}</code></pre>
+<ul>
+<li>config 文件夹下的 prod.env.js 修改成这样：</li>
+</ul>
+<pre class="javascript"><code class="hljs"><span class="hljs-comment">// project1</span>
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">NODE_ENV</span>: <span class="hljs-string">'"production"'</span>,
+  <span class="hljs-attr">BASE_API</span>: <span class="hljs-string">'"/api/pro1"'</span> <span class="hljs-comment">// 这里待会与 nginx 配置对应</span>
+}
+
+<span class="hljs-comment">// project2</span>
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">NODE_ENV</span>: <span class="hljs-string">'"production"'</span>,
+  <span class="hljs-attr">BASE_API</span>: <span class="hljs-string">'"/api/pro2"'</span> <span class="hljs-comment">// 这里待会与 nginx 配置对应</span>
+}</code></pre>
+<p><strong>[注意]</strong> 因为我在项目中使用到了 <code>BASE_API</code> 作为代理的前缀，如果你的不在这边，你需要找到你自己的代理配置</p>
+<ul>
+<li>因为每个人的 <code>vue-router</code> 文件配置不一样，你需要找到你的 router 配置文件，内部修改为：</li>
+</ul>
+<pre class="javascript"><code class="hljs"><span class="hljs-comment">// 我采用了 history 模式，hash 模式我没有测试，感觉应该是一样的效果</span>
+<span class="hljs-comment">// project1</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Router({
+  <span class="hljs-attr">base</span>: <span class="hljs-string">'/project1/'</span>, <span class="hljs-comment">// 注意更改你子项目名，这个对应你的 build.assetsPublicPath</span>
+  mode: <span class="hljs-string">'history'</span>,
+  <span class="hljs-attr">scrollBehavior</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">y</span>: <span class="hljs-number">0</span> }),
+  <span class="hljs-attr">routes</span>: []
+})
+
+<span class="hljs-comment">// project2</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Router({
+  <span class="hljs-attr">base</span>: <span class="hljs-string">'/project2/'</span>, <span class="hljs-comment">// 注意更改你子项目名，这个对应你的 build.assetsPublicPath</span>
+  mode: <span class="hljs-string">'history'</span>,
+  <span class="hljs-attr">scrollBehavior</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">y</span>: <span class="hljs-number">0</span> }),
+  <span class="hljs-attr">routes</span>: []
+})</code></pre>
+<p><strong>[注意]</strong> 在 <code>npm run build</code> 可能会报错：<code>.tap(*)</code> 之类的，那是因为打包中的 <code>html-webpack-plugin</code> 版本出现了问题，可以执行下面的语句</p>
+<pre class="bash"><code class="hljs"><span class="hljs-comment"># 这个版本就是你的 package.json 中的版本，只不过你需要重新再指定这个版本</span>
+
+$ npm i html-webpack-plugin@4.0.0-alpha -D</code></pre>
+<h2 id="nginx-的配置">Nginx 的配置</h2>
+<ul>
+<li>首先我的目录是这样的，无关文件全部以 <code>...</code> 展示</li>
+</ul>
+<pre class="nginx"><code class="hljs">.
+├─<span class="hljs-attribute">conf</span>
+│  ├─... <span class="hljs-comment"># 其他文件</span>
+│  └─nginx.conf
+│
+├─html <span class="hljs-comment"># 只看这里，其他暂时我没用到 </span>
+│  ├─project1
+│  │  └─static
+│  │      ├─css
+│  │      ├─fonts
+│  │      └─js
+│  │          ├─g
+│  │          └─V
+│  ├─project2
+│  │   └─static
+│  │       ├─css
+│  │       ├─fonts
+│  │       └─js
+│  │           ├─g
+│  │           └─V
+│  ├─index.html
+│  └─50x.html
+└─... <span class="hljs-comment"># 其他文件</span></code></pre>
+<p><strong>[解释]</strong> 我的 <code>nginx</code> 目录就是原生的，内部包含了一个 <code>html</code> 文件夹，为了省事，我直接使用这个，当然你也可以指定其他的目录，但是目前还请和我一样的配置，后面可以自己定制化。</p>
+<ul>
+<li>现在我们开始配置在 <code>conf</code> 文件夹下的 <code>nginx.conf</code> 文件</li>
+</ul>
+<p>我是直接在原始文件上修改的，而修改的配置都是在 <code>http</code> 模块中，所以其他的不需要的代码我直接用 <code>...</code> 代替。</p>
+<pre class="nginx"><code class="hljs"><span class="hljs-comment"># ...</span>
+<span class="hljs-comment"># 反向代理</span>
+<span class="hljs-section">http</span> {
+    <span class="hljs-attribute">include</span> mime.types;
+    <span class="hljs-attribute">default_type</span> application/octet-stream;
+
+    <span class="hljs-comment">#log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '</span>
+    <span class="hljs-comment">#                  '$status $body_bytes_sent "$http_referer" '</span>
+    <span class="hljs-comment">#                  '"$http_user_agent" "$http_x_forwarded_for"';</span>
+
+    <span class="hljs-attribute">sendfile</span>        <span class="hljs-literal">on</span>;
+    <span class="hljs-attribute">keepalive_timeout</span>  <span class="hljs-number">65</span>;
+
+    <span class="hljs-attribute">client_max_body_size</span> <span class="hljs-number">20M</span>;
+    <span class="hljs-attribute">client_body_buffer_size</span> <span class="hljs-number">10M</span>;
+    <span class="hljs-attribute">large_client_header_buffers</span> <span class="hljs-number">4</span> <span class="hljs-number">128k</span>;
+    
+    <span class="hljs-comment"># 这里可以做集群</span>
+    <span class="hljs-attribute">upstream</span> p1_server {
+        <span class="hljs-attribute">server</span> localhost:<span class="hljs-number">8081</span>;
+    }
+
+    <span class="hljs-comment"># 这里可以做集群</span>
+    <span class="hljs-attribute">upstream</span> p2_server {
+        <span class="hljs-attribute">server</span> localhost:<span class="hljs-number">8082</span>;
+    }
+
+    <span class="hljs-section">server</span> {
+        <span class="hljs-attribute">listen</span> <span class="hljs-number">8080</span>;
+        <span class="hljs-attribute">server_name</span> localhost;
+        <span class="hljs-attribute">charset</span> utf-<span class="hljs-number">8</span>;
+
+        <span class="hljs-attribute">proxy_connect_timeout</span> <span class="hljs-number">180</span>;
+        <span class="hljs-attribute">proxy_send_timeout</span> <span class="hljs-number">180</span>;
+        <span class="hljs-attribute">proxy_read_timeout</span> <span class="hljs-number">180</span>;
+        <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;
+        <span class="hljs-attribute">proxy_set_header</span> X-Forwarder-For <span class="hljs-variable">$remote_addr</span>;
+
+        <span class="hljs-attribute">root</span> html; <span class="hljs-comment"># 这里指定刚刚我们的文件夹</span>
+        
+        <span class="hljs-comment"># 总的项目路由，我偷懒直接写在了同一个文件</span>
+        <span class="hljs-comment"># 如果有很多可以在配置多个 conf 文件，使用 include 关联进来</span>
+        <span class="hljs-attribute">location</span> / {
+            <span class="hljs-attribute">try_files</span> <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ /index.html; <span class="hljs-comment"># 这里可以理解指定到 html 文件夹下的 index.html</span>
+        }
+        
+        <span class="hljs-comment"># project1</span>
+        <span class="hljs-comment"># 这里就是刚刚我们在 vue 项目中 config/index.js 的配置 build.assetsPublicPath，</span>
+        <span class="hljs-comment"># 也是 vue 项目中配置的 router 中的 base</span>
+        <span class="hljs-attribute">location</span><span class="hljs-regexp"> ^~</span> /project1 {
+            <span class="hljs-attribute">try_files</span> <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ /project1/index.html; <span class="hljs-comment"># 这里可以理解指定到 html 文件夹下 project1 文件夹 的 index.html</span>
+        }
+        
+        <span class="hljs-comment"># project2</span>
+        <span class="hljs-comment"># 这里是项目二的配置</span>
+        <span class="hljs-attribute">location</span><span class="hljs-regexp"> ^~</span> /project2 { <span class="hljs-comment"># </span>
+            <span class="hljs-attribute">try_files</span> <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ /project2/index.html; <span class="hljs-comment"># 这里可以理解指定到 html 文件夹下 project2 文件夹 的 index.html</span>
+        }
+        
+        <span class="hljs-comment"># 这里是 project1 配置需要调用的接口</span>
+        <span class="hljs-attribute">location</span> /api/pro1 { <span class="hljs-comment"># 这里就是在 vue 项目中 prod.env.js 的配置 BASE_API </span>
+            <span class="hljs-attribute">proxy_redirect</span> <span class="hljs-literal">off</span>;
+            <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;
+            <span class="hljs-attribute">proxy_set_header</span> X-Real-IP <span class="hljs-variable">$remote_addr</span>;
+            <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;
+            <span class="hljs-attribute">proxy_pass</span> http://p1_server; <span class="hljs-comment"># 此处的 p1_server 对应的上面的配置 upstream p1_server {}，这里可以做集群，我用不到，就简单配置了</span>
+        }
+        
+         <span class="hljs-comment"># 这里是 project1 配置需要调用的接口</span>
+        <span class="hljs-attribute">location</span> /api/pro2 { <span class="hljs-comment"># 这里就是在 vue 项目中 prod.env.js 的配置 BASE_API</span>
+            <span class="hljs-attribute">proxy_redirect</span> <span class="hljs-literal">off</span>;
+            <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;
+            <span class="hljs-attribute">proxy_set_header</span> X-Real-IP <span class="hljs-variable">$remote_addr</span>;
+            <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;
+            <span class="hljs-attribute">proxy_pass</span> http://p2_server;  <span class="hljs-comment"># 此处的 p2_server 对应的上面的配置 upstream p2_server {}，这里可以做集群，我用不到，就简单配置了</span>
+        }
+
+        <span class="hljs-comment"># ...</span>
+    }
+
+    <span class="hljs-comment"># ...</span>
+}</code></pre>
+<ul>
+<li>最后贴出我修改的 <code>index.html</code> 的代码</li>
+</ul>
+<p>因为我是追加的，所以直接贴出我追加的代码，其他的采用 ...</p>
+<pre class="html"><code class="hljs xml">...
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>Thank you for using nginx.<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span> <span class="hljs-comment">&lt;!-- 为了展示位置 --&gt;</span>
+
+<span class="hljs-comment">&lt;!-- start: 追加--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/project1"</span>&gt;</span>项目一<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> | <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/project2"</span>&gt;</span>项目二<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- end: 追加--&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span> <span class="hljs-comment">&lt;!-- 为了展示位置 --&gt;</span></code></pre>
+<h2 id="最后的调试">最后的调试</h2>
+<p>所有的配置完成，我们就可以启动 <code>nginx</code> 了，这个不会的请自行解决了。</p>
+<p>启动成功，我们在浏览器输入 <code>http://localhost:8080</code> 我们就可以看到，</p>
+<p>点击项目一，我们可以看到链接变为 <code>http://localhost:8080/project1</code></p>
+<p>点击项目二，链接变为 <code>http://localhost:8080/project2</code>，完全符合我们的期望，那就成功了。</p>
+<p><strong>[强行解释一下玄学]</strong> 那天配置好了，一启动就报错，弄的我最后放弃了。但是第二天，准备在检查下，一启动竟然全好了，我都一脸懵逼啊！ 如果你也遇到和我一样的问题，先放放，说不定隔天就好了。</p>
+
+</div>
+<div id="MySignature" style="display: block;">吸烟有害健康
+
+I Love U 3000
+
+[GM]</div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="EntryTag">
+    标签: 
+            <a href="https://www.cnblogs.com/blackcat/tag/nginx/">nginx</a>,             <a href="https://www.cnblogs.com/blackcat/tag/vue/">vue</a>,             <a href="https://www.cnblogs.com/blackcat/tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/">反向代理</a></div>
+
+    <div id="blog_post_info">
+<div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(11724544,cb_blogId,1);green_channel_success(this,'谢谢推荐！');">好文要顶</a>
+        <a id="green_channel_follow" onclick="follow('6ff284d2-5778-4098-16ff-08d49c352df3');" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="https://common.cnblogs.com/images/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="https://common.cnblogs.com/images/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/blackcat/" target="_blank"><img src="https://pic.cnblogs.com/face/1197507/20191023094305.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/blackcat/">黑猫o</a><br>
+            <a href="https://home.cnblogs.com/u/blackcat/followees/">关注 - 0</a><br>
+            <a href="https://home.cnblogs.com/u/blackcat/followers/">粉丝 - 0</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(11724544,'Digg')">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(11724544,'Bury')">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2019-10-23 10:04</span>&nbsp;<a href="https://www.cnblogs.com/blackcat/">黑猫o</a> 阅读(<span id="post_view_count">25</span>) 评论(<span id="post_comment_count">0</span>) <a href="https://i.cnblogs.com/EditArticles.aspx?postid=11724544" rel="nofollow"> 编辑</a> <a href="javascript:void(0)" onclick="AddToWz(11724544); return false;">收藏</a>
+</div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="https://common.cnblogs.com/highlight/9.12.0/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 554732, cb_blogApp = 'blackcat', cb_blogUserGuid = '6ff284d2-5778-4098-16ff-08d49c352df3';
+    var cb_entryId = 11724544, cb_entryCreatedDate = '2019-10-23 10:04', cb_postType = 2; 
+    loadViewCount(cb_entryId);
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+    <div id="comment_form_container"><script type="text/javascript" src="https://mention.cnblogs.com//bundles/mention.js?id=20160615"></script>
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+    昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="黑猫o">
+</p>
+<div class="commentbox_main">
+    <div class="commentbox_title">
+        <div class="commentbox_title_left">评论内容：</div>
+        <div class="commentbox_title_right">
+            <img id="ubb_quote" class="comment_icon" src="https://static.cnblogs.com/images/ubb/quote.gif" alt="引用" title="添加引用" onclick="insertUBB('tbCommentBody','quote')">
+            <img id="ubb_bold" class="comment_icon" src="https://static.cnblogs.com/images/ubb/b.png" alt="粗体" title="添加粗体" onclick="insertUBB('tbCommentBody','b')">
+            <img id="ubb_url" class="comment_icon" src="https://static.cnblogs.com/images/ubb/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl('tbCommentBody')">
+            <img id="ubb_indent" class="comment_icon" src="https://static.cnblogs.com/images/ubb/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent('tbCommentBody')">
+            <img id="ubb_code" class="comment_icon" src="https://static.cnblogs.com/images/ubb/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+            <img id="ubb_img" class="comment_icon" src="https://static.cnblogs.com/images/ubb/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+        </div>
+    </div>
+    <textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+    <input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+    <span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+    <a href="javascript:void(0);" onclick="return logout();">退出</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>[Ctrl+Enter快捷键提交]</p>
+<div style="display:none">
+    <span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+    <span id="span_parent_id"></span>
+    <span id="span_comment_replyto"></span>
+    <span id="span_comment_posted"></span>
+</div>
+</div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"><a href="https://cloud.tencent.com/act/pro/overseas?fromSource=gwzcw.3090393.3090393.3090393&amp;utm_medium=cpc&amp;utm_id=gwzcw.3090393.3090393.3090393" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-腾讯云')">【推荐】腾讯云海外1核2G云服务器低至2折，半价续费券限量免费领取！</a><br><a href="https://www.jdcloud.com/cn/activity/year-end?utm_source=DMT_cnblogs&amp;utm_medium=CH&amp;utm_campaign=q4vm&amp;utm_term=Virtual-Machines" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-京东云')">【活动】京东云服务器_云主机低于1折，低价高性能产品备战双11</a><br><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-工控')">【推荐】超50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://ke.qq.com/huodong/mashibing_pc/index.html?from=800018451" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-马士兵')">【培训】马士兵老师一对一职业规划指导！程序员突破年薪80W！</a><br><a href="https://www.ctyun.cn/activity/20191111?hmsr=%E7%9C%8B%E7%9C%8B-%E5%8D%9A%E5%AE%A2%E5%9B%AD-%E5%8F%8C11-1106&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-天翼云')">【推荐】天翼云双十一翼降到底，云主机11.11元起，抽奖送大礼</a><br><a href="https://ke.qq.com/huodong/xiangxueketang_pc/index.html?from=800018909" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-享学')">【培训】2019年这些技术点你都不懂的话，如何去争取高薪呢？</a><br><a href="https://www.uibot.com.cn/sem/bky.html" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-uibot_T2')">【推荐】流程自动化专家UiBot，体系化教程成就高薪RPA工程师</a><br></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block" style="">
+        <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;" data-google-query-id="CNicxPy18-UCFZexlgodUacImQ"><div id="google_ads_iframe_/1090369/C1_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C1_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C1_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" srcdoc="" style="border: 0px; vertical-align: bottom;" data-google-container-id="1" data-load-complete="true"></iframe></div></div>
+    </div>
+    <div id="under_post_news"></div>
+    <div id="cnblogs_c2" class="c_ad_block" style="">
+        <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CNmcxPy18-UCFZexlgodUacImQ">
+            
+        <div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C2_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C2_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" srcdoc="" style="border: 0px; vertical-align: bottom;" data-google-container-id="2" data-load-complete="true"></iframe></div></div>
+    </div>
+    <div id="under_post_kb"></div>
+    <div id="HistoryToday" class="c_ad_block"></div>
+    <script type="text/javascript">
+        fixPostBody();
+        setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<div id="sidebar_news" class="newsItem"><!--done-->
+<h3 class="catListTitle">公告</h3>
+
+<div id="blog-news">
+    
+    <div id="profile_block">
+        昵称：
+        <a href="https://home.cnblogs.com/u/blackcat/">
+            黑猫o
+        </a>
+        <br>
+        园龄：
+        <a href="https://home.cnblogs.com/u/blackcat/" title="入园时间：2017-07-11">
+            2年4个月
+        </a>
+        <br>
+        粉丝：
+        <a href="https://home.cnblogs.com/u/blackcat/followers/">
+            0
+        </a>
+        <br>
+        关注：
+        <a href="https://home.cnblogs.com/u/blackcat/followees/">
+            0
+        </a>
+        <div id="p_b_follow"></div>
+        <script>getFollowStatus('6ff284d2-5778-4098-16ff-08d49c352df3');</script>
+    </div>
+</div>
+
+</div>
+
+			<div id="blog-calendar" style="">
+
+<table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar" border="0">
+    <tbody>
+        <tr>
+            <td colspan="7">
+                <table class="CalTitle" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar('2019/10/18'); return false;">&lt;</a>
+                            </td>
+                            <td align="center">2019年11月</td>
+                            <td align="right" class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar('2019/12/18'); return false;">&gt;</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+                    <th class="CalDayHeader" align="center" abbr="日" scope="col">日</th>
+                    <th class="CalDayHeader" align="center" abbr="一" scope="col">一</th>
+                    <th class="CalDayHeader" align="center" abbr="二" scope="col">二</th>
+                    <th class="CalDayHeader" align="center" abbr="三" scope="col">三</th>
+                    <th class="CalDayHeader" align="center" abbr="四" scope="col">四</th>
+                    <th class="CalDayHeader" align="center" abbr="五" scope="col">五</th>
+                    <th class="CalDayHeader" align="center" abbr="六" scope="col">六</th>
+        </tr>
+            <tr>
+                            <td class="CalOtherMonthDay" align="center">27</td>
+                            <td class="CalOtherMonthDay" align="center">28</td>
+                            <td class="CalOtherMonthDay" align="center">29</td>
+                            <td class="CalOtherMonthDay" align="center">30</td>
+                            <td class="CalOtherMonthDay" align="center">31</td>
+                        <td class="" align="center">
+                            <a href="https://www.cnblogs.com/blackcat/archive/2019/11/01.html"><u>1</u></a>
+                        </td>
+                    <td class="CalWeekendDay" align="center">
+                        2
+                    </td>
+            </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            3
+                        </td>
+                            <td class="" align="center">
+                                <a href="https://www.cnblogs.com/blackcat/archive/2019/11/04.html"><u>4</u></a>
+                            </td>
+                            <td class="" align="center">
+                                5
+                            </td>
+                            <td class="" align="center">
+                                <a href="https://www.cnblogs.com/blackcat/archive/2019/11/06.html"><u>6</u></a>
+                            </td>
+                            <td class="" align="center">
+                                7
+                            </td>
+                            <td class="" align="center">
+                                8
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            9
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            10
+                        </td>
+                            <td class="" align="center">
+                                11
+                            </td>
+                            <td class="" align="center">
+                                12
+                            </td>
+                            <td class="" align="center">
+                                13
+                            </td>
+                            <td class="" align="center">
+                                14
+                            </td>
+                            <td class="" align="center">
+                                15
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            16
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            17
+                        </td>
+                            <td class="CalTodayDay" align="center">
+                                18
+                            </td>
+                            <td class="" align="center">
+                                19
+                            </td>
+                            <td class="" align="center">
+                                20
+                            </td>
+                            <td class="" align="center">
+                                21
+                            </td>
+                            <td class="" align="center">
+                                22
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            23
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            24
+                        </td>
+                            <td class="" align="center">
+                                25
+                            </td>
+                            <td class="" align="center">
+                                26
+                            </td>
+                            <td class="" align="center">
+                                27
+                            </td>
+                            <td class="" align="center">
+                                28
+                            </td>
+                            <td class="" align="center">
+                                29
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            30
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalOtherMonthDay" align="center">
+                            1
+                        </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                2
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                3
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                4
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                5
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                6
+                            </td>
+                        <td class="CalOtherMonthDay" align="center">
+                            7
+                        </td>
+                </tr>
+    </tbody>
+</table></div><script>loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn">
+<!-- 搜索 -->
+<div id="sidebar_search" class="sidebar-block">
+    <div id="sidebar_search" class="mySearch">
+        <h3 class="catListTitle">搜索</h3>
+        <div id="sidebar_search_box">
+            <div id="widget_my_zzk" class="div_my_zzk">
+                <input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk">
+            </div>
+            <div id="widget_my_google" class="div_my_zzk">
+                <input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 常用链接 -->
+<div id="sidebar_shortcut" class="sidebar-block">
+    <div class="catListLink">
+<h3 class="catListTitle">
+常用链接
+</h3>
+<ul>
+		<li>
+
+<a href="https://www.cnblogs.com/blackcat/p/" title="我的博客的随笔列表">我的随笔</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/blackcat/MyComments.html" title="我的发表过的评论列表">我的评论</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/blackcat/OtherPosts.html" title="我评论过的随笔列表">我的参与</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/blackcat/RecentComments.html" title="我的博客的评论列表">最新评论</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/blackcat/tag/" title="我的博客的标签列表">我的标签</a>
+</li>
+
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div>
+
+
+</div>
+
+<!-- 最新随笔 -->
+<div id="sidebar_recentposts" class="sidebar-block">
+    <div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/blackcat/p/11803116.html">1.一些网站的收集</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/blackcat/p/11790377.html">2.The quick brown fox jumps over a lazy dog.</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/blackcat/p/11775759.html">3.为了皮肤的测试</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/blackcat/articles/11724544.html">4.使用 nginx 同域名下部署多个 vue 项目，并使用反向代理</a>
+
+                </li>
+			
+
+</ul>
+</div>
+
+
+</div>
+
+
+<!-- 我的标签 -->
+<div id="sidebar_toptags" class="sidebar-block">
+    <div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+
+        <li>
+            <a href="https://www.cnblogs.com/blackcat/tag/fox/">fox</a>(1)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/blackcat/tag/nginx/">nginx</a>(1)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/blackcat/tag/TEST/">TEST</a>(1)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/blackcat/tag/vue/">vue</a>(1)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/blackcat/tag/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/">反向代理</a>(1)
+        </li>
+
+</ul>
+</div>
+
+
+</div>
+
+<!-- 积分与排名 -->
+<div id="sidebar_scorerank" class="sidebar-block">
+    <div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	
+170
+	</li>
+	<li class="liRank">
+		排名 -	
+265380
+	</li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<!-- 随笔分类、随笔档案、文章分类、新闻分类、相册、链接 -->
+<div id="sidebar_categories">
+    
+        <div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+            <h3 class="catListTitle">
+                
+
+随笔档案
+<span style="font-size:11px;font-weight:normal">(3)</span>
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/blackcat/archive/2019/11.html" rel="" target="">
+    2019年11月(3)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+        <div id="sidebar_articlearchive" class="catListArticleArchive sidebar-block">
+            <h3 class="catListTitle">
+                
+
+文章档案
+<span style="font-size:11px;font-weight:normal">(1)</span>
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/blackcat/archives/2019/10.html" rel="nofollow noopener noreferrer" target="">
+    2019年10月(1)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+        <div id="sidebar_imagecategory" class="catListImageCategory sidebar-block">
+            <h3 class="catListTitle">
+                
+
+相册
+<span style="font-size:11px;font-weight:normal">(6)</span>
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/blackcat/gallery/1583006.html" rel="nofollow noopener noreferrer" target="">
+    我的(6)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+
+</div>
+
+<!-- 最新评论 -->
+<div id="sidebar_recentcomments" class="sidebar-block">
+    <div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div class="RecentCommentBlock">
+        <ul>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/blackcat/p/11775759.html#4429216">1. Re:为了皮肤的测试</a></li>
+                    <li class="recent_comment_body">👀</li>
+                    <li class="recent_comment_author">--黑猫o</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/blackcat/p/11775759.html#4429164">2. Re:为了皮肤的测试</a></li>
+                    <li class="recent_comment_body">ddd</li>
+                    <li class="recent_comment_author">--黑猫o</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/blackcat/p/11775759.html#4414047">3. Re:为了皮肤的测试</a></li>
+                    <li class="recent_comment_body">仍让人</li>
+                    <li class="recent_comment_author">--黑猫o</li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+
+
+<!-- 阅读排行榜 -->
+<div id="sidebar_topviewedposts" class="sidebar-block">
+    <div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/blackcat/p/11775759.html">
+                            1. 为了皮肤的测试(19)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/blackcat/p/11790377.html">
+                            2. The quick brown fox jumps over a lazy dog.(18)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/blackcat/p/11803116.html">
+                            3. 一些网站的收集(13)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 评论排行榜 -->
+<div id="sidebar_topcommentedposts" class="sidebar-block">
+    <div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/blackcat/p/11775759.html">
+                            1. 为了皮肤的测试(3)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 推荐排行榜 -->
+<div id="sidebar_topdiggedposts" class="sidebar-block">
+    
+</div></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright © 2019 黑猫o
+<br><span id="poweredby">Powered by .NET Core 3.0.0 on Linux</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    <div id="page_end_html">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:400,800|Ubuntu+Mono">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.9/styles/atom-one-dark.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@1.9.1/css/OverlayScrollbars.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hezulong1/cnblogs@master/dist/n6cglvvt.min.css"> -->
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@1.9.1/js/OverlayScrollbars.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/os-scroll-chain@2.0.0/dist/os-scroll-chain.min.js"></script>
+<script src="https://unpkg.com/eva-icons"></script>
+<script src="https://cdn.jsdelivr.net/gh/hezulong1/cnblogs@master/skin/script.js"></script> -->
+<script>
+/*$("body, #sideBarMain").overlayScrollbars({
+        scrollbars: {
+            autoHide: "leave"
+        },
+scrollbars: {
+                autoHide: "leave"
+            }
+    }, ["scroll-chain"]);*/
+
+/*$('#blogTitle').find('.subtitle').prepend('<i data-eva="heart" data-eva-fill="#dc3545" data-eva-height="12" data-eva-width="12"></i>')
+eva.replace({
+animation:{
+    type: 'pulse', // zoom, pulse, shake, flip
+    hover: false, // default true
+    infinite: true, // default false
+  }
+})*/
+</script>
+    </div>
+
+
+</body></html>
