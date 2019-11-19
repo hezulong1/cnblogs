@@ -1,17 +1,15 @@
-/**
- * @description   header's style
- * @date          2019/11/17 00:56
- */
-
 #header {
-  display: block;
+  display: flex;
   width: 100%;
   height: $header-height;
-  padding-right: 20px;
-  padding-left: 20px;
   border-bottom: 1px solid $color-border;
   background-color: $header-fill-color;
-  @include clearfix;
+
+  &:before,
+  &:after {
+    content: "";
+    flex: 0 1 calc(50% - #{$main-width / 2});
+  }
 
   &.is-fixed {
     position: fixed;
@@ -31,9 +29,10 @@
 }
 
 #blogTitle {
-  float: left;
-  position: relative;
-  min-width: $aside-width - 20px;
+  flex: none;
+  min-width: $aside-width;
+  padding: 0 25px;
+  border-right: 1px solid transparent;
 
   #lnkBlogLogo {
     display: none;
@@ -53,13 +52,14 @@
   }
 
   h2 {
-    color: $color-text-aux;
-    font-size: $font-size-base;
+    color: $color-placeholder;
+    font-size: 12px;
   }
 }
 
 #navigator {
-  float: right;
+  flex: 1;
+  padding: 0 25px;
 
   ul {
     @include clearfix;
@@ -69,6 +69,7 @@
     float: left;
     height: 100%;
     padding: 0 15px;
+    font-size: 16px;
 
     a.menu {
       position: relative;

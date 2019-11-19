@@ -65,11 +65,8 @@ $header-fill-color:   $color-white !default;
 $header-shadow:       0 3px 8px 0 rgba($color-text-aux, .1) !default;
 
 // Main
-$color-purple: #816ad6 !default;
-$color-pink:   #ff94ab !default;
-$color-lightblue:   #2b92e4 !default;
-$color-weibo:  #0e2746 !default;
-$color-wechat: #51b035 !default;
+$main-width:          1000px !default;
+$main-fill-color:     $color-white !default;
 
 // Aside
 $aside-width:         280px !default;

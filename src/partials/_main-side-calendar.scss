@@ -1,0 +1,61 @@
+#blog-calendar {
+  display: block;
+  margin: $grid-gutter * 2 0;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-small;
+  color: $color-text-aux;
+  font-size: 12px;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+
+  table {
+    width: 100%;
+  }
+
+  td:not([colspan]), th {
+    padding: .25em 0;
+    text-align: center;
+    font-weight: 400;
+
+    u {
+      text-decoration: none;
+    }
+  }
+
+  th {
+    color: $color-text;
+    padding: .5em 0;
+  }
+
+  td.CalOtherMonthDay {
+    color: mix($color-white, $color-text-aux, 70%);
+  }
+
+  td.CalWeekendDay {
+    font-weight: 700;
+  }
+
+  .CalTitle {
+    border-bottom: 1px solid $color-border;
+  }
+
+  .CalNextPrev {
+    & > a {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      font-size: 0;
+    }
+
+    & > a:before {
+      content: "\00ab";
+      font-size: 22px;
+      transform: translateY(-1px);
+    }
+
+    &:last-child > a:before{
+      content: "\00bb";
+    }
+  }
+}

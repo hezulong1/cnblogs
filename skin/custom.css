@@ -250,7 +250,7 @@ th {
   text-align: inherit;
 }
 
-.vv-input, #sideBar .input_my_zzk, #comment_form.commentform p input.author, .vv-textarea, #comment_form.commentform .commentbox_main textarea.comment_textarea {
+#sideBar .input_my_zzk, #comment_form.commentform p input.author, .vv-textarea, #comment_form.commentform .commentbox_main textarea.comment_textarea {
   display: inline-block;
   width: 100%;
   min-width: 5em;
@@ -265,31 +265,31 @@ th {
   outline: none;
 }
 
-.vv-input::placeholder, #sideBar .input_my_zzk::placeholder, #comment_form.commentform p input.author::placeholder, .vv-textarea::placeholder, #comment_form.commentform .commentbox_main textarea.comment_textarea::placeholder {
+#sideBar .input_my_zzk::placeholder, #comment_form.commentform p input.author::placeholder, .vv-textarea::placeholder, #comment_form.commentform .commentbox_main textarea.comment_textarea::placeholder {
   color: #c0c4cc;
 }
 
-.vv-input:hover, #sideBar .input_my_zzk:hover, #comment_form.commentform p input.author:hover, .vv-textarea:hover, #comment_form.commentform .commentbox_main textarea.comment_textarea:hover {
+#sideBar .input_my_zzk:hover, #comment_form.commentform p input.author:hover, .vv-textarea:hover, #comment_form.commentform .commentbox_main textarea.comment_textarea:hover {
   border-color: #cbd3da;
 }
 
-.vv-input:focus, #sideBar .input_my_zzk:focus, #comment_form.commentform p input.author:focus, .vv-textarea:focus, #comment_form.commentform .commentbox_main textarea.comment_textarea:focus {
+#sideBar .input_my_zzk:focus, #comment_form.commentform p input.author:focus, .vv-textarea:focus, #comment_form.commentform .commentbox_main textarea.comment_textarea:focus {
   outline: none;
   border-color: #f375b5;
   box-shadow: 0 0 0 3px rgba(243, 117, 181, 0.25);
 }
 
-.vv-input[readonly], #sideBar .input_my_zzk[readonly], #comment_form.commentform p input.author[readonly], .vv-textarea[readonly], #comment_form.commentform .commentbox_main textarea.comment_textarea[readonly] {
+#sideBar .input_my_zzk[readonly], #comment_form.commentform p input.author[readonly], .vv-textarea[readonly], #comment_form.commentform .commentbox_main textarea.comment_textarea[readonly] {
   background-color: #ebeef1;
 }
 
-.vv-input:disabled, #sideBar .input_my_zzk:disabled, #comment_form.commentform p input.author:disabled, .vv-textarea:disabled, #comment_form.commentform .commentbox_main textarea.comment_textarea:disabled, .vv-input[disabled], #sideBar .input_my_zzk[disabled], #comment_form.commentform p input.author[disabled], .vv-textarea[disabled], #comment_form.commentform .commentbox_main textarea.comment_textarea[disabled] {
+#sideBar .input_my_zzk:disabled, #comment_form.commentform p input.author:disabled, .vv-textarea:disabled, #comment_form.commentform .commentbox_main textarea.comment_textarea:disabled, #sideBar .input_my_zzk[disabled], #comment_form.commentform p input.author[disabled], .vv-textarea[disabled], #comment_form.commentform .commentbox_main textarea.comment_textarea[disabled] {
   background-color: #eaedf0;
   border-color: #cbd3da;
   cursor: not-allowed;
 }
 
-.vv-input, #sideBar .input_my_zzk, #comment_form.commentform p input.author {
+#sideBar .input_my_zzk, #comment_form.commentform p input.author {
   height: calc(1.25em + 1em + 2px);
   padding: .5em .75em .5em .5em;
   line-height: 1.25;
@@ -468,28 +468,17 @@ th {
   margin-left: .5em;
 }
 
-/**
- * @description   header's style
- * @date          2019/11/17 00:56
- */
 #header {
-  display: block;
+  display: flex;
   width: 100%;
   height: 80px;
-  padding-right: 20px;
-  padding-left: 20px;
   border-bottom: 1px solid #e9ecef;
   background-color: #fff;
 }
 
-#header:before,
-#header:after {
-  content: "\20";
-  display: table;
-}
-
-#header:after {
-  clear: both;
+#header:before, #header:after {
+  content: "";
+  flex: 0 1 calc(50% - 500px);
 }
 
 #header.is-fixed {
@@ -509,9 +498,10 @@ th {
 }
 
 #blogTitle {
-  float: left;
-  position: relative;
-  min-width: 260px;
+  flex: none;
+  min-width: 280px;
+  padding: 0 25px;
+  border-right: 1px solid transparent;
 }
 
 #blogTitle #lnkBlogLogo {
@@ -534,12 +524,13 @@ th {
 }
 
 #blogTitle h2 {
-  color: #74818d;
-  font-size: 14px;
+  color: #c0c4cc;
+  font-size: 12px;
 }
 
 #navigator {
-  float: right;
+  flex: 1;
+  padding: 0 25px;
 }
 
 #navigator ul:before,
@@ -556,6 +547,7 @@ th {
   float: left;
   height: 100%;
   padding: 0 15px;
+  font-size: 16px;
 }
 
 #navigator li a.menu {
@@ -608,7 +600,7 @@ th {
 
 #sideBar {
   flex: 0 0 280px;
-  padding-left: 2em;
+  padding: 30px 15px 30px 25px;
   border-right: 1px solid #e9ecef;
 }
 
@@ -624,8 +616,8 @@ th {
 #sideBar #blog-news,
 #sideBar #sidebar_search_box,
 #sideBar #leftcontentcontainer .sidebar-block ul {
-  padding-top: 5.33333px;
-  padding-left: 8px;
+  padding-top: 4.66667px;
+  padding-left: 7px;
 }
 
 #sideBar .btn_my_zzk {
@@ -634,145 +626,86 @@ th {
 
 #sideBar #sideBarMain {
   height: 100%;
-  padding-right: 1em;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-#sideBar #sidebar_news {
+#sideBar #blog-calendar {
   display: block;
-  margin-top: 16px;
-}
-
-#sideBar #calendar, #sideBar #blog-calendar {
-  display: block;
-  margin: 32px 0;
-  padding: 0;
+  margin: 28px 0;
   border: 1px solid #e9ecef;
   border-radius: 2px;
   color: #74818d;
+  font-size: 12px;
   font-feature-settings: "tnum";
   font-variant-numeric: tabular-nums;
 }
 
-#sideBar #calendar table, #sideBar #blog-calendar table {
+#sideBar #blog-calendar table {
   width: 100%;
 }
 
-#sideBar #calendar td:not([colspan]), #sideBar #calendar th, #sideBar #blog-calendar td:not([colspan]), #sideBar #blog-calendar th {
-  position: relative;
+#sideBar #blog-calendar td:not([colspan]), #sideBar #blog-calendar th {
   padding: .25em 0;
   text-align: center;
   font-weight: 400;
 }
 
-#sideBar #calendar td:not([colspan]) a, #sideBar #calendar th a, #sideBar #blog-calendar td:not([colspan]) a, #sideBar #blog-calendar th a {
-  display: block;
-  border-bottom: 0;
-}
-
-#sideBar #calendar td:not([colspan]) a u, #sideBar #calendar th a u, #sideBar #blog-calendar td:not([colspan]) a u, #sideBar #blog-calendar th a u {
+#sideBar #blog-calendar td:not([colspan]) u, #sideBar #blog-calendar th u {
   text-decoration: none;
 }
 
-#sideBar #calendar th, #sideBar #blog-calendar th {
+#sideBar #blog-calendar th {
   color: #495057;
   padding: .5em 0;
 }
 
-#sideBar #calendar td.CalOtherMonthDay, #sideBar #blog-calendar td.CalOtherMonthDay {
+#sideBar #blog-calendar td.CalOtherMonthDay {
   color: #d5d9dd;
 }
 
-#sideBar #calendar td.CalWeekendDay, #sideBar #blog-calendar td.CalWeekendDay {
+#sideBar #blog-calendar td.CalWeekendDay {
   font-weight: 700;
 }
 
-#sideBar #calendar .CalTitle, #sideBar #blog-calendar .CalTitle {
+#sideBar #blog-calendar .CalTitle {
   border-bottom: 1px solid #e9ecef;
-  padding-bottom: .875em;
 }
 
-#sideBar #calendar .CalTitle td, #sideBar #blog-calendar .CalTitle td {
-  padding: .5em 0;
-  min-height: 42px;
-}
-
-#sideBar #calendar .CalNextPrev, #sideBar #blog-calendar .CalNextPrev {
-  text-align: center;
-  line-height: 1;
-  vertical-align: middle;
-  font-weight: 700;
-}
-
-#sideBar #calendar .CalNextPrev > a, #sideBar #blog-calendar .CalNextPrev > a {
-  display: inline-block;
+#sideBar #blog-calendar .CalNextPrev > a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 16px;
-  min-width: 42px;
   font-size: 0;
-  color: #495057 !important;
-  border-bottom: 0;
 }
 
-#sideBar #calendar .CalNextPrev > a:hover, #sideBar #blog-calendar .CalNextPrev > a:hover {
-  color: #eb1783 !important;
-}
-
-#sideBar #calendar .CalNextPrev > a:before, #sideBar #blog-calendar .CalNextPrev > a:before {
+#sideBar #blog-calendar .CalNextPrev > a:before {
   content: "\00ab";
-  position: absolute;
-  top: 50%;
-  left: 14px;
-  font-size: 18px;
-  color: currentColor;
-  transform: translateY(-50%);
+  font-size: 22px;
+  transform: translateY(-1px);
 }
 
-#sideBar #calendar .CalNextPrev:last-child > a:before, #sideBar #blog-calendar .CalNextPrev:last-child > a:before {
+#sideBar #blog-calendar .CalNextPrev:last-child > a:before {
   content: "\00bb";
-  left: auto;
-  right: 14px;
-}
-
-#sideBar #calendar .CalNextPrev ~ [align="center"], #sideBar #blog-calendar .CalNextPrev ~ [align="center"] {
-  padding: 1em 0;
-  line-height: 1;
-  vertical-align: middle;
-  letter-spacing: .1em;
-  font-weight: 700;
-  font-size: 1em;
-  cursor: text;
 }
 
 #sideBar #leftcontentcontainer {
-  padding-bottom: 48px;
+  padding-bottom: 42px;
 }
 
 #sideBar #leftcontentcontainer .sidebar-block {
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 #sideBar #leftcontentcontainer .sidebar-block .input_my_zzk {
   width: 60%;
 }
 
-#sideBar #leftcontentcontainer .sidebar-block ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  background-color: #fff;
-}
-
-#sideBar #leftcontentcontainer .sidebar-block ul li {
-  overflow: hidden;
-  text-overflow: clip;
-}
-
 #sideBar #leftcontentcontainer .sidebar-block ul li > a {
   display: inline-block;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 3.5px;
+  padding-bottom: 3.5px;
   color: #495057;
   transition: transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1), color 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
 }
@@ -782,9 +715,7 @@ th {
 }
 
 #sideBar #leftcontentcontainer .sidebar-block#sidebar_toptags ul li {
-  margin: 0 5.33333px 5.33333px 0;
-  font-weight: 400;
-  text-shadow: 0 0 1px;
+  margin: 0 4.66667px 4.66667px 0;
 }
 
 #sideBar #leftcontentcontainer .sidebar-block#sidebar_toptags ul li > a {
@@ -798,22 +729,18 @@ th {
   border-bottom-style: solid;
 }
 
-#sideBar #leftcontentcontainer .sidebar-block#sidebar_recentcomments ul li.recent_comment_title {
-  font-weight: 700;
-}
-
-#sideBar #leftcontentcontainer .sidebar-block#sidebar_recentcomments ul li.recent_comment_title > a {
+#sideBar #leftcontentcontainer .sidebar-block#sidebar_recentcomments ul li a {
   color: #f375b5;
 }
 
-#sideBar #leftcontentcontainer .sidebar-block#sidebar_recentcomments ul li.recent_comment_title > a:hover, #sideBar #leftcontentcontainer .sidebar-block#sidebar_recentcomments ul li.recent_comment_title > a:focus {
+#sideBar #leftcontentcontainer .sidebar-block#sidebar_recentcomments ul li a:hover, #sideBar #leftcontentcontainer .sidebar-block#sidebar_recentcomments ul li a:focus {
   color: #eb1783;
 }
 
 #sideBar #leftcontentcontainer .sidebar-block#sidebar_recentcomments ul li.recent_comment_author {
   text-align: right;
   margin-right: 0;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   font-size: 12px;
   letter-spacing: .1em;
 }
@@ -822,40 +749,10 @@ th {
   margin-bottom: 0;
 }
 
-@media screen and (min-width: grid-lg) {
-  #sideBar #sideBar {
-    box-shadow: 1px 0 5px 0 rgba(0, 0, 0, 0.1);
-  }
-}
-
 #mainContent {
   flex: auto;
   padding: 30px 40px;
   font-size: 14px;
-}
-
-#mainContent h1 {
-  font-size: 22px;
-}
-
-#mainContent h2 {
-  font-size: 18px;
-}
-
-#mainContent h3 {
-  font-size: 16px;
-}
-
-#mainContent h4 {
-  font-size: 14px;
-}
-
-#mainContent h5 {
-  font-size: 13px;
-}
-
-#mainContent h6 {
-  font-size: 12px;
 }
 
 #mainContent p {
@@ -872,22 +769,6 @@ th {
   border-radius: 5px;
   background-color: #fff;
   box-shadow: 0 2px 25px rgba(0, 0, 0, 0.1);
-}
-
-#mainContent ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-#mainContent li {
-  list-style: none;
-}
-
-#mainContent img {
-  display: inline-block;
-  max-width: 100%;
-  vertical-align: middle;
 }
 
 #mainContent .diggword,
@@ -1763,6 +1644,7 @@ pre > .cnblogs-markdown code, pre >
   position: absolute;
   top: -80px;
   left: 0;
+  z-index: 3;
   display: block;
   width: 100%;
   height: 80px;
