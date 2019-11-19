@@ -1,30 +1,36 @@
-@import "var";
-@import "mixin";
-
+@import "base/var";
+@import "base/mixin";
+@import "base/reset";
 @import "base/reboot";
 @import "base/input";
 @import "base/button";
 @import "base/tag";
 
-@import "header";
-@import "aside";
-@import "main";
-@import "footer";
+@import "partials/header";
+@import "partials/main";
+@import "partials/footer";
 
-input.btn_my_zzk.cnblogs-btn {
-  height: 36px;
+#green_channel>span,
+#author_profile_follow>span,
+#p_b_follow>span {
+  display: inline-block;
+  color: $color-white !important;
+  padding: 2px 4px;
+  background-color: $color-danger !important;;
   font-size: 12px;
-  padding: 8px 1em;
 }
 
 .c_b_p_desc {
   font-size: 12px;
+  margin: 12px 0;
 }
 
 .c_b_p_desc_readmore {
   position: relative;
   padding: 0;
   margin: 0;
+
+  @include unselect;
 
   &:before {
     content: "\20";

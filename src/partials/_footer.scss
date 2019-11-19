@@ -4,14 +4,13 @@
  */
 
 #footer {
+  position: relative;
   display: block;
-  max-width: $body-max-width;
-  margin-left: $aside-width;
-  padding: .8em 1.5em;
+  padding: 30px 0;
   line-height: 2;
   text-align: center;
-  font-size: .875em;
-  font-weight: 400;
+  font-size: 87.5%;
+  font-weight: 700;
   font-family: 'M PLUS Rounded 1c', Roboto, 'Helvetica Neue', sans-serif;
   color: $footer-color;
   background-color: $footer-fill-color;

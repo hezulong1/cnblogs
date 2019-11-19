@@ -1,0 +1,79 @@
+@mixin clearfix {
+  $selector: &;
+
+  @at-root {
+    #{$selector}:before,
+    #{$selector}:after {
+      content: "\20";
+      display: table;
+    }
+
+    #{$selector}:after {
+      clear: both;
+    }
+  }
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin unselect {
+  user-select: none;
+}
+
+@mixin anim($name: false) {
+  @if $name {
+    @at-root {
+      @keyframes #{$name} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin respond($key, $map: $grid-breakpoints) {
+  @if map-has-key($map, $key) {
+    @media screen {
+      @media #{inspect(map-get($map, $key))} {
+        @content;
+      }
+    }
+  }
+
+  @else {
+    @warn "Undefined points: `#{$map}`";
+  }
+}
+
+@mixin hover-focus {
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+@mixin bg-variant($parent, $color) {
+  #{$parent} {
+    background-color: $color !important;
+  }
+  a#{$parent},
+  button#{$parent} {
+    @include hover-focus {
+      background-color: darken($color, 10%) !important;
+    }
+  }
+}
+
+@mixin text-variant($parent, $color) {
+  #{$parent} {
+    color: $color !important;
+  }
+  a#{$parent} {
+    @include hover-focus {
+      color: darken($color, 10%) !important;
+    }
+  }
+}

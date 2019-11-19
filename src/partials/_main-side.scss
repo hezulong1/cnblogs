@@ -1,49 +1,32 @@
-/**
- * @description   aside's style
- * @date          2019/10/29 13:44
- */
 $aside-gutter: 16px;
 
-#sideBar {
-  position: fixed;
-  top: $header-height;
-  left: 0;
-  z-index: 100;
-  width: $aside-width;
-  height: calc(100% - #{$header-height});
-  padding-left: 2.5em;
-  border-right: 1px solid $color-border;
-  background-color: $aside-fill-color;
-  // box-shadow: $aside-shadow;
+// 全局标题
+.catListTitle {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 16px; // h3
+  font-weight: 400;
+  color: darken($color-text, $hover-percent);
+}
 
-  // 全局标题
-  .catListTitle {
-    display: block;
-    margin: 0;
-    padding: 0;
-    font-size: 18px;
-    font-weight: 400;
-    color: darken($color-text, $hover-percent);
-  }
+// 内容缩进 18px
+#blog-news,
+#sidebar_search_box,
+#leftcontentcontainer .sidebar-block ul{
+  padding-top: $aside-gutter / 3;
+  padding-left: $aside-gutter / 2;
+}
 
-  // 内容缩进 18px
-  #blog-news,
-  #sidebar_search_box,
-  #leftcontentcontainer .sidebar-block ul{
-    padding-top: $aside-gutter / 3;
-    padding-left: $aside-gutter / 2;
-  }
+.input_my_zzk {
+  @extend .vv-input;
+}
 
-  .input_my_zzk {
-    @extend .vv-input;
-  }
+.btn_my_zzk {
+  height: auto;
 
-  .btn_my_zzk {
-    height: auto;
-
-    @extend .vv-button;
-    @extend .vv-button-primary;
-  }
+  @extend .vv-button;
+  @extend .vv-button-primary;
 }
 
 #sideBarMain {
@@ -69,8 +52,6 @@ $aside-gutter: 16px;
   color: $color-text-aux;
   font-feature-settings: "tnum";
   font-variant-numeric: tabular-nums;
-  background-color: mix($color-white, $color-blue, 98%);
-  box-shadow: 1px 2px 3px rgba($color-text-aux, .1);
 
   table {
     width: 100%;
@@ -78,7 +59,7 @@ $aside-gutter: 16px;
 
   td:not([colspan]), th {
     position: relative;
-    padding: .5em 0;
+    padding: .25em 0;
     text-align: center;
     font-weight: 400;
 
@@ -94,6 +75,7 @@ $aside-gutter: 16px;
 
   th {
     color: $color-text;
+    padding: .5em 0;
   }
 
   td.CalOtherMonthDay {
@@ -130,7 +112,7 @@ $aside-gutter: 16px;
       border-bottom: 0;
 
       &:hover {
-        color: $link-color-hover !important;
+        color: $link-hover-color !important;
       }
 
       &:before {
@@ -192,7 +174,7 @@ $aside-gutter: 16px;
           transition: transform $transition, color $transition;
 
           &:hover {
-            color: $link-color-hover;
+            color: $link-hover-color;
           }
         }
       }
@@ -200,9 +182,11 @@ $aside-gutter: 16px;
 
     // 标签
     &#sidebar_toptags ul li {
-      margin: 0 $aside-gutter / 3 $aside-gutter / 3 0;
-
       @extend %tag;
+
+      margin: 0 $aside-gutter / 3 $aside-gutter / 3 0;
+      font-weight: 400;
+      text-shadow: 0 0 1px;
 
       > a {
         padding: 0;
@@ -228,7 +212,7 @@ $aside-gutter: 16px;
 
           &:hover,
           &:focus {
-            color: $link-color-hover;
+            color: $link-hover-color;
           }
         }
       }

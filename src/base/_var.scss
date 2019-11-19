@@ -1,0 +1,89 @@
+// Color
+$color-white:       #fff !default;
+$color-black:       #000 !default;
+$color-blue:        #007bff !default;
+$color-lightblue:   #2b92e4 !default;
+$color-purple:      #816ad6 !default;
+$color-pink:        #ff94ab !default;
+
+$color-primary:     #f375b5 !default;
+$color-danger:      #dc3545 !default;
+$color-text:        #495057 !default;
+$color-text-aux:    #74818d !default;
+$color-placeholder: #c0c4cc !default;
+$color-border:      #e9ecef !default;
+$color-fill:        #f5f7fa !default;
+$color-weibo:       #0e2746 !default;
+$color-wechat:      #51b035 !default;
+
+// Theme
+$theme-colors: (
+  "primary": $color-primary,
+  "danger" : $color-danger
+) !default;
+
+// Percent
+$hover-percent:           20% !default;
+
+// Border
+$border-radius-small:     2px !default;
+$border-radius-base:      4px !default;
+$border-radius-large:     8px !default;
+
+// Font
+$font-size-base:          14px !default;
+$font-family-sans-serif:  Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", 'Helvetica Neue', Helvetica, "PingFang SC", Tahoma, Arial, sans-serif !default;
+$font-family-monospace:   SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-base:        $font-family-sans-serif !default;
+$font-weight-base:        400 !default;
+$font-weight-bold:        700 !default;
+
+// Link
+$link-color:        $color-primary !default;
+$link-hover-color:  darken($color-primary, $hover-percent) !default;
+
+// Transition
+$transition-duration:   300ms;
+$transition-timing:     cubic-bezier(.215, .61, .355, 1) !default;
+$transition:            $transition-duration $transition-timing;
+
+// Grid
+$grid-small:      768px !default;
+$grid-medium:     992px !default;
+$grid-large:      1200px !default;
+$grid-gutter:     $font-size-base !default;
+$grid-breakpoints: (
+    xs: (max-width: $grid-small - 1),
+    sm: (min-width: $grid-small),
+    md: (min-width: $grid-medium),
+    lg: (min-width: $grid-large)
+) !default;
+
+// Header
+$header-height:       80px !default;
+$header-fill-color:   $color-white !default;
+$header-shadow:       0 3px 8px 0 rgba($color-text-aux, .1) !default;
+
+// Main
+$color-purple: #816ad6 !default;
+$color-pink:   #ff94ab !default;
+$color-lightblue:   #2b92e4 !default;
+$color-weibo:  #0e2746 !default;
+$color-wechat: #51b035 !default;
+
+// Aside
+$aside-width:         280px !default;
+$aside-fill-color:    $color-white !default;
+$aside-shadow:        5px 0 10px rgba($color-black, .08) !default;
+$aside-shadow-md:     1px 0 5px 0 rgba($color-black, .1) !default;
+
+// Body
+$body-max-width:      700px !default;
+
+// Scroll
+$scroll-fill-color:   #909999 !default;
+
+// Footer
+$footer-color:        $color-text-aux !default;
+$footer-fill-color:   #23262e !default;
+$footer-mask-height:  80px !default;
