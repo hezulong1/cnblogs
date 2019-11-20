@@ -1,14 +1,19 @@
-@import "base/var";
-@import "base/mixin";
-@import "base/reset";
-@import "base/reboot";
-@import "base/input";
-@import "base/button";
-@import "base/tag";
-
-@import "partials/header";
-@import "partials/main";
-@import "partials/footer";
+@import
+  "base/var",
+  "base/mixin";
+@import
+  "base/reset",
+  "base/reboot";
+@import
+  "base/input",
+  "base/button",
+  "base/tag",
+  "base/main";
+@import
+  "partials/header",
+  "partials/main",
+  "partials/footer",
+  "partials/_extra";
 
 #green_channel>span,
 #author_profile_follow>span,
@@ -45,3 +50,6 @@
     background-image: linear-gradient(to right, rgba($color-white, .3) 0%, rgba($color-white, .8) 80%);
   }
 }
+
+
+@import "partials/media";

@@ -1,67 +1,23 @@
-@mixin button-style($color, $background-color, $border-color) {
-  color: $color;
-  background-color: $background-color;
-  border-color: $border-color;
-  &:hover,
-  &:focus {
-    background: mix($color-white, $background-color, 20%);
-    border-color: mix($color-white, $border-color, 20%);
-    color: $color;
-  }
-  &:focus {
-    background: $background-color;
-    box-shadow: 0 0 0 3px rgba($background-color, .25);
-  }
-  &:active {
-    background: mix($color-black, $background-color, 10%);
-    border-color: mix($color-black, $border-color, 10%);
-    color: $color;
-    outline: none;
-  }
-  &:disabled {
-    &,
-    &:hover,
-    &:focus,
-    &:active {
-      color: $color;
-      background-color: mix($background-color, $color-white, 60%);
-      border-color: mix($border-color, $color-white, 60%);
-      box-shadow: none;
-    }
-  }
-}
-
-.vv-button {
+%button {
   display: inline-block;
-  padding: .5em 1em;
-  line-height: 1.25;
+  height: $button-height;
+  padding: $font-size-base / 2 $font-size-base;
+  line-height: ($button-height - $font-size-base - 2) / $font-size-base;
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: $border-radius-base;
   background-color: transparent;
-  font-size: 1em;
-  font-weight: 400;
-  text-align: center;
-  vertical-align: middle;
-  transition:
-    color #{$transition-duration / 2} ease-in-out,
-    background-color #{$transition-duration / 2} ease-in-out,
-    border-color #{$transition-duration / 2} ease-in-out,
-    box-shadow #{$transition-duration / 2} ease-in-out;
+  font-size: $font-size-base;
+  font-weight: $font-weight-base;
+  transition: $transition;
   cursor: pointer;
-  
-  @include unselect;
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
 }
 
 @each $key, $color in $theme-colors {
-  .vv-button-#{$key} {
+  %button-#{$key} {
     @include button-style($color-white, $color, $color);
+  }
 
-    &.vv-button-ghost {
-      @include button-style($color, $color-white, $color);
-    }
+  %button-#{$key}-ghost {
+    @include button-style($color, $color-white, $color);
   }
 }

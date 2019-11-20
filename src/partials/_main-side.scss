@@ -2,28 +2,27 @@
   display: block;
   margin: 0;
   padding: 0;
-  font-size: 16px; // h3
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: $font-weight-base;
   color: darken($color-text, $hover-percent);
 }
 
-// 内容缩进 18px
 #blog-news,
 #sidebar_search_box,
-#leftcontentcontainer .sidebar-block ul{
+#leftcontentcontainer .sidebar-block ul {
   padding-top: $grid-gutter / 3;
   padding-left: $grid-gutter / 2;
 }
 
 .input_my_zzk {
-  @extend %vv-input;
+  width: 60%;
+
+  @extend %input;
 }
 
 .btn_my_zzk {
-  height: auto;
-
-  @extend .vv-button;
-  @extend .vv-button-primary;
+  @extend %button;
+  @extend %button-primary;
 }
 
 #sideBarMain {
@@ -31,9 +30,6 @@
   overflow-x: hidden;
   overflow-y: auto;
 }
-
-@import "main-side-calendar";
-@import "main-side-content";
 
 // @include respond(lg) {
 //   #sideBar {

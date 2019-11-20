@@ -1,0 +1,48 @@
+#green_channel {
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 12px;
+  text-align: left;
+
+  a {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 4px 8px;
+    background-image: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+  }
+
+  #green_channel_weibo,
+  #green_channel_wechat {
+    padding: 1px 4px;
+
+    img {
+      margin: 0;
+    }
+  }
+
+  #green_channel_digg {
+    @include main-share-button($color-lightblue);
+  }
+
+  #green_channel_follow {
+    @include main-share-button($color-pink);
+  }
+
+  #green_channel_favorite {
+    @include main-share-button($color-purple);
+  }
+
+  #green_channel_weibo {
+    @include main-share-button($color-weibo);
+  }
+
+  #green_channel_wechat {
+    @include main-share-button($color-wechat);
+  }
+}

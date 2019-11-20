@@ -1,0 +1,68 @@
+.entrylist {
+  &Title {
+    @extend %main-title;
+    // margin: 0 0 1.25em 0;
+    // padding: 0;
+    color: darken($color-text, $hover-percent);
+  }
+
+  &Item {
+    &Title {
+      @extend %main-post-title;
+
+      color: darken($color-text, $hover-percent);
+
+      &:hover {
+        color: $color-text;
+      }
+      // color: $color-text;
+
+      // &:hover,
+      // &:focus {
+      //   color: $link-hover-color;
+      // }
+
+      // &:before {
+      //   content: "";
+      //   position: absolute;
+      //   top: 0;
+      //   left: -15px;
+      //   display: block;
+      //   width: 5px;
+      //   height: 100%;
+      //   background-color: $color-primary;
+      // }
+    }
+
+    &PostDesc {
+      text-align: right;
+      font-size: 12px;
+      color: $color-text-aux;
+    }
+  }
+}
+
+#taglist {
+  a {
+    @extend %tag;
+    padding-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    &:hover {
+      background-color: mix($color-white, $color-primary, 80%);
+    }
+  }
+
+  .small {
+    @extend %tag;
+    margin: -4px;
+    padding-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+    &:hover {
+      background-color: mix($color-white, $color-primary, 80%);
+    }
+  }
+}

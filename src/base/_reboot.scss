@@ -105,8 +105,6 @@ a {
   background-color: transparent;
   text-decoration: none;
   text-underline-position: under;
-  -webkit-text-decoration-skip: objects;
-  cursor: pointer;
 
   @include hover-focus {
     color: $link-hover-color;
@@ -114,7 +112,7 @@ a {
   }
 
   &:active {
-    color: mix($color-black, $color-primary, 10%);
+    color: $link-active-color;
     outline: 0;
   }
 }
@@ -130,4 +128,17 @@ table {
 
 th {
   text-align: inherit;
+}
+
+blockquote {
+  width: 100%;
+  margin: 20px 0;
+  padding: 20px;
+  border: none;
+  border-left: 5px solid $color-border;
+  background-color: $color-fill;
+
+  p:last-child:first-child {
+    margin: 0 !important;
+  }
 }

@@ -4,64 +4,44 @@
   .sidebar-block {
     margin-bottom: $grid-gutter * 2;
 
-    // 搜索框长度重新设置
-    .input_my_zzk {
-      width: 60%;
-    }
+    li > a {
+      display: inline-block;
+      padding-top: $grid-gutter / 4;
+      padding-bottom: $grid-gutter / 4;
+      color: $color-text;
+      transition: transform $transition, color $transition;
 
-    ul {
-      // list-style: none;
-      // margin: 0;
-      // padding: 0;
-      // background-color: $color-white;
-
-      li {
-        // overflow: hidden;
-        // text-overflow: clip;
-
-        > a {
-          display: inline-block;
-          padding-top: $grid-gutter / 4;
-          padding-bottom: $grid-gutter / 4;
-          color: $color-text;
-          transition: transform $transition, color $transition;
-
-          &:hover {
-            color: $link-hover-color;
-          }
-        }
+      &:hover {
+        color: $link-hover-color;
       }
     }
 
-    // 标签
-    &#sidebar_toptags ul li {
+    // 我的标签
+    &#sidebar_toptags li {
       @extend %tag;
 
-      margin: 0 $grid-gutter / 3 $grid-gutter / 3 0;
-      // font-weight: 400;
-      // text-shadow: 0 0 1px;
+      margin-right: 4px;
+      margin-bottom: 4px;
 
       > a {
+        margin-right: 2px;
         padding: 0;
         color: inherit;
         font-size: inherit;
         border-bottom: 1px dashed currentColor;
 
-        &:hover,
-        &:focus {
+        @include hover-focus {
           border-bottom-style: solid;
         }
       }
     }
 
     // 最新评论
-    &#sidebar_recentcomments ul li {
-
-      a {
+    &#sidebar_recentcomments li {
+      > a {
         color: $link-color;
 
-        &:hover,
-        &:focus {
+        @include hover-focus {
           color: $link-hover-color;
         }
       }
@@ -71,7 +51,6 @@
         margin-right: 0;
         margin-bottom: $grid-gutter;
         font-size: 12px;
-        letter-spacing: .1em;
 
         &:last-child {
           margin-bottom: 0;

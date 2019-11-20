@@ -77,3 +77,38 @@
     }
   }
 }
+
+@mixin button-style($color, $background-color, $border-color) {
+  color: $color;
+  background-color: $background-color;
+  border-color: $border-color;
+  &:hover,
+  &:focus {
+    background-color: mix($color-white, $background-color, 20%);
+    border-color: mix($color-white, $border-color, 20%);
+    color: $color;
+  }
+  &:focus {
+    background-color: $background-color;
+    box-shadow: 0 0 0 3px rgba($background-color, .25);
+  }
+  &:active {
+    background-color: mix($color-black, $background-color, 10%);
+    border-color: mix($color-black, $border-color, 10%);
+    color: $color;
+    outline: none;
+  }
+  &:disabled,
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: $color;
+      background-color: mix($background-color, $color-white, 60%);
+      border-color: mix($border-color, $color-white, 60%);
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+  }
+}

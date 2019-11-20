@@ -1,0 +1,24 @@
+// 相关博文, 最新 it 新闻
+#under_post_news,
+#under_post_kb {
+  display: none;
+  margin-top: $grid-gutter * 2;
+  margin-bottom: $grid-gutter;
+  font-size: 12px;
+  
+  a {
+    color: $color-text;
+
+    @include hover-focus {
+      color: darken($color-text, $hover-percent);
+    }
+  }
+}
+
+// 广告
+#ad_t2,
+#cnblogs_c1,
+#cnblogs_c2 {
+  display: none;
+  font-size: 12px;
+}

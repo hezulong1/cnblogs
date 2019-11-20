@@ -1,15 +1,13 @@
-%input {
+%input-global {
   display: inline-block;
-  width: 100%;
-  min-width: 5em;
+  min-width: $font-size-base * 5;
   margin: 0;
   border: 1px solid $color-border;
-  border-radius: 4px;
+  border-radius: $border-radius-base;
   background-color: $color-white;
   color: $color-text-aux;
-  font-size: 1em;
-  transition: color $transition, border-color $transition, box-shadow $transition;
-  -webkit-appearance: none;
+  font-size: $font-size-base;
+  transition: $transition;
   outline: none;
 
   &::placeholder {
@@ -38,19 +36,19 @@
   }
 }
 
-%vv-input {
-  height: calc(1.25em + 1em + 2px);
-  padding: .5em .75em .5em .5em;
-  line-height: 1.25;
+%input {
+  height: $input-height;
+  padding: $font-size-base / 2;
+  line-height: ($input-height - $font-size-base - 2) / $font-size-base;
 
-  @extend %input;
+  @extend %input-global;
 }
 
-.vv-textarea {
-  padding: .5em 1em;
-  line-height: 1.125;
+%textarea {
+  height: $textarea-height;
+  padding: $font-size-base / 2 $font-size-base;
+  line-height: 1.5;
   vertical-align: bottom;
-  resize: vertical;
 
-  @extend %input;
+  @extend %input-global;
 }

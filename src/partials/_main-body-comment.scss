@@ -1,0 +1,133 @@
+// 评论列表
+#blog-comments-placeholder {
+  @extend %main-comment;
+
+  .feedback_area_title {
+    display: inline-block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    background-image: none;
+  }
+
+  .feedbackItem {
+    position: relative;
+    margin-top: $grid-gutter / 2;
+    padding: 10px 15px;
+    border-radius: $border-radius-base;
+    border: 1px solid $color-border;
+    background-color: mix($color-white, $color-blue, 98%);
+
+    .feedbackListSubtitle {
+      padding-bottom: 5px;
+      border-bottom: 1px solid $color-border;
+    }
+
+    .feedbackManage {
+      position: absolute;
+      right: 15px;
+    }
+
+    .feedbackCon .blog_comment_body {
+      padding: 10px 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// 评论表单
+#comment_form {
+  @extend %main-comment;
+
+  #tbCommentAuthor {
+    width: 40%;
+    min-width: 2em;
+    background-image: none;
+    @extend %input;
+  }
+
+  #tbCommentBody {
+    width: 100%;
+    font-family: inherit;
+    @extend %textarea;
+  }
+
+  #divCommentShow {
+    .comment_my_posted {
+      margin-bottom: $grid-gutter;
+
+      .bq_post_comment {
+        margin: $grid-gutter / 2 0 0 0;
+        padding: $grid-gutter / 4 $grid-gutter / 2;
+        border: 1px solid $color-border;
+      }
+    }
+  }
+
+  #comment_nav {
+    position: absolute;
+    top: 4px;
+    right: 0;
+  }
+
+  &_container {
+    #commentform_title {
+      display: inline-block;
+      width: 100%;
+      padding: 0 0 5px 0;
+      margin: 0;
+      border-bottom: 1px solid $color-border;
+      font-size: 18px;
+      background-image: none;
+    }
+  }
+
+  &.commentform {
+    p {
+      margin-top: 10px;
+      margin-bottom: 10px;
+  
+      // input.author {
+      //   width: 40%;
+      //   min-width: 2em;
+      //   background-image: none;
+        
+      //   @extend %input;
+      // }
+    }
+
+    .commentbox_main {
+
+      .commentbox_title {
+        width: 100%;
+        padding-top: $grid-gutter / 2;
+        padding-bottom: $grid-gutter / 2;
+      }
+
+      // textarea.comment_textarea {
+      //   font-family: inherit;
+      //   @extend %textarea;
+      // }
+    }
+
+    #commentbox_opt {
+      .comment_btn {
+        width: auto;
+        height: auto;
+
+        @extend %button;
+        @extend %button-primary;
+      }
+
+      a {
+        @extend %button;
+        @extend %button-primary;
+        @extend %button-primary-ghost;
+      }
+    }
+  }
+}

@@ -1,0 +1,123 @@
+.post {
+  &Title {
+    @extend %main-title;
+    
+    &2 {
+      color: darken($color-text, $hover-percent);
+
+      &:hover {
+        color: $color-text;
+      }
+    }
+  }
+
+  &Con {
+    display: block;
+    margin-bottom: 1em;
+    // padding-left: 2em;
+  }
+
+  &Desc {
+    text-align: right;
+    font-size: 12px;
+    color: $color-text-aux;
+  }
+
+  &Separator {
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: 1em 0 .875em;
+  }
+}
+
+.day {
+  margin-bottom: 5.5em;
+
+  .dayTitle {
+    @extend %main-title;
+    // padding-bottom: 12px;
+    // border-bottom: 1px solid $color-border;
+    // font-size: 22px;
+    a {
+      color: darken($color-text, 20%);
+
+      &:hover {
+        color: $color-text;
+      }
+    }
+  }
+
+  .postTitle {
+    // margin-top: 20px;
+    // border-bottom: none;
+    // font-size: 18px;
+    @extend %main-post-title;
+  }
+}
+
+#myposts {
+  margin: 0;
+
+  .pager {
+    margin: 0;
+    text-align: center;
+  }
+
+  .PostList {
+    position: relative;
+    margin: 20px 0 0 0;
+    font-size: $font-size-base;
+  }
+
+  .postTitl2 {
+    max-width: 50%;
+    font-size: $font-size-base;
+    @include ellipsis;
+  }
+
+  .postDesc2 {
+    position: absolute;
+    right: 0;
+    top: 3px;
+    max-width: 48%;
+    color: $color-text-aux;
+    font-size: 12px;
+    text-align: right;
+
+    @include ellipsis;
+  }
+
+  .postText2 {
+    color: $color-text;
+    font-size: 12px;
+    margin: 6px 0 12px 0 !important;
+  }
+}
+
+// 博客底部信息
+#blog_post_info_block {
+  margin-top: $grid-gutter * 2;
+
+  // 标签
+  #EntryTag {
+    margin-bottom: $grid-gutter;
+
+    a {
+      @extend %tag;
+
+      & + & {
+        margin-left: .5em;
+      }
+    }
+  }
+
+}
+
+#post_next_prev {
+  margin-bottom: 10px;
+
+  .p_n_p_prefix {
+    display: none;
+  }
+}

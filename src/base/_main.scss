@@ -1,0 +1,41 @@
+%main-title {
+  font-size: 22px;
+  margin: 0 0 .875em 0;
+  padding: 0 0 .5em 0;
+  border-bottom: 1px solid $color-border;
+}
+
+%main-post-title {
+  margin-top: 20px;
+  border-bottom: none;
+  font-size: 18px;
+}
+
+%main-share-button {
+  transition: $transition;
+
+  &:hover {
+    opacity: .8;
+    box-shadow: none;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+}
+
+%main-comment {
+  position: relative;
+  display: block;
+  margin-top: $grid-gutter * 2.5;
+  padding: 0;
+  background-color: $color-white;
+}
+
+@mixin main-share-button($color) {
+  background-color: $color;
+  border: 1px solid darken($color, 2%) !important;
+  box-shadow: 4px 4px 0 rgba($color,.2);
+
+  @extend %main-share-button;
+}

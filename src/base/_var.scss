@@ -39,13 +39,14 @@ $font-weight-base:        400 !default;
 $font-weight-bold:        700 !default;
 
 // Link
-$link-color:        $color-primary !default;
-$link-hover-color:  darken($color-primary, $hover-percent) !default;
+$link-color:              $color-primary !default;
+$link-hover-color:        darken($color-primary, 10%) !default;
+$link-active-color:       darken($color-primary, $hover-percent) !default;
 
 // Transition
-$transition-duration:   300ms;
-$transition-timing:     cubic-bezier(.215, .61, .355, 1) !default;
-$transition:            $transition-duration $transition-timing;
+$transition-duration:     300ms;
+$transition-timing:       cubic-bezier(.215, .61, .355, 1) !default;
+$transition:              $transition-duration $transition-timing;
 
 // Grid
 $grid-small:      768px !default;
@@ -58,6 +59,11 @@ $grid-breakpoints: (
     md: (min-width: $grid-medium),
     lg: (min-width: $grid-large)
 ) !default;
+
+// Components
+$input-height:        34px !default;
+$textarea-height:     $input-height * 4 !default;
+$button-height:       $input-height !default;
 
 // Header
 $header-height:       80px !default;
