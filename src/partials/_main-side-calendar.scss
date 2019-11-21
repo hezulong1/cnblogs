@@ -39,6 +39,10 @@
     border-radius: $border-radius-base;
     background-color: $color-primary;
     color: $color-white;
+
+    a {
+      color: inherit;
+    }
   }
 
   .CalTitle {

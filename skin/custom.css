@@ -575,7 +575,7 @@ blockquote p:last-child:first-child {
 #sideBar {
   flex: 0 0 280px;
   max-width: 280px;
-  padding: 30px 15px 30px 25px;
+  padding: 0 15px 30px 25px;
   border-right: 1px solid #e9ecef;
 }
 
@@ -586,6 +586,12 @@ blockquote p:last-child:first-child {
   font-size: 16px;
   font-weight: 400;
   color: #1a1d20;
+}
+
+#sideBar #sidebar_news,
+#sideBar #blog-calendar,
+#sideBar #leftcontentcontainer {
+  margin-top: 30px;
 }
 
 #sideBar #blog-news,
@@ -646,6 +652,11 @@ blockquote p:last-child:first-child {
 #sideBar #blog-calendar td.CalTodayDay {
   border-radius: 4px;
   background-color: #f375b5;
+  color: #fff;
+}
+
+#sideBar #blog-calendar td.CalTodayDay a {
+  color: inherit;
 }
 
 #sideBar #blog-calendar .CalTitle {
@@ -824,9 +835,8 @@ blockquote p:last-child:first-child {
 }
 
 #mainContent .gallery .thumbDescription {
-  padding: 10px 15px;
-  background-color: #816ad6;
-  color: #fff;
+  padding: 10px 5px;
+  color: #74818d;
 }
 
 #mainContent .gallery .thumbDescription p:last-child:first-child {
@@ -1124,6 +1134,7 @@ blockquote p:last-child:first-child {
 #mainContent #cnblogs_post_body img,
 #mainContent .cnblogs-post-body img {
   max-width: 100%;
+  border: 1px solid #e9ecef;
 }
 
 #mainContent #cnblogs_post_body table,
@@ -1315,6 +1326,19 @@ blockquote p:last-child:first-child {
   background-color: #f56565;
   border-radius: 9999px;
   box-shadow: 20px 0 0 0 #fbd38d, 40px 0 0 0 #48bb78;
+}
+
+#mainContent .cnblogs-markdown pre:after,
+#mainContent .cnblogs-post-body pre:after {
+  content: attr(class);
+  display: block;
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  z-index: 1;
+  text-transform: capitalize;
+  color: #74818d;
+  font-size: 12px;
 }
 
 #mainContent .cnblogs-markdown code,

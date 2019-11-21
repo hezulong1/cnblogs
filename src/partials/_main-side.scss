@@ -7,6 +7,12 @@
   color: darken($color-text, $hover-percent);
 }
 
+#sidebar_news,
+#blog-calendar,
+#leftcontentcontainer {
+  margin-top: 30px;
+}
+
 #blog-news,
 #sidebar_search_box,
 #leftcontentcontainer .sidebar-block ul {

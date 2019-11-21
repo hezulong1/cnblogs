@@ -103,6 +103,7 @@
 
   img {
     max-width: 100%;
+    border: 1px solid $color-border;
   }
 
   table {
@@ -148,6 +149,18 @@
       background-color: #f56565;
       border-radius: 9999px;
       box-shadow: 20px 0 0 0 #fbd38d, 40px 0 0 0 #48bb78;
+    }
+
+    &:after {
+      content: attr(class);
+      display: block;
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      z-index: 1;
+      text-transform: capitalize;
+      color: $color-text-aux;
+      font-size: 12px;
     }
   }
 
