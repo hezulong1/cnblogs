@@ -4,8 +4,6 @@
 
 **仍然在制作当中...**
 
-鄙人称此皮肤为 `pure`，主打清新自然。
-
 > 这是一个测试表现的网站：[https://accessible-colors.com/](https://accessible-colors.com/)
 
 
@@ -53,3 +51,20 @@
 - 记录信息
  
   请将 `src/partials/_header.scss` 中的第 97 行注释或者删除。
+
+
+## NPM
+
+``` bash
+
+npm i # 安装所有包
+
+npm run build:dev # 编译未压缩的代码
+
+npm run build # 编译压缩的代码
+
+npm run watch # 开发使用，监控样式变化自动编译
+
+npm run dev # 部署了一个静态网站，目前因为静态包一直受到 GITHUB 检测说不通过，后期删除
+
+```
