@@ -574,6 +574,7 @@ blockquote p:last-child:first-child {
 
 #sideBar {
   flex: 0 0 280px;
+  max-width: 280px;
   padding: 30px 15px 30px 25px;
   border-right: 1px solid #e9ecef;
 }
@@ -640,6 +641,11 @@ blockquote p:last-child:first-child {
 
 #sideBar #blog-calendar td.CalWeekendDay {
   font-weight: 700;
+}
+
+#sideBar #blog-calendar td.CalTodayDay {
+  border-radius: 4px;
+  background-color: #f375b5;
 }
 
 #sideBar #blog-calendar .CalTitle {

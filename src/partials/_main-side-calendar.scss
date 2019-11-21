@@ -35,6 +35,12 @@
     font-weight: 700;
   }
 
+  td.CalTodayDay {
+    border-radius: $border-radius-base;
+    background-color: $color-primary;
+    color: $color-white;
+  }
+
   .CalTitle {
     border-bottom: 1px solid $color-border;
   }
