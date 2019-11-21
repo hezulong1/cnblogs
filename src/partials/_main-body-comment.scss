@@ -90,14 +90,6 @@
     p {
       margin-top: 10px;
       margin-bottom: 10px;
-  
-      // input.author {
-      //   width: 40%;
-      //   min-width: 2em;
-      //   background-image: none;
-        
-      //   @extend %input;
-      // }
     }
 
     .commentbox_main {
@@ -107,11 +99,6 @@
         padding-top: $grid-gutter / 2;
         padding-bottom: $grid-gutter / 2;
       }
-
-      // textarea.comment_textarea {
-      //   font-family: inherit;
-      //   @extend %textarea;
-      // }
     }
 
     #commentbox_opt {

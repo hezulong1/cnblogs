@@ -14,7 +14,6 @@
   &Con {
     display: block;
     margin-bottom: 1em;
-    // padding-left: 2em;
   }
 
   &Desc {
@@ -36,9 +35,7 @@
 
   .dayTitle {
     @extend %main-title;
-    // padding-bottom: 12px;
-    // border-bottom: 1px solid $color-border;
-    // font-size: 22px;
+
     a {
       color: darken($color-text, 20%);
 

@@ -9,10 +9,6 @@
 h1.PostListTitle,
 h3#taglist_title {
   display: block;
-  // margin: 0 0 $grid-gutter 0;
-  // padding-bottom: $grid-gutter / 2;
-  // border-bottom: 1px solid $color-border;
-  // font-size: 18px;
   color: darken($color-text, $hover-percent);
   text-align: center;
   @extend %main-title;
