@@ -8,6 +8,7 @@
   color: $color-text-aux;
   font-size: $font-size-base;
   transition: $transition;
+  -webkit-appearance: none;
   outline: none;
 
   &::placeholder {

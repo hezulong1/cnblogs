@@ -6,51 +6,54 @@
  * @link https://github.com/jonsuh/hamburgers
  */
 .hamburger {
-  padding: 28px 24px;
   display: inline-block;
   cursor: pointer;
   transition-property: opacity, filter;
   transition-duration: .5s;
   transition-timing-function: linear;
+  padding: ($header-xs-height - $hamburger-height) / 2 ($header-xs-height - $hamburger-width) / 2;
 }
 
 .hamburger:hover {
-  opacity: 1
+  opacity: 1;
 }
 
 .hamburger-box {
-  width: 30px;
-  height: 24px;
-  position: relative
+  position: relative;
+  width: $hamburger-width;
+  height: $hamburger-height;
 }
 
 .hamburger-inner {
   top: 50%;
-  margin-top: -2px
-}
+  margin-top: -1 * $hamburger-bar-height;
 
-.hamburger-inner,.hamburger-inner::before,.hamburger-inner::after {
-  width: 30px;
-  height: 4px;
-  background-color: $color-text;
-  border-radius: 0;
-  position: absolute;
-  transition-property: transform;
-  transition-duration: 0.15s;
-  transition-timing-function: ease
-}
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+  }
 
-.hamburger-inner:before,.hamburger-inner:after {
-  content: "";
-  display: block;
-}
+  &,
+  &:before,
+  &:after {
+    width: 100%;
+    height: $hamburger-bar-height;
+    background-color: $color-text;
+    border-radius: 0;
+    position: absolute;
+    transition-property: transform;
+    transition-duration: .15s;
+    transition-timing-function: ease;
+  }
 
-.hamburger-inner:before {
-  top: -10px;
-}
+  &:before {
+    top: -1 * $hamburger-bar-gutter;
+  }
 
-.hamburger-inner:after {
-  bottom: -10px;
+  &:after {
+    bottom: -1 * $hamburger-bar-gutter;
+  }
 }
 
 .hamburger--squeeze .hamburger-inner {
@@ -58,11 +61,11 @@
   transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
-.hamburger--squeeze .hamburger-inner::before {
+.hamburger--squeeze .hamburger-inner:before {
   transition: top 0.1s 0.14s ease, opacity 0.1s ease;
 }
 
-.hamburger--squeeze .hamburger-inner::after {
+.hamburger--squeeze .hamburger-inner:after {
   transition: bottom 0.1s 0.14s ease,transform 0.1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
@@ -72,24 +75,85 @@
   transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.hamburger--squeeze.is-active .hamburger-inner::before {
+.hamburger--squeeze.is-active .hamburger-inner:before {
   top: 0;
   opacity: 0;
   transition: top 0.1s ease, opacity 0.1s 0.14s ease;
 }
 
-.hamburger--squeeze.is-active .hamburger-inner::after {
+.hamburger--squeeze.is-active .hamburger-inner:after {
   bottom: 0;
   transform: rotate(-90deg);
   transition: bottom 0.1s ease,transform 0.1s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-
-/////////////////////////@extend
-
 .nav__toggle {
-  position: fixed;
+  display: none;
+  position: absolute;
   top: 0;
   left: 0;
-  z-index: 102;
+  z-index: 2001;
+}
+
+@include respond(xs) {
+  .nav__toggle {
+    display: inline-block;
+  }
+}
+
+// Github Octo
+.github-corner {
+  display: none;
+}
+
+@include respond(lg) {
+  .github-corner {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2001;
+    width: $github-octo-width;
+    border: none;
+    color: $color-white;
+    transform: scale(-1, 1);
+  
+    &:hover .octo-arm {
+      animation: octocat-wave 560ms ease-in-out;
+    }
+  
+    @include anim(octocat-wave) {
+      0%, 100% {
+        transform: rotate(0);
+      }
+  
+      20%, 60% {
+        transform: rotate(-25deg);
+      }
+  
+      40%, 80% {
+        transform: rotate(10deg);
+      }
+    }
+  }
+}
+
+// ScrollTop
+.scroll-top {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2000;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 45px;
+  color: $color-white;
+  font-size: 18px;
+  background-color: rgba($color-primary, .65);
+  box-shadow: 0 1px 3px rgba($color-text,.1);
+  -webkit-backdrop-filter: blur(2px);
+  cursor: pointer;
 }

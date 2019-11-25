@@ -272,6 +272,7 @@ blockquote p:last-child:first-child {
   color: #74818d;
   font-size: 14px;
   transition: 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  -webkit-appearance: none;
   outline: none;
 }
 
@@ -312,7 +313,7 @@ blockquote p:last-child:first-child {
   vertical-align: bottom;
 }
 
-#sideBar .btn_my_zzk, #mainContent #comment_form.commentform #commentbox_opt .comment_btn, #mainContent #comment_form.commentform #commentbox_opt a {
+#sideBar .btn_my_zzk, #mainContent #comment_form #comment_nav a, #mainContent #comment_form.commentform #commentbox_opt .comment_btn, #mainContent #comment_form.commentform #commentbox_opt a {
   display: inline-block;
   height: 34px;
   padding: 7px 14px;
@@ -326,31 +327,31 @@ blockquote p:last-child:first-child {
   cursor: pointer;
 }
 
-#sideBar .btn_my_zzk, #mainContent #comment_form.commentform #commentbox_opt .comment_btn, #mainContent #comment_form.commentform #commentbox_opt a {
+#sideBar .btn_my_zzk, #mainContent #comment_form #comment_nav a, #mainContent #comment_form.commentform #commentbox_opt .comment_btn, #mainContent #comment_form.commentform #commentbox_opt a {
   color: #fff;
   background-color: #f375b5;
   border-color: #f375b5;
 }
 
-#sideBar .btn_my_zzk:hover, #mainContent #comment_form.commentform #commentbox_opt .comment_btn:hover, #mainContent #comment_form.commentform #commentbox_opt a:hover, #sideBar .btn_my_zzk:focus, #mainContent #comment_form.commentform #commentbox_opt .comment_btn:focus, #mainContent #comment_form.commentform #commentbox_opt a:focus {
+#sideBar .btn_my_zzk:hover, #mainContent #comment_form #comment_nav a:hover, #mainContent #comment_form.commentform #commentbox_opt .comment_btn:hover, #mainContent #comment_form.commentform #commentbox_opt a:hover, #sideBar .btn_my_zzk:focus, #mainContent #comment_form #comment_nav a:focus, #mainContent #comment_form.commentform #commentbox_opt .comment_btn:focus, #mainContent #comment_form.commentform #commentbox_opt a:focus {
   background-color: #f591c4;
   border-color: #f591c4;
   color: #fff;
 }
 
-#sideBar .btn_my_zzk:focus, #mainContent #comment_form.commentform #commentbox_opt .comment_btn:focus, #mainContent #comment_form.commentform #commentbox_opt a:focus {
+#sideBar .btn_my_zzk:focus, #mainContent #comment_form #comment_nav a:focus, #mainContent #comment_form.commentform #commentbox_opt .comment_btn:focus, #mainContent #comment_form.commentform #commentbox_opt a:focus {
   background-color: #f375b5;
   box-shadow: 0 0 0 3px rgba(243, 117, 181, 0.25);
 }
 
-#sideBar .btn_my_zzk:active, #mainContent #comment_form.commentform #commentbox_opt .comment_btn:active, #mainContent #comment_form.commentform #commentbox_opt a:active {
+#sideBar .btn_my_zzk:active, #mainContent #comment_form #comment_nav a:active, #mainContent #comment_form.commentform #commentbox_opt .comment_btn:active, #mainContent #comment_form.commentform #commentbox_opt a:active {
   background-color: #db69a3;
   border-color: #db69a3;
   color: #fff;
   outline: none;
 }
 
-#sideBar .btn_my_zzk:disabled, #mainContent #comment_form.commentform #commentbox_opt .comment_btn:disabled, #mainContent #comment_form.commentform #commentbox_opt a:disabled, #sideBar .btn_my_zzk:disabled:hover, #mainContent #comment_form.commentform #commentbox_opt .comment_btn:disabled:hover, #mainContent #comment_form.commentform #commentbox_opt a:disabled:hover, #sideBar .btn_my_zzk:disabled:focus, #mainContent #comment_form.commentform #commentbox_opt .comment_btn:disabled:focus, #mainContent #comment_form.commentform #commentbox_opt a:disabled:focus, #sideBar .btn_my_zzk:disabled:active, #mainContent #comment_form.commentform #commentbox_opt .comment_btn:disabled:active, #mainContent #comment_form.commentform #commentbox_opt a:disabled:active, #sideBar .btn_my_zzk[disabled], #mainContent #comment_form.commentform #commentbox_opt .comment_btn[disabled], #mainContent #comment_form.commentform #commentbox_opt a[disabled], #sideBar .btn_my_zzk[disabled]:hover, #mainContent #comment_form.commentform #commentbox_opt .comment_btn[disabled]:hover, #mainContent #comment_form.commentform #commentbox_opt a[disabled]:hover, #sideBar .btn_my_zzk[disabled]:focus, #mainContent #comment_form.commentform #commentbox_opt .comment_btn[disabled]:focus, #mainContent #comment_form.commentform #commentbox_opt a[disabled]:focus, #sideBar .btn_my_zzk[disabled]:active, #mainContent #comment_form.commentform #commentbox_opt .comment_btn[disabled]:active, #mainContent #comment_form.commentform #commentbox_opt a[disabled]:active {
+#sideBar .btn_my_zzk:disabled, #mainContent #comment_form #comment_nav a:disabled, #mainContent #comment_form.commentform #commentbox_opt .comment_btn:disabled, #mainContent #comment_form.commentform #commentbox_opt a:disabled, #sideBar .btn_my_zzk:disabled:hover, #mainContent #comment_form #comment_nav a:disabled:hover, #mainContent #comment_form.commentform #commentbox_opt .comment_btn:disabled:hover, #mainContent #comment_form.commentform #commentbox_opt a:disabled:hover, #sideBar .btn_my_zzk:disabled:focus, #mainContent #comment_form #comment_nav a:disabled:focus, #mainContent #comment_form.commentform #commentbox_opt .comment_btn:disabled:focus, #mainContent #comment_form.commentform #commentbox_opt a:disabled:focus, #sideBar .btn_my_zzk:disabled:active, #mainContent #comment_form #comment_nav a:disabled:active, #mainContent #comment_form.commentform #commentbox_opt .comment_btn:disabled:active, #mainContent #comment_form.commentform #commentbox_opt a:disabled:active, #sideBar .btn_my_zzk[disabled], #mainContent #comment_form #comment_nav a[disabled], #mainContent #comment_form.commentform #commentbox_opt .comment_btn[disabled], #mainContent #comment_form.commentform #commentbox_opt a[disabled], #sideBar .btn_my_zzk[disabled]:hover, #mainContent #comment_form #comment_nav a[disabled]:hover, #mainContent #comment_form.commentform #commentbox_opt .comment_btn[disabled]:hover, #mainContent #comment_form.commentform #commentbox_opt a[disabled]:hover, #sideBar .btn_my_zzk[disabled]:focus, #mainContent #comment_form #comment_nav a[disabled]:focus, #mainContent #comment_form.commentform #commentbox_opt .comment_btn[disabled]:focus, #mainContent #comment_form.commentform #commentbox_opt a[disabled]:focus, #sideBar .btn_my_zzk[disabled]:active, #mainContent #comment_form #comment_nav a[disabled]:active, #mainContent #comment_form.commentform #commentbox_opt .comment_btn[disabled]:active, #mainContent #comment_form.commentform #commentbox_opt a[disabled]:active {
   color: #fff;
   background-color: #f8acd3;
   border-color: #f8acd3;
@@ -358,31 +359,31 @@ blockquote p:last-child:first-child {
   cursor: not-allowed;
 }
 
-#mainContent #comment_form.commentform #commentbox_opt a {
+#mainContent #comment_form #comment_nav a, #mainContent #comment_form.commentform #commentbox_opt a {
   color: #f375b5;
   background-color: #fff;
   border-color: #f375b5;
 }
 
-#mainContent #comment_form.commentform #commentbox_opt a:hover, #mainContent #comment_form.commentform #commentbox_opt a:focus {
+#mainContent #comment_form #comment_nav a:hover, #mainContent #comment_form.commentform #commentbox_opt a:hover, #mainContent #comment_form #comment_nav a:focus, #mainContent #comment_form.commentform #commentbox_opt a:focus {
   background-color: white;
   border-color: #f591c4;
   color: #f375b5;
 }
 
-#mainContent #comment_form.commentform #commentbox_opt a:focus {
+#mainContent #comment_form #comment_nav a:focus, #mainContent #comment_form.commentform #commentbox_opt a:focus {
   background-color: #fff;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
 }
 
-#mainContent #comment_form.commentform #commentbox_opt a:active {
+#mainContent #comment_form #comment_nav a:active, #mainContent #comment_form.commentform #commentbox_opt a:active {
   background-color: #e6e6e6;
   border-color: #db69a3;
   color: #f375b5;
   outline: none;
 }
 
-#mainContent #comment_form.commentform #commentbox_opt a:disabled, #mainContent #comment_form.commentform #commentbox_opt a:disabled:hover, #mainContent #comment_form.commentform #commentbox_opt a:disabled:focus, #mainContent #comment_form.commentform #commentbox_opt a:disabled:active, #mainContent #comment_form.commentform #commentbox_opt a[disabled], #mainContent #comment_form.commentform #commentbox_opt a[disabled]:hover, #mainContent #comment_form.commentform #commentbox_opt a[disabled]:focus, #mainContent #comment_form.commentform #commentbox_opt a[disabled]:active {
+#mainContent #comment_form #comment_nav a:disabled, #mainContent #comment_form.commentform #commentbox_opt a:disabled, #mainContent #comment_form #comment_nav a:disabled:hover, #mainContent #comment_form.commentform #commentbox_opt a:disabled:hover, #mainContent #comment_form #comment_nav a:disabled:focus, #mainContent #comment_form.commentform #commentbox_opt a:disabled:focus, #mainContent #comment_form #comment_nav a:disabled:active, #mainContent #comment_form.commentform #commentbox_opt a:disabled:active, #mainContent #comment_form #comment_nav a[disabled], #mainContent #comment_form.commentform #commentbox_opt a[disabled], #mainContent #comment_form #comment_nav a[disabled]:hover, #mainContent #comment_form.commentform #commentbox_opt a[disabled]:hover, #mainContent #comment_form #comment_nav a[disabled]:focus, #mainContent #comment_form.commentform #commentbox_opt a[disabled]:focus, #mainContent #comment_form #comment_nav a[disabled]:active, #mainContent #comment_form.commentform #commentbox_opt a[disabled]:active {
   color: #f375b5;
   background-color: white;
   border-color: #f8acd3;
@@ -448,6 +449,7 @@ blockquote p:last-child:first-child {
   height: 80px;
   border-bottom: 1px solid #e9ecef;
   background-color: #fff;
+  transition: height 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 #header:before, #header:after {
@@ -575,8 +577,9 @@ blockquote p:last-child:first-child {
 #sideBar {
   flex: 0 0 280px;
   max-width: 280px;
-  padding: 0 15px 30px 25px;
+  padding: 0 0 0 25px;
   border-right: 1px solid #e9ecef;
+  transition: transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 #sideBar .catListTitle {
@@ -607,8 +610,10 @@ blockquote p:last-child:first-child {
 
 #sideBar #sideBarMain {
   height: 100%;
+  padding-right: 15px;
   overflow-x: hidden;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 #sideBar #blog-calendar {
@@ -739,8 +744,10 @@ blockquote p:last-child:first-child {
 
 #mainContent {
   flex: auto;
+  max-width: 100%;
   padding: 30px 40px;
   font-size: 14px;
+  transition: transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 #mainContent .diggword,
@@ -961,9 +968,11 @@ blockquote p:last-child:first-child {
 }
 
 #mainContent #comment_form #comment_nav {
-  position: absolute;
-  top: 4px;
-  right: 0;
+  padding-bottom: 10px;
+}
+
+#mainContent #comment_form #comment_nav a {
+  margin-left: 10px;
 }
 
 #mainContent #comment_form_container #commentform_title {
@@ -1578,7 +1587,6 @@ pre > #mainContent .cnblogs-markdown code, pre >
  * @date          2019/11/16 20:10
  */
 #footer {
-  position: relative;
   display: block;
   padding: 30px 0;
   line-height: 2;
@@ -1590,18 +1598,6 @@ pre > #mainContent .cnblogs-markdown code, pre >
   background-color: #23262e;
 }
 
-#footer:before {
-  content: "\20";
-  position: absolute;
-  top: -80px;
-  left: 0;
-  z-index: 3;
-  display: block;
-  width: 100%;
-  height: 80px;
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #fff 100%);
-}
-
 /*!
  * Hamburgers
  * @description Tasty CSS-animated hamburgers
@@ -1610,12 +1606,12 @@ pre > #mainContent .cnblogs-markdown code, pre >
  * @link https://github.com/jonsuh/hamburgers
  */
 .hamburger {
-  padding: 28px 24px;
   display: inline-block;
   cursor: pointer;
   transition-property: opacity, filter;
   transition-duration: .5s;
   transition-timing-function: linear;
+  padding: 21px 20px;
 }
 
 .hamburger:hover {
@@ -1623,9 +1619,9 @@ pre > #mainContent .cnblogs-markdown code, pre >
 }
 
 .hamburger-box {
-  width: 30px;
-  height: 24px;
   position: relative;
+  width: 20px;
+  height: 18px;
 }
 
 .hamburger-inner {
@@ -1633,28 +1629,28 @@ pre > #mainContent .cnblogs-markdown code, pre >
   margin-top: -2px;
 }
 
-.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-  width: 30px;
-  height: 4px;
-  background-color: #495057;
-  border-radius: 0;
-  position: absolute;
-  transition-property: transform;
-  transition-duration: 0.15s;
-  transition-timing-function: ease;
-}
-
 .hamburger-inner:before, .hamburger-inner:after {
   content: "";
   display: block;
 }
 
+.hamburger-inner, .hamburger-inner:before, .hamburger-inner:after {
+  width: 100%;
+  height: 2px;
+  background-color: #495057;
+  border-radius: 0;
+  position: absolute;
+  transition-property: transform;
+  transition-duration: .15s;
+  transition-timing-function: ease;
+}
+
 .hamburger-inner:before {
-  top: -10px;
+  top: -6px;
 }
 
 .hamburger-inner:after {
-  bottom: -10px;
+  bottom: -6px;
 }
 
 .hamburger--squeeze .hamburger-inner {
@@ -1662,11 +1658,11 @@ pre > #mainContent .cnblogs-markdown code, pre >
   transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
-.hamburger--squeeze .hamburger-inner::before {
+.hamburger--squeeze .hamburger-inner:before {
   transition: top 0.1s 0.14s ease, opacity 0.1s ease;
 }
 
-.hamburger--squeeze .hamburger-inner::after {
+.hamburger--squeeze .hamburger-inner:after {
   transition: bottom 0.1s 0.14s ease, transform 0.1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
@@ -1676,23 +1672,81 @@ pre > #mainContent .cnblogs-markdown code, pre >
   transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.hamburger--squeeze.is-active .hamburger-inner::before {
+.hamburger--squeeze.is-active .hamburger-inner:before {
   top: 0;
   opacity: 0;
   transition: top 0.1s ease, opacity 0.1s 0.14s ease;
 }
 
-.hamburger--squeeze.is-active .hamburger-inner::after {
+.hamburger--squeeze.is-active .hamburger-inner:after {
   bottom: 0;
   transform: rotate(-90deg);
   transition: bottom 0.1s ease, transform 0.1s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .nav__toggle {
-  position: fixed;
+  display: none;
+  position: absolute;
   top: 0;
   left: 0;
-  z-index: 102;
+  z-index: 2001;
+}
+
+@media screen and (max-width: 767px) {
+  .nav__toggle {
+    display: inline-block;
+  }
+}
+
+.github-corner {
+  display: none;
+}
+
+@media screen and (min-width: 1200px) {
+  .github-corner {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2001;
+    width: 60px;
+    border: none;
+    color: #fff;
+    transform: scale(-1, 1);
+  }
+  .github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+  @keyframes octocat-wave {
+    0%, 100% {
+      transform: rotate(0);
+    }
+    20%, 60% {
+      transform: rotate(-25deg);
+    }
+    40%, 80% {
+      transform: rotate(10deg);
+    }
+  }
+}
+
+.scroll-top {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2000;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 45px;
+  color: #fff;
+  font-size: 18px;
+  background-color: rgba(243, 117, 181, 0.65);
+  box-shadow: 0 1px 3px rgba(73, 80, 87, 0.1);
+  -webkit-backdrop-filter: blur(2px);
+  cursor: pointer;
 }
 
 #green_channel > span,
@@ -1703,6 +1757,10 @@ pre > #mainContent .cnblogs-markdown code, pre >
   padding: 2px 4px;
   background-color: #dc3545 !important;
   font-size: 12px;
+}
+
+#author_profile a:hover {
+  text-decoration: none !important;
 }
 
 .c_b_p_desc {
@@ -1729,4 +1787,72 @@ pre > #mainContent .cnblogs-markdown code, pre >
   pointer-events: none;
   background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.3)), color-stop(80%, rgba(255, 255, 255, 0.8)));
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.8) 80%);
+}
+
+@media screen and (max-width: 767px) {
+  #header {
+    height: 60px;
+  }
+  #blogTitle {
+    flex: 1;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 1px;
+    border-right-width: 0;
+  }
+  #blogTitle h1 {
+    font-size: 18px;
+    font-weight: 400;
+    margin-right: 10px;
+    margin-left: 50px;
+  }
+  #blogTitle h2 {
+    font-size: 14px;
+  }
+  #navigator {
+    display: none;
+  }
+  #footer {
+    padding: 10px 0;
+    font-size: 12px;
+  }
+  #sidebar_search_box input[type=text] {
+    width: 60% !important;
+  }
+  #main {
+    width: 100vw;
+    max-width: 100%;
+    padding: 0;
+  }
+  #mainContent {
+    padding: 20px 15px;
+  }
+  #sideBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    flex-basis: 320px;
+    max-width: 320px;
+    border-right: 0;
+    height: 100%;
+    padding-left: 45px;
+    background-color: #fff;
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.08);
+    transform: translateX(-360px);
+  }
+  #sideBar #sideBarMain {
+    padding-top: 30px;
+  }
+  body.is-side-open #sideBar {
+    transform: translateX(0);
+  }
+  body.is-side-open .nav__toggle {
+    position: fixed;
+  }
+  #comment_nav {
+    text-align: center;
+  }
 }

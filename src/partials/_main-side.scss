@@ -33,8 +33,10 @@
 
 #sideBarMain {
   height: 100%;
+  padding-right: 15px;
   overflow-x: hidden;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 // @include respond(lg) {

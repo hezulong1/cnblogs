@@ -67,6 +67,7 @@ $button-height:       $input-height !default;
 
 // Header
 $header-height:       80px !default;
+$header-xs-height:    60px !default;
 $header-fill-color:   $color-white !default;
 $header-shadow:       0 3px 8px 0 rgba($color-text-aux, .1) !default;
 
@@ -76,6 +77,7 @@ $main-fill-color:     $color-white !default;
 
 // Aside
 $aside-width:         280px !default;
+$aside-width-md:      320px !default;
 $aside-fill-color:    $color-white !default;
 $aside-shadow:        5px 0 10px rgba($color-black, .08) !default;
 $aside-shadow-md:     1px 0 5px 0 rgba($color-black, .1) !default;
@@ -90,3 +92,10 @@ $scroll-fill-color:   #909999 !default;
 $footer-color:        $color-text-aux !default;
 $footer-fill-color:   #23262e !default;
 $footer-mask-height:  80px !default;
+
+// Extra
+$github-octo-width:   60px !default;
+$hamburger-bar-height: 2px !default;
+$hamburger-bar-gutter: 6px !default;
+$hamburger-width:     20px !default;
+$hamburger-height:    $hamburger-bar-height * 3 + $hamburger-bar-gutter * 2;

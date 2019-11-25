@@ -69,9 +69,14 @@
   }
 
   #comment_nav {
-    position: absolute;
-    top: 4px;
-    right: 0;
+    padding-bottom: 10px;
+
+    a {
+      @extend %button;
+      @extend %button-primary;
+      @extend %button-primary-ghost;
+      margin-left: 10px;
+    }
   }
 
   &_container {

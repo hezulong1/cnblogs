@@ -12,8 +12,9 @@
 #sideBar {
   flex: 0 0 $aside-width;
   max-width: $aside-width;
-  padding: 0 15px 30px 25px;
+  padding: 0 0 0 25px;
   border-right: 1px solid $color-border;
+  transition: transform $transition;
 
   @import "main-side";
   @import "main-side-calendar";
@@ -22,8 +23,10 @@
 
 #mainContent {
   flex: auto;
+  max-width: 100%;
   padding: 30px 40px;
   font-size: $font-size-base;
+  transition: transform $transition;
 
   @import "main-body";
   @import "main-body-pager";
