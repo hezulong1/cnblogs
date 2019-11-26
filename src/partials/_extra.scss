@@ -157,3 +157,50 @@
   -webkit-backdrop-filter: blur(2px);
   cursor: pointer;
 }
+
+@include respond(md) {
+  *[data-title] {
+    overflow: hidden;
+
+    &:before,
+    &:after {
+      position: absolute;
+      z-index: 10;
+      opacity: 0;
+      transform: translate3d(-50%, 0, 0);
+      transition: $transition;
+    }
+
+    &:before {
+      content: attr(data-title);
+      top: calc(#{-1em * $tooltip-line-height} - #{$tooltip-y-padding * 2} - #{$tooltip-arrow-width});
+      left: 50%;
+      padding: $tooltip-y-padding $tooltip-x-padding;
+      line-height: $tooltip-line-height;
+      border-radius: $border-radius-base;
+      background-color: $tooltip-fill-color;
+      color: $color-white;
+      font-size: 12px;
+      white-space: nowrap;
+      box-sizing: content-box;
+    }
+
+    &:after {
+      content: "\20";
+      top: -1 * $tooltip-arrow-width;
+      left: 50%;
+      border: $tooltip-arrow-width solid transparent;
+      border-top-color: $tooltip-fill-color;
+    }
+
+    &:hover {
+      overflow: visible;
+
+      &:before,
+      &:after {
+        opacity: 1;
+        transform: translate3d(-50%, -3px, 0);
+      }
+    }
+  }
+}

@@ -99,3 +99,8 @@ $hamburger-bar-height: 2px !default;
 $hamburger-bar-gutter: 6px !default;
 $hamburger-width:     20px !default;
 $hamburger-height:    $hamburger-bar-height * 3 + $hamburger-bar-gutter * 2;
+$tooltip-fill-color:     rgba($color-text, .8) !default;
+$tooltip-y-padding:      3px !default;
+$tooltip-x-padding:      2 * $tooltip-y-padding !default;
+$tooltip-arrow-width:    5px !default;
+$tooltip-line-height:    1.5 !default;

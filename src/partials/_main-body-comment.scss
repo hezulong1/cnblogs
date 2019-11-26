@@ -75,7 +75,12 @@
       @extend %button;
       @extend %button-primary;
       @extend %button-primary-ghost;
-      margin-left: 10px;
+      
+      margin: 0;
+
+      &:nth-last-child(2) {
+        margin-left: .5em;
+      }
     }
   }
 
