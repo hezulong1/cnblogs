@@ -16,8 +16,8 @@ function build(cb) {
   console.log('文件名：', fileName);
 
   return src('src/index.scss')
-    .pipe(autoprefixer())
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError)) // 嵌套输出方式 nested, 展开输出方式 expanded, 紧凑输出方式 compact, 压缩输出方式 compressed
+    .pipe(autoprefixer())
     .pipe(gulpif(isProd, cleanCss()))
     .pipe(rename(fileName))
     .pipe(dest(isProd ? 'dist' : 'skin'));

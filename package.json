@@ -38,9 +38,6 @@
     "static-html-server": "^0.1.2"
   },
   "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
-  "dependencies": {}
+    "defaults"
+  ]
 }
