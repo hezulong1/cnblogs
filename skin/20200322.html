@@ -126,7 +126,7 @@
   <blockquote>
 <p>只对主流浏览器兼容（IE: 都他妈别看我啊😡）</p>
 </blockquote>
-<h2 id="最新（20191125）">最新（2019/11/25）</h2>
+<h2 id="最新（20191125）" onclick="$_toAnchor(event, 'cnblogs_post_body')">最新（2019/11/25）</h2>
 <p>适配了一些手机的样式（其实就是隐藏了侧边栏而已😂），如果你懒得弄效果，可以直接忽略。</p>
 <p>如果需要侧边栏可以伸缩和回到顶部功能，你需要将以下代码键入到<strong>页首 HTML 代码</strong>的输入框中</p>
 <pre><code class="language-html hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nav__toggle [ hamburger hamburger--squeeze ]"</span>&gt;</span>
@@ -1270,80 +1270,5 @@ $(function(){window.cnblogs_post_body &&  new Viewer(window.cnblogs_post_body)})
 </script>
   </div>
 
-<script type="text/javascript">
-(function(window, $, document, undefined) {
-if (typeof $ == undefined) return
-
-var page = {
-  cache: function() {
-    page.els = {}
-
-    page.els.$window = $(window)
-    page.els.$body = $('body')
-    page.els.$top = $('.scroll-top')
-
-    $('body').append(page.els.$sidemask = $('<div class="backmask nav__mask" style="display:none"/>'))
-  },
-
-  init: function() {
-    page.cache()
-    page.on_resize()
-    page.on_scroll()
-    page.detectMobile()
-    page.scrollToTop()
-    page.collapseSidebar()
-  },
-
-  on_resize: function() {
-    page.els.$window.on('resize', function() {
-      page.detectMobile()
-    }).resize()
-  },
-
-  on_scroll: function() {
-    page.els.$window.on('scroll', function() {
-      if (page.els.$window.scrollTop() > 120) {
-        $('.scroll-top').fadeIn()
-      } else {
-        $('.scroll-top').fadeOut()
-      }
-    })
-  },
-
-  detectMobile: function() {
-    page.els.$body.removeClass('is-side-open')
-    $('.nav__toggle').removeClass('is-active')
-    page.els.$sidemask.hide();
-  },
-
-  collapseSidebar: function() {
-    $('.nav__toggle').on('click', function() {
-      $('.nav__toggle').toggleClass('is-active')
-
-      if ($('.nav__toggle').hasClass('is-active')) {
-        page.els.$body.addClass('is-side-open')
-        page.els.$sidemask.show()
-      } else {
-        page.els.$body.removeClass('is-side-open')
-        page.els.$sidemask.hide()
-      }
-    })
-
-    page.els.$sidemask.on('click', function() {
-      page.detectMobile()
-    })
-  },
-
-  scrollToTop: function() {
-    $('#comment_nav').find('a[href^="#top"]').hide()
-    $('.scroll-top').click(function(){
-      $('html, body').animate({scrollTop : 0}, 300)
-      return false
-    })
-  }
-}
-
-$(document).ready( page.init() )
-
-})(window, jQuery, document)
-</script></body></html>
+<script src="script.js"></script>
+</body></html>

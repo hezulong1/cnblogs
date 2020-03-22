@@ -65,6 +65,6 @@ npm run build # 编译压缩的代码
 
 npm run watch # 开发使用，监控样式变化自动编译
 
-npm run dev # 部署了一个静态网站，目前因为静态包一直受到 GITHUB 检测说不通过，后期删除
+npm run dev
 
 ```

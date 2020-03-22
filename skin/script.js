@@ -74,4 +74,18 @@
 
   $(document).ready(page.init())
 
+  window.$_goto = function (id) {
+    if (Object.prototype.toString.call(id) === '[object MouseEvent]') {
+      id.preventDefault();
+      id = arguments.length > 1 ? arguments[1] : ''
+    }
+
+    var $anchor = $('#' + id);
+    if ($anchor.length === 1) {
+      $('html, body').animate({
+        scrollTop: $anchor.offset().top
+      }, 300)
+    }
+  }
+
 })(window, jQuery, document)
