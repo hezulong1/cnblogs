@@ -80,7 +80,7 @@
       id = arguments.length > 1 ? arguments[1] : ''
     }
 
-    var $anchor = $('#' + id);
+    var $anchor = $('*[id="' + id + '"]');
     if ($anchor.length === 1) {
       $('html, body').animate({
         scrollTop: $anchor.offset().top
