@@ -1219,6 +1219,7 @@ blockquote p:last-child:first-child {
 #mainContent .cnblogs-post-body table th,
 #mainContent .cnblogs-post-body table td {
   border-color: #e9ecef;
+  min-width: 120px;
 }
 
 #mainContent .cnblogs-markdown,
