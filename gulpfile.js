@@ -4,6 +4,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const sass = require('gulp-sass');
 const gulpif = require('gulp-if');
 const rename = require('gulp-rename');
+const connect = require('gulp-connect');
 
 const isProd = process.env.NODE_ENV === 'production';
 console.log('环境：', process.env.NODE_ENV);
@@ -20,10 +21,18 @@ function build(cb) {
     .pipe(autoprefixer())
     .pipe(gulpif(isProd, cleanCss()))
     .pipe(rename(fileName))
-    .pipe(dest(isProd ? 'dist' : 'skin'));
+    .pipe(dest(isProd ? 'dist' : 'skin'))
+    .pipe(gulpif(!isProd, connect.reload()));
 }
 
 exports.build = build;
+
+exports.connect = function() {
+  connect.server({
+    root: 'skin',
+    livereload: true
+  })
+}
 
 exports.default = function() {
   watch('src/**/*', { delay: 500 }, build);

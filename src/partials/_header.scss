@@ -69,27 +69,15 @@
   li {
     float: left;
     height: 100%;
-    padding: 0 15px;
     font-size: 16px;
 
     a.menu {
-      position: relative;
+      padding: 0 15px;
       color: $color-text;
-
-      &:after {
-        content: "";
-        position: absolute;
-        top: 100%;
-        right: -.1em;
-        bottom: 0;
-        left: -.1em;
-        z-index: 1;
-        background-color: rgba($color-primary, .3);
-        transition: top 200ms cubic-bezier(.591,.41,.872,1);
-      }
-
-      &:hover:after {
-        top: 60%;
+      transition: color 200ms cubic-bezier(.591,.41,.872,1);
+  
+      @include hover-focus {
+        color: $color-primary;
       }
     }
   }

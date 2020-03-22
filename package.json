@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm-run-all -p serve watch",
-    "serve": "static-html-server -p 3000 -r skin -f default.htm",
+    "serve": "gulp connect",
     "build": "cross-env NODE_ENV=production gulp build",
     "build:dev": "gulp build",
     "watch": "gulp",
@@ -30,12 +30,12 @@
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-clean-css": "^4.2.0",
+    "gulp-connect": "^5.7.0",
     "gulp-if": "^3.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.0",
-    "static-html-server": "^0.1.2"
+    "rimraf": "^3.0.0"
   },
   "browserslist": [
     "defaults"

@@ -273,7 +273,7 @@ blockquote p:last-child:first-child {
   min-width: 70px;
   margin: 0;
   border: 1px solid #e9ecef;
-  border-radius: 4px;
+  border-radius: 0;
   background-color: #fff;
   color: #74818d;
   font-size: 14px;
@@ -342,7 +342,7 @@ blockquote p:last-child:first-child {
   padding: 7px 14px;
   line-height: 1.28571;
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 0;
   background-color: transparent;
   font-size: 14px;
   font-weight: 400;
@@ -556,30 +556,18 @@ blockquote p:last-child:first-child {
 #navigator li {
   float: left;
   height: 100%;
-  padding: 0 15px;
   font-size: 16px;
 }
 
 #navigator li a.menu {
-  position: relative;
+  padding: 0 15px;
   color: #495057;
+  -webkit-transition: color 200ms cubic-bezier(0.591, 0.41, 0.872, 1);
+  transition: color 200ms cubic-bezier(0.591, 0.41, 0.872, 1);
 }
 
-#navigator li a.menu:after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  right: -.1em;
-  bottom: 0;
-  left: -.1em;
-  z-index: 1;
-  background-color: rgba(243, 117, 181, 0.3);
-  -webkit-transition: top 200ms cubic-bezier(0.591, 0.41, 0.872, 1);
-  transition: top 200ms cubic-bezier(0.591, 0.41, 0.872, 1);
-}
-
-#navigator li a.menu:hover:after {
-  top: 60%;
+#navigator li a.menu:hover, #navigator li a.menu:focus {
+  color: #f375b5;
 }
 
 #navigator .blogStats {
@@ -1026,11 +1014,7 @@ blockquote p:last-child:first-child {
 }
 
 #mainContent #comment_form #comment_nav a {
-  margin: 0;
-}
-
-#mainContent #comment_form #comment_nav a:nth-last-child(2) {
-  margin-left: .5em;
+  margin: 0 0 0 .5em;
 }
 
 #mainContent #comment_form_container #commentform_title {
@@ -1038,9 +1022,24 @@ blockquote p:last-child:first-child {
   width: 100%;
   padding: 0 0 5px 0;
   margin: 0;
-  border-bottom: 1px solid #e9ecef;
   font-size: 18px;
   background-image: none;
+}
+
+#mainContent #comment_form_container .comment_textarea {
+  width: 100%;
+  border-color: #e9ecef;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+#mainContent #comment_form_container .comment_textarea .commentbox_title {
+  border-bottom: 0;
+}
+
+#mainContent #comment_form_container .comment_textarea .commentbox_tab:hover,
+#mainContent #comment_form_container .comment_textarea .commentbox_tab.active {
+  border-bottom: 0;
 }
 
 #mainContent #comment_form.commentform p {
@@ -2012,6 +2011,15 @@ pre > #mainContent .cnblogs-markdown code, pre >
   }
   body.is-side-open .nav__toggle {
     position: fixed;
+  }
+  .backmask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 97;
+    background-color: transparent;
   }
   #comment_nav {
     text-align: center;
