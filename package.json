@@ -1,15 +1,11 @@
 {
   "name": "cnblogs",
-  "version": "0.0.2",
+  "version": "1.0.2",
   "description": "cnblogs styles",
   "main": "index.js",
   "scripts": {
-    "dev": "npm-run-all -p serve watch",
-    "serve": "gulp connect",
-    "build": "cross-env NODE_ENV=production gulp build",
-    "build:dev": "gulp build",
-    "watch": "gulp",
-    "clean": "rimraf dist && rimraf skin/style.dev.css"
+    "dev": "gulp",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -26,18 +22,14 @@
   },
   "homepage": "https://github.com/hezulong1/cnblogs#readme",
   "devDependencies": {
-    "cross-env": "^6.0.3",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-clean-css": "^4.2.0",
-    "gulp-connect": "^5.7.0",
-    "gulp-if": "^3.0.0",
     "gulp-rename": "^1.4.0",
-    "gulp-sass": "^4.0.2",
-    "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.0"
+    "gulp-sass": "^4.0.2"
   },
   "browserslist": [
-    "defaults"
+    "not ie <= 9",
+    "> 1%"
   ]
 }
