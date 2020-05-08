@@ -16,6 +16,11 @@ $color-fill:        #f5f7fa !default;
 $color-weibo:       #0e2746 !default;
 $color-wechat:      #51b035 !default;
 
+$color-primary:#ff8906;
+$color-fill: #242424;
+$color-border: rgba($color-black, .3);
+$color-text: #838383;
+
 // Theme
 $theme-colors: (
   "primary": $color-primary,
@@ -71,9 +76,13 @@ $header-xs-height:    60px !default;
 $header-fill-color:   $color-white !default;
 $header-shadow:       0 3px 8px 0 rgba($color-text-aux, .1) !default;
 
+$header-fill-color: $color-fill;
+
 // Main
 $main-width:          1000px !default;
 $main-fill-color:     $color-white !default;
+
+$main-fill-color:     $color-fill; 
 
 // Aside
 $aside-width:         280px !default;
@@ -92,6 +101,8 @@ $scroll-fill-color:   #909999 !default;
 $footer-color:        $color-text-aux !default;
 $footer-fill-color:   #23262e !default;
 $footer-mask-height:  80px !default;
+
+$footer-fill-color: rgba($color-black, .2);
 
 // Extra
 $github-octo-width:   60px !default;

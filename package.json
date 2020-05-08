@@ -29,7 +29,6 @@
     "gulp-sass": "^4.0.2"
   },
   "browserslist": [
-    "not ie <= 9",
-    "> 1%"
+    "defaults"
   ]
 }
