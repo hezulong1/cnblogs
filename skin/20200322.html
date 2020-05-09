@@ -52,11 +52,12 @@
         </path>
       </svg>
     </div>
-
+    <!-- layout: spinner -->
+    <black-cat-spinner></black-cat-spinner>
     <!-- layout: head -->
-    <div class="ZL-header">
+    <black-cat-header>
       <div class="ZL-logo">
-        <img src="">黑猫、
+        <img src=""> 黑猫、
       </div>
       <ul class="ZL-menu">
         <li>
@@ -69,8 +70,8 @@
           <a href="https://github.com/hezulong1" target="_blank">GitHub</a>
         </li>
       </ul>
-    </div>
-
+    </black-cat-header>
+    <!-- layout: banner -->
     <div class="ZL-banner">
 
     </div>
@@ -1400,7 +1401,7 @@ $(<span class="hljs-built_in">document</span>).ready( page.init() )
     <script src="https://cdn.jsdelivr.net/npm/viewerjs@1.5.0/dist/viewer.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery/1.12.1/jquery.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.1.2/jquery.min.js"></script>
-    <script src="scrollbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hezulong1/my-lib/code/scrollbar/index.min.js"></script>
     <script>
       var _hmt = _hmt || [];
       (function () {
@@ -1429,6 +1430,22 @@ $(<span class="hljs-built_in">document</span>).ready( page.init() )
   </div>
 
   <script src="script.js"></script>
+  <script>
+    window.BLACK_CAT_CONFIG = {
+
+    }
+
+    var avatarPath = $('#author_profile_info').find('img').attr('src')
+    var blogURL = 
+    avatarPath && $('.ZL-logo').find('img').attr('src', avatarPath)
+
+    var $favicon = $('<link rel="icon" href="https://cdn.jsdelivr.net/gh/hezulong1/my-lib/favicon.ico">')
+    $('title').after($favicon)
+
+    $('.ZL-spinner').hide()
+
+    $('#Header1_HeaderTitle')
+  </script>
 </body>
 
 </html>

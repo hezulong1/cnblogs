@@ -89,3 +89,27 @@
   }
 
 })(window, jQuery, document)
+
+(function(window, $, document, undefined) {
+  'use strict'
+
+  if ($ == undefined) return
+
+  var config = {}
+
+  // jQueryDom
+  var $rawAvatar = $('#author_profile_info').find('img')
+  var $rawBlogNavigator = $('#Header1_HeaderTitle')
+
+  var $newLogo = $('.blackcat-logo')
+
+  config.avatar = $rawAvatar.attr('src')
+  config.blog = $rawBlogNavigator.attr('href')
+
+  function init() {
+
+  }
+
+  $(document).ready(init())
+
+})(window, jQuery, document)
