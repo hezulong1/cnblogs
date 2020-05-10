@@ -1,4 +1,4 @@
-(function (window, $, document, undefined) {
+;(function (window, $, document, undefined) {
   if (typeof $ == undefined) return
 
   var page = {
@@ -90,7 +90,7 @@
 
 })(window, jQuery, document)
 
-(function(window, $, document, undefined) {
+;(function(window, $, document, undefined) {
   'use strict'
 
   if ($ == undefined) return
@@ -101,13 +101,20 @@
   var $rawAvatar = $('#author_profile_info').find('img')
   var $rawBlogNavigator = $('#Header1_HeaderTitle')
 
-  var $newLogo = $('.blackcat-logo')
+  var $bcLogo = $('black-cat-logo')
+  var $bcSpinner = $('black-cat-spinner')
+    
 
   config.avatar = $rawAvatar.attr('src')
   config.blog = $rawBlogNavigator.attr('href')
+  config.author = $rawBlogNavigator.text()
 
   function init() {
-
+    config.avatar && $bcLogo.find('img').attr('src', config.avatar)
+    config.blog && $bcLogo.find('a').attr('href', config.blog)
+    config.author && $bcLogo.find('span').html(config.author)
+    $('title').after('<link rel="icon" href="https://cdn.jsdelivr.net/gh/hezulong1/my-lib/favicon.ico">')
+    $bcSpinner.hide()
   }
 
   $(document).ready(init())
