@@ -1,4 +1,4 @@
-black-cat-spinner {
+blackcat-spinner {
   position: fixed;
   top: 0; right: 0; bottom: 0; left: 0;
   z-index: 9999;
@@ -24,18 +24,18 @@ black-cat-spinner {
 }
 
 
-black-cat-wrapper {
+blackcat-wrapper {
   display: block;
   max-width: $max-width;
   margin: 0 auto;
 }
 
-black-cat-header {
+blackcat-header {
   display: block;
   padding: 48px $space;
 
   background-color: #fff;
-  black-cat-wrapper {
+  blackcat-wrapper {
     display: flex;
     height: 100%;
     justify-content: space-between;
@@ -43,7 +43,7 @@ black-cat-header {
   }
 }
 
-black-cat-logo {
+.blackcat-logo {
   display: block;
 
   img {
@@ -75,12 +75,12 @@ black-cat-logo {
   }
 }
 
-black-cat-menu {
+.blackcat-menu {
   display: block;
   background-color: #18191b;
 }
 
-black-cat-menuitem {
+.blackcat-menuitem {
   display: block;
   float: left;
   height: 64px;
