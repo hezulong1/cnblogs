@@ -1,12 +1,14 @@
 #main {
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: stretch;
-  width: 100%;
-  max-width: $main-width;
-  margin-right: auto;
-  margin-left: auto;
-  background-color: $main-fill-color;
+  // display: flex;
+  // flex-direction: row-reverse;
+  // align-items: stretch;
+  // width: 100%;
+  // max-width: $main-width;
+  // margin-right: auto;
+  // margin-left: auto;
+  // background-color: $main-fill-color;
+  padding-right: 100px;
+  padding-left: 100px;
 }
 
 #sideBar {
@@ -22,11 +24,11 @@
 }
 
 #mainContent {
-  flex: auto;
-  max-width: 100%;
-  padding: 30px 40px;
+  // flex: auto;
+  // max-width: 100%;
+  // padding: 30px 40px;
   font-size: $font-size-base;
-  transition: transform $transition;
+  // transition: transform $transition;
 
   @import "main-body";
   @import "main-body-pager";

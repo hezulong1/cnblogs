@@ -31,7 +31,7 @@ body {
   font-weight: $font-weight-base;
   color: $color-text;
   text-align: left;
-  background-color: $color-fill;
+  background-color: $color-white;
 }
 
 article,
@@ -127,12 +127,13 @@ blockquote {
   margin: 20px 0;
   padding: 20px 0;
   border: none;
-  background-color: $color-fill;
+  background-color: transparent;
 
   p:first-child:before {
     content: "“";
     display: inline;
-    font-size: 4em;
+    padding-right: $font-size-base;
+    font-size: 3em;
     font-family: Helvetica, Arial, sans-serif;
     line-height: 1;
   }

@@ -3,10 +3,11 @@
     @extend %main-title;
     
     &2 {
-      color: darken($color-text, $hover-percent);
+      text-decoration: none;
+      // color: darken($color-text, $hover-percent);
 
       &:hover {
-        color: $color-text;
+        color: inherit;
       }
     }
   }

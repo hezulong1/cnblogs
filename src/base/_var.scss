@@ -21,7 +21,10 @@ $color-wechat:      #51b035 !default;
 // $color-border: rgba($color-black, .3);
 // $color-text: #838383;
 
-$color-text: #18191b;
+$color-text: #18191b; // 标题
+$color-text-aux: #52555a; // 正文
+$color-placeholder: #a7abb3; // 辅助
+$color-danger: #e94328; // 点缀  #fbfbfb #d8d8d8
 
 // Theme
 $theme-colors: (
@@ -39,7 +42,7 @@ $border-radius-large:     8px !default;
 
 // Font
 $font-size-base:          14px !default;
-$font-family-sans-serif:  'Bookman old style', Garamond, STSong, 'Helvetica Neue', Helvetica, "PingFang SC", Tahoma, Arial, sans-serif !default;
+$font-family-sans-serif:  "Bookman old style", STSong, Helvetica, Tahoma, Arial, sans-serif !default;
 $font-family-monospace:   SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base:        $font-family-sans-serif !default;
 $font-weight-base:        400 !default;
@@ -78,13 +81,9 @@ $header-xs-height:    60px !default;
 $header-fill-color:   $color-white !default;
 $header-shadow:       0 3px 8px 0 rgba($color-text-aux, .1) !default;
 
-$header-fill-color: $color-fill;
-
 // Main
 $main-width:          1000px !default;
 $main-fill-color:     $color-white !default;
-
-$main-fill-color:     $color-fill; 
 
 // Aside
 $aside-width:         280px !default;
@@ -120,4 +119,4 @@ $tooltip-line-height:    1.5 !default;
 
 //
 $space: 25px !default;
-$max-width: 1140px;
+$max-width: 1000px;

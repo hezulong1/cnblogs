@@ -102,22 +102,45 @@
   var $rawHome = $('#home')
   var $rawPageEnd = $('#page_end_html')
   var $rawBlogNavigator = $('#Header1_HeaderTitle')
+  var $rawHeader = $('#header')
+  var $rawSide = $('#sideBar')
+  var $rawMain = $('#main')
+  var $rawMarkdown = $('#cnblogs_post_body')
 
   var $window = $(window)
   var $body = $('body')
   
   var $bcLogo = $('.blackcat-logo')
+  var $bcMenu = $('.blackcat-menu').first()
   var $bcSpinner = $('blackcat-spinner')
     
   config.blog = $rawBlogNavigator.attr('href')
   config.author = $rawBlogNavigator.text()
+  config.menu = [
+    { label: 'Home', value: $('#blog_nav_myhome').attr('href') },
+    { label: 'Take Note', value: $('#blog_nav_newpost').attr('href') },
+    { label: 'Setting', value: $('#blog_nav_admin').attr('href') }
+  ]
+  var menuInner = '', i = 0, len = config.menu.length
+  for (;i<len;i++) {
+    var item = config.menu[i]
+    menuInner += '<li><a href="' + item.value + '"><span>' + item.label +'</span></a></li>'
+  }
 
   function init() {
     config.avatar && $bcLogo.find('img').attr('src', config.avatar)
     config.blog && $bcLogo.find('a').attr('href', config.blog)
     config.author && $bcLogo.find('a').html(config.author)
+
     $('title').after('<link rel="icon" href="https://cdn.jsdelivr.net/gh/hezulong1/my-lib/favicon.ico">')
     $bcSpinner.hide()
+
+    $bcMenu.html(menuInner)
+
+    // 隐藏不需要的部分
+    $rawHeader.hide()
+    $rawSide.hide()
+    $rawMain.addClass('blackcat-wrapper')
 
     var extraLink = [
       '<blackcat-extra>',
@@ -127,6 +150,20 @@
       '<path class="arrow" d="M9.18198052,1 L6.5,1 L6.5,0 L11,0 L11,1 L11,4.5 L10,4.5 L10,1.59619408 L4.02512627,7.57106781 L3.31801948,6.86396103 L9.18198052,1 Z" fill="#18191b"></path>',
       '</g></svg></blackcat-extra>'
     ].join('')
+
+    var $rawMarkdownH2 = $rawMarkdown.find('h2')
+    $rawMarkdownH2.each(function() {
+      var $this = $(this)
+      $this.append('<a href="#' + $this.attr('id') + '"><span>#</span></a>')
+    })
+    $rawMarkdownH2.children('a').on('click', function(e) {
+      e.preventDefault()
+      var $this = $(this)
+      $('html, body').animate({
+        scrollTop: $this.offset().top
+      }, 300)
+      window.location.hash = $this.attr('href')
+    })
 
     var $blankLinks = $('a[target="_blank"]')
 
@@ -143,8 +180,6 @@
         $this.html('<span>' + oldText + extraLink + '</span>')
       }
     })
-
-    $('a[target="_blank"]').append()
   }
 
   $(document).ready(init())

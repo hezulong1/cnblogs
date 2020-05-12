@@ -11,24 +11,25 @@
   }
 
   h1 {
-    font-size: $font-size-base + 8;
+    font-size: $font-size-base * 2.5;
   }
   
   h2 {
     position: relative;
-    font-size: $font-size-base + 4;
+    font-size: $font-size-base * 2;
   }
   
   h3 {
-    font-size: $font-size-base + 2;
+    position: relative;
+    font-size: $font-size-base + 6;
   }
   
   h4 {
-    font-size: $font-size-base;
+    font-size: $font-size-base + 2;
   }
   
   h5 {
-    font-size: $font-size-base - 1;
+    font-size: $font-size-base;
   }
   
   h6 {
@@ -45,15 +46,19 @@
     }
   }
 
-  h2:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -15px;
-    display: block;
-    width: 5px;
-    height: 100%;
-    background-color: $color-primary;
+  // h2:before {
+  //   content: "";
+  //   position: absolute;
+  //   top: 0;
+  //   left: -15px;
+  //   display: block;
+  //   width: 5px;
+  //   height: 100%;
+  //   background-color: $color-primary;
+  // }
+
+  h2:target {
+    box-shadow: 0 0 0 2px $color-primary;
   }
 
   p {
