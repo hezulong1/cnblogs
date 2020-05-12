@@ -98,8 +98,14 @@
   var config = {}
 
   // jQueryDom
+  var $rawPageBegin = $('#page_begin_html')
+  var $rawHome = $('#home')
+  var $rawPageEnd = $('#page_end_html')
   var $rawBlogNavigator = $('#Header1_HeaderTitle')
 
+  var $window = $(window)
+  var $body = $('body')
+  
   var $bcLogo = $('.blackcat-logo')
   var $bcSpinner = $('blackcat-spinner')
     
@@ -112,8 +118,39 @@
     config.author && $bcLogo.find('a').html(config.author)
     $('title').after('<link rel="icon" href="https://cdn.jsdelivr.net/gh/hezulong1/my-lib/favicon.ico">')
     $bcSpinner.hide()
+
+    var extraLink = [
+      '<blackcat-extra>',
+      '<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg">',
+      '<g transform="translate(0,1)">',
+      '<rect class="bg" fill="#ddd" x="0" y="2" width="9" height="9" rx="1.5"></rect>',
+      '<path class="arrow" d="M9.18198052,1 L6.5,1 L6.5,0 L11,0 L11,1 L11,4.5 L10,4.5 L10,1.59619408 L4.02512627,7.57106781 L3.31801948,6.86396103 L9.18198052,1 Z" fill="#18191b"></path>',
+      '</g></svg></blackcat-extra>'
+    ].join('')
+
+    var $blankLinks = $('a[target="_blank"]')
+
+    $blankLinks.each(function() {
+      var $this = $(this)
+      var $span = $this.children('span').first()
+      var hasSpan = $span.length === 1
+      var oldText = ''
+      if (hasSpan) {
+        oldText = $span.html()
+        $span.html(oldText + extraLink)
+      } else {
+        oldText = $this.html()
+        $this.html('<span>' + oldText + extraLink + '</span>')
+      }
+    })
+
+    $('a[target="_blank"]').append()
   }
 
   $(document).ready(init())
 
 })(window, jQuery, document)
+
+DOMReady(function() {
+  console.log(DOMReady)
+})

@@ -16,10 +16,12 @@ $color-fill:        #f5f7fa !default;
 $color-weibo:       #0e2746 !default;
 $color-wechat:      #51b035 !default;
 
-$color-primary: #18191b;
-$color-fill: #242424;
-$color-border: rgba($color-black, .3);
-$color-text: #838383;
+// $color-primary: #18191b;
+// $color-fill: #242424;
+// $color-border: rgba($color-black, .3);
+// $color-text: #838383;
+
+$color-text: #18191b;
 
 // Theme
 $theme-colors: (
@@ -37,7 +39,7 @@ $border-radius-large:     8px !default;
 
 // Font
 $font-size-base:          14px !default;
-$font-family-sans-serif:  Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", 'Helvetica Neue', Helvetica, "PingFang SC", Tahoma, Arial, sans-serif !default;
+$font-family-sans-serif:  'Bookman old style', Garamond, STSong, 'Helvetica Neue', Helvetica, "PingFang SC", Tahoma, Arial, sans-serif !default;
 $font-family-monospace:   SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base:        $font-family-sans-serif !default;
 $font-weight-base:        400 !default;

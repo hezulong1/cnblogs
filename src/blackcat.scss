@@ -45,59 +45,70 @@ blackcat-header {
   }
 }
 
+a[target^="_blank"] {
+  blackcat-extra {
+    display: inline;
+    padding-left: 3px;
+  }
+
+  &:hover blackcat-extra .arrow{
+    transform: translate(1px, -1px);
+  }
+}
+
 .blackcat-logo {
   display: block;
 
-  img {
-    border-radius: 100%;
-  }
-
   a {
-    position: relative;
-    color: #18191b;
-    font-size: 2em;
+    font-size: 18px;
+    text-decoration: none;
 
-    span {
-      position: relative;
-      z-index: 2;
+    &:hover {
+      color: inherit;
     }
+  }
+}
+
+.blackcat-link-links a,
+a.blackcat-line-link {
+  text-decoration: none;
+
+  & > span {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
 
     &:after {
       content: "";
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      z-index: 1;
       display: block;
-      width: 14px;
-      height: 14px;
-      border: 3px solid #e94328;
-      border-radius: 100%;
+      width: 0;
+      height: 1px;
+      background-color: $color-text;
+      position: absolute;
+      bottom: 1px;
+      left: 110%;
+      transition: width .5s, left .5s;
     }
+  }
+
+  &:hover > span:after {
+    width: 100%;
+    left: 0;
+    transition: width .5s;
   }
 }
 
 .blackcat-menu {
-  display: block;
-  background-color: #18191b;
-}
+  li {
+    display: block;
+    float: left;
 
-.blackcat-menuitem {
-  display: block;
-  float: left;
-  height: 64px;
-  line-height: 64px;
-  color: rgba($color-white, .6);
-
-  &:hover {
-    color: rgba($color-white, .9)
-  }
-
-  a {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    padding: 0 $space;
-    color: inherit;
+    a {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      padding: 0 10px;
+      color: inherit;
+    }
   }
 }
