@@ -63,9 +63,7 @@
 
   h2 {
     > a {
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity .3s ease;
+      display: none;
     }
 
     &:target {
@@ -74,8 +72,7 @@
 
     @include respond(md) {
       &:hover a {
-        opacity: 1;
-        visibility: visible;
+        display: inline;
       }
     }
   }
@@ -163,7 +160,8 @@
     position: relative;
     padding: $font-size-base * 1.5;
     background-color: #2d3748;
-    border-radius: 8px;
+    min-width: 480px;
+    // border-radius: 8px;
 
     &:before {
       content: "";
@@ -177,14 +175,14 @@
     }
 
     &:after {
-      content: attr(class);
+      content: attr(blackcat-language);
       display: block;
       position: absolute;
       top: 18px;
       right: 20px;
       z-index: 1;
       text-transform: capitalize;
-      color: $color-text-aux;
+      color: $color-placeholder;
       font-size: 12px;
     }
   }

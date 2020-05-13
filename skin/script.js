@@ -231,13 +231,23 @@
       var $this = $(this)
       $this.append('<a href="#' + $this.attr('id') + '"><span>#</span></a>')
     })
-    $rawMarkdownH2.children('a').on('click', function (e) {
+    // $rawMarkdownH2.children('a').on('click', function (e) {
+    //   e.preventDefault()
+    //   var $this = $(this)
+    //   $('html, body').animate({
+    //     scrollTop: $this.offset().top
+    //   }, 300)
+    //   window.location.hash = $this.attr('href')
+    // })
+    $rawMarkdown.find('a[href^="#"]').on('click', function(e) {
       e.preventDefault()
       var $this = $(this)
+      var $target = $rawMarkdown.find('[id="' + $this.attr('href').substr(1) + '"]')
+      var $anchor = $target.children('a')
       $('html, body').animate({
-        scrollTop: $this.offset().top
+        scrollTop: $anchor.length > 0 ? $anchor.offset().top : $target.offset().top
       }, 300)
-      window.location.hash = $this.attr('href')
+      $target.length > 0 && (window.location.hash = $this.attr('href'))
     })
 
     var $blankLinks = $('a')
@@ -270,8 +280,29 @@
       var eventName = $this.attr('blackcat-event')
       $.isFunction(events[eventName]) && events[eventName].call(this, e)
     })
+    // 移除博客标题的链接
+    var $markdownTitle = $('#cb_post_title_url')
+    var originURL = $markdownTitle.attr('href')
+    // 补充代码类型
+    var $markdownCode = $rawMarkdown.find('pre')
+    $markdownCode.each(function() {
+      var $this = $(this)
+      var $code = $this.children('code').first()
+      var classNames = $code.attr('class').split(' ')
+      var type = ''
+      for (var i = 0, l = classNames.length; i < l; i++) {
+        if (/^language-/.test(classNames[i])) {
+          type = classNames[i].replace('language-', '')
+          break
+        }
+      }
+      type && $this.attr('blackcat-language', type)
+    })
 
-    $('#cb_post_title_url').after('<time class="blackcat-time">' + $('#post-date').val() +'</time>')
+    $markdownTitle
+      .attr('data-href', originURL)
+      .removeAttr('href')
+      .after('<time class="blackcat-time">' + $('#post-date').text() +'</time>')
 
     // Copyright
     $rawFooter.html('&copy; ' + config.author + ' ' + config.startDate.y + ' - ' + new Date().getFullYear())
