@@ -7,8 +7,9 @@
   // margin-right: auto;
   // margin-left: auto;
   // background-color: $main-fill-color;
-  padding-right: 100px;
-  padding-left: 100px;
+  // padding-right: 100px;
+  // padding-left: 100px;
+  margin-top: 50px;
 }
 
 #sideBar {
@@ -27,6 +28,8 @@
   // flex: auto;
   // max-width: 100%;
   // padding: 30px 40px;
+  width: 800px;
+  color: $color-text-aux;
   font-size: $font-size-base;
   // transition: transform $transition;
 

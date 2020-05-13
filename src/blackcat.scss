@@ -25,11 +25,18 @@ blackcat-spinner {
   100% { transform: scale(1); opacity: 0;}
 }
 
+@include anim(bc-anim-highlight) {
+  50% { color: $color-primary }
+}
+
 
 .blackcat-wrapper {
   display: block;
-  max-width: $max-width;
   margin: 0 auto;
+}
+
+*[blackcat-event] {
+  cursor: pointer;
 }
 
 blackcat-header {
@@ -65,6 +72,7 @@ blackcat-header {
   }
 
   .blackcat-wrapper {
+    width: 85%;
     @include clearfix;
   }
 }
@@ -133,5 +141,21 @@ a.blackcat-line-link {
       padding: 0 10px;
       color: inherit;
     }
+  }
+}
+
+.blackcat-layer-search.layui-layer {
+  border-radius: 0;
+  border: 5px solid $color-text;
+  box-shadow: none;
+
+  input {
+    height: 75px;
+    line-height: 75px;
+    width: 500px;
+    padding: 0 15px;
+    font-size: 20px;
+    border: none 0;
+    background: none;
   }
 }

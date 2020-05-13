@@ -1,4 +1,5 @@
-;(function (window, $, document, undefined) {
+;
+(function (window, $, document, undefined) {
   if (typeof $ == undefined) return
 
   var page = {
@@ -90,7 +91,8 @@
 
 })(window, jQuery, document)
 
-;(function(window, $, document, undefined) {
+;
+(function (window, $, document, undefined) {
   'use strict'
 
   if ($ == undefined) return
@@ -105,26 +107,98 @@
   var $rawHeader = $('#header')
   var $rawSide = $('#sideBar')
   var $rawMain = $('#main')
+  var $rawFooter = $('#footer')
   var $rawMarkdown = $('#cnblogs_post_body')
+  var $rawBlogAge = $('#profile_block').children('a:eq(1)')
 
   var $window = $(window)
   var $body = $('body')
-  
+
   var $bcLogo = $('.blackcat-logo')
   var $bcMenu = $('.blackcat-menu').first()
   var $bcSpinner = $('blackcat-spinner')
-    
+  var $bcButton = $('[blackcat-event]')
+
   config.blog = $rawBlogNavigator.attr('href')
   config.author = $rawBlogNavigator.text()
-  config.menu = [
-    { label: 'Home', value: $('#blog_nav_myhome').attr('href') },
-    { label: 'Take Note', value: $('#blog_nav_newpost').attr('href') },
-    { label: 'Setting', value: $('#blog_nav_admin').attr('href') }
+  config.about = $rawBlogAge.attr('href')
+
+  config.menu = [{
+      label: 'Home',
+      value: config.blog
+    },
+    {
+      label: 'Take Note',
+      value: $('#blog_nav_newpost').attr('href')
+    },
+    {
+      label: 'Setting',
+      value: $('#blog_nav_admin').attr('href')
+    },
+    {
+      label: 'About Me',
+      value: config.about
+    }
   ]
-  var menuInner = '', i = 0, len = config.menu.length
-  for (;i<len;i++) {
+  var menuInner = '',
+    i = 0,
+    len = config.menu.length
+  for (; i < len; i++) {
     var item = config.menu[i]
-    menuInner += '<li><a href="' + item.value + '"><span>' + item.label +'</span></a></li>'
+    menuInner += '<li><a href="' + item.value + '"><span>' + item.label + '</span></a></li>'
+  }
+
+  var blogStartDate = $rawBlogAge.attr('title') ? $rawBlogAge.attr('title').replace(/\D+/g, '') : ''
+  config.startDate = { y: blogStartDate.slice(0, 4), m: blogStartDate.slice(4, 6), d: blogStartDate.slice(6, 8) }
+
+  var events = config.event = {
+    search: function() {
+      var index = layer.open({
+        type: 1,
+        title: false,
+        closeBtn: false,
+        shade: [0.85, '#fff'],
+        shadeClose: true,
+        maxWidth: 'auto',
+        offset: 'auto',
+        id: 'blackcat-layer-search',
+        skin: 'blackcat-layer-search',
+        content: '<form><input class="blackcat-search-input" type="text" spellcheck="false" autocomplete="off" placeholder="搜索内容，查询（ENTER）/ 关闭（ESC）"></form>',
+        success: function ($layer) {
+          var $input = $layer.find('.blackcat-search-input')
+          $input.focus()
+
+          $(document).on('keydown.blackcat', function (e) {
+            if (e.keyCode === 27) {
+              layer.close(index)
+              return
+            }
+
+            if (e.keyCode === 13) {
+              e.preventDefault()
+
+              if ($input.val()) {
+                var word = encodeURIComponent('blog:' + (window.currentBlogApp || 'blackcat') + ' ' + $input.val())
+                window.open('http://zzk.cnblogs.com/s?w=' + word)
+                layer.close(index)
+              }
+            }
+          })
+        },
+        end: function () {
+          $(document).off('keydown.blackcat')
+        }
+      })
+    }
+  }
+
+  var getHash = function (hash) {
+    hash = hash || window.location.hash.substr(1)
+
+    if (!hash) return ''
+
+    hash = hash.split('#')
+    return decodeURIComponent(hash[0])
   }
 
   function init() {
@@ -140,7 +214,8 @@
     // 隐藏不需要的部分
     $rawHeader.hide()
     $rawSide.hide()
-    $rawMain.addClass('blackcat-wrapper')
+    $('#mainContent').addClass('blackcat-wrapper')
+    
 
     var extraLink = [
       '<blackcat-extra>',
@@ -152,11 +227,11 @@
     ].join('')
 
     var $rawMarkdownH2 = $rawMarkdown.find('h2')
-    $rawMarkdownH2.each(function() {
+    $rawMarkdownH2.each(function () {
       var $this = $(this)
       $this.append('<a href="#' + $this.attr('id') + '"><span>#</span></a>')
     })
-    $rawMarkdownH2.children('a').on('click', function(e) {
+    $rawMarkdownH2.children('a').on('click', function (e) {
       e.preventDefault()
       var $this = $(this)
       $('html, body').animate({
@@ -165,27 +240,49 @@
       window.location.hash = $this.attr('href')
     })
 
-    var $blankLinks = $('a[target="_blank"]')
+    var $blankLinks = $('a')
 
-    $blankLinks.each(function() {
+    $blankLinks.each(function () {
       var $this = $(this)
       var $span = $this.children('span').first()
       var hasSpan = $span.length === 1
+      var shouldExtra = $this.attr('target') === '_blank'
       var oldText = ''
       if (hasSpan) {
-        oldText = $span.html()
-        $span.html(oldText + extraLink)
+        if (shouldExtra) {
+          oldText = $span.html()
+          $span.html(oldText + extraLink)
+        }
       } else {
         oldText = $this.html()
-        $this.html('<span>' + oldText + extraLink + '</span>')
+        $this.html('<span>' + oldText + (shouldExtra ? extraLink : '') + '</span>')
       }
     })
+
+    // 初始化滚动
+    var $target = $('[id="' + getHash() + '"]')
+    $target.length > 0 && $('html, body').animate({
+      scrollTop: $target.children('a').offset().top
+    }, 300)
+
+    $bcButton.on('click.blackcat', function(e) {
+      var $this = $(this)
+      var eventName = $this.attr('blackcat-event')
+      $.isFunction(events[eventName]) && events[eventName].call(this, e)
+    })
+
+    $('#cb_post_title_url').after('<time class="blackcat-time">' + $('#post-date').val() +'</time>')
+
+    // Copyright
+    $rawFooter.html('&copy; ' + config.author + ' ' + config.startDate.y + ' - ' + new Date().getFullYear())
+
+    window.BLACKCAT_CONFIG = config
   }
 
   $(document).ready(init())
 
 })(window, jQuery, document)
 
-DOMReady(function() {
+DOMReady(function () {
   console.log(DOMReady)
 })

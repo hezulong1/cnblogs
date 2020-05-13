@@ -57,8 +57,27 @@
   //   background-color: $color-primary;
   // }
 
-  h2:target {
-    box-shadow: 0 0 0 2px $color-primary;
+  a > span {
+    color: $color-text-aux;
+  }
+
+  h2 {
+    > a {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease;
+    }
+
+    &:target {
+      animation: bc-anim-highlight 2s ease;
+    }
+
+    @include respond(md) {
+      &:hover a {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
   }
 
   p {
