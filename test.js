@@ -7,4 +7,11 @@ class WordCount extends HTMLParagraphElement {
 
     
   }
+  say() {
+    return console.log
+  }
 }
+
+const word = new WordCount()
+
+console.log(word)

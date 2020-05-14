@@ -83,7 +83,7 @@ a[target^="_blank"] {
     padding-left: 3px;
   }
 
-  &:hover blackcat-extra .arrow{
+  &:hover blackcat-extra .arrow {
     transform: translate(1px, -1px);
   }
 }
@@ -144,6 +144,7 @@ a.blackcat-line-link {
   }
 }
 
+// search 弹窗
 .blackcat-layer-search.layui-layer {
   border-radius: 0;
   border: 5px solid $color-text;

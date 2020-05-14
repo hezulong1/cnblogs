@@ -8,20 +8,21 @@
   h6 {
     line-height: inherit;
     font-weight: $font-weight-base;
+    color: $color-text;
   }
 
   h1 {
-    font-size: $font-size-base * 2.5;
+    font-size: $font-size-base * 2;
   }
   
   h2 {
     position: relative;
-    font-size: $font-size-base * 2;
+    font-size: $font-size-base + 8;
   }
   
   h3 {
     position: relative;
-    font-size: $font-size-base + 6;
+    font-size: $font-size-base + 4;
   }
   
   h4 {
@@ -85,40 +86,12 @@
     padding-left: 1.5em;
   }
 
-  ul {
-    list-style-type: disc;
-    li {
-      list-style-type: inherit;
-    }
-
-    ol {
-      list-style-type: decimal;
-      li {
-        list-style-type: inherit;
-      }
-    }
-
-    ul {
-      list-style-type: circle;
-      li {
-        list-style-type: inherit;
-      }
-
-      ul {
-        list-style-type: square;
-        li {
-          list-style-type: inherit;
-        }
-      }
-    }
+  ul li {
+    list-style-type: square;
   }
 
-  ol {
+  ol li {
     list-style-type: decimal;
-
-    li {
-      list-style-type: inherit;
-    }
   }
 
   img {
@@ -155,6 +128,39 @@
     font-size: $font-size-base !important;
   }
 
+  kbd {
+    padding: 3px 6px;
+    border: none;
+    background-color: $color-text;
+    font-size: 87.5% !important;
+    font-weight: 700;
+    color: $color-white;
+    box-shadow: 0 2px 1px 0 rgba($color-black, .1);
+
+    kbd {
+      padding: 0;
+      font-size: 100% !important;
+      box-shadow: none;
+    }
+  }
+
+  code {
+    max-height: 40em;
+    margin: 0 !important;
+    padding: 3px 6px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    line-height: normal;
+    vertical-align: baseline;
+    background-color: $color-fill !important;
+    font-size: 87.5% !important;
+    word-wrap: break-word;
+  }
+
+  a > code {
+    color: inherit !important;
+  }
+
   pre {
     position: relative;
     padding: $font-size-base * 1.5;
@@ -171,57 +177,27 @@
       background-color: #f56565;
       border-radius: 9999px;
       box-shadow: 20px 0 0 0 #fbd38d, 40px 0 0 0 #48bb78;
+      transition: background-color .3s, box-shadow .3s;
     }
 
-    &:after {
-      content: attr(blackcat-language);
-      display: block;
+    > code {
+      padding: 0 !important;
+      border: none !important;
+    }
+
+    > a {
+      > span {
+        color: $color-placeholder !important;
+      }
+
+      &:hover > span {
+        color: $color-white !important;
+      }
+
       position: absolute;
       top: 18px;
       right: 20px;
       z-index: 1;
-      text-transform: capitalize;
-      color: $color-placeholder;
-      font-size: 12px;
-    }
-  }
-
-  code {
-    padding: 3px 6px !important;
-    border: none !important;
-    border-radius: 3px !important;
-    line-height: normal;
-    vertical-align: baseline;
-    color: $color-primary;
-    font-size: 87.5% !important;
-    word-wrap: break-word;
-
-    a>& {
-      color: inherit !important;
-    }
-
-    pre>& {
-      font-size: inherit !important;
-      color: inherit !important;
-      background-color: inherit !important;
-      word-break: normal !important;
-    }
-  }
-
-  kbd {
-    padding: 3px 6px;
-    border: none;
-    border-radius: 3px;
-    background-color: lighten($color-border, 3%);
-    font-size: 87.5% !important;
-    font-weight: 700;
-    color: $color-text-aux;
-    box-shadow: 0 2px 1px 0 rgba($color-black, .1);
-
-    kbd {
-      padding: 0;
-      font-size: 100% !important;
-      box-shadow: none;
     }
   }
 }
