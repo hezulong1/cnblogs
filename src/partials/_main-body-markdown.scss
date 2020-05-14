@@ -63,17 +63,16 @@
 
   h2 {
     > a {
-      display: none;
+      opacity: 0;
+      transition: opacity 150ms ease;
     }
 
     &:target {
       animation: bc-anim-highlight 2s ease;
     }
 
-    @include respond(md) {
-      &:hover a {
-        display: inline;
-      }
+    &:hover a {
+      opacity: 1;
     }
   }
 

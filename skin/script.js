@@ -192,7 +192,7 @@
     }
   }
 
-  var getHash = function (hash) {
+  function getHash(hash) {
     hash = hash || window.location.hash.substr(1)
 
     if (!hash) return ''
@@ -214,7 +214,6 @@
     // 隐藏不需要的部分
     $rawHeader.hide()
     $rawSide.hide()
-    $('#mainContent').addClass('blackcat-wrapper')
     
 
     var extraLink = [
@@ -243,9 +242,8 @@
       e.preventDefault()
       var $this = $(this)
       var $target = $rawMarkdown.find('[id="' + $this.attr('href').substr(1) + '"]')
-      var $anchor = $target.children('a')
       $('html, body').animate({
-        scrollTop: $anchor.length > 0 ? $anchor.offset().top : $target.offset().top
+        scrollTop: $target.offset().top
       }, 300)
       $target.length > 0 && (window.location.hash = $this.attr('href'))
     })
@@ -272,7 +270,7 @@
     // 初始化滚动
     var $target = $('[id="' + getHash() + '"]')
     $target.length > 0 && $('html, body').animate({
-      scrollTop: $target.children('a').offset().top
+      scrollTop: $target.offset().top
     }, 300)
 
     $bcButton.on('click.blackcat', function(e) {
