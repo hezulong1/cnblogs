@@ -2,39 +2,64 @@
 #blog-comments-placeholder {
   @extend %main-comment;
 
+  border-top: 2px solid $color-text;
+
+  #comment_pager_top {
+    display: none;
+  }
+
   .feedback_area_title {
     display: inline-block;
     width: 100%;
-    padding: 0;
+    padding: 15px 0 8px;
     margin: 0;
-    font-size: 18px;
+    font-size: 1.4em;
     background-image: none;
   }
 
   .feedbackItem {
     position: relative;
-    margin-top: $grid-gutter / 2;
-    padding: 10px 15px;
-    border-radius: $border-radius-base;
-    border: 1px solid $color-border;
-    background-color: mix($color-white, $color-blue, 98%);
+    margin-top: 10px;
+    padding: 10px 15px 10px 80px;
+    background-color: $color-fill;
 
     .feedbackListSubtitle {
       padding-bottom: 5px;
-      border-bottom: 1px solid $color-border;
     }
 
     .feedbackManage {
       position: absolute;
       right: 15px;
+      min-width: 150px;
+      text-align: right;
+
+      a > span {
+        color: $color-text-aux;
+      }
     }
 
-    .feedbackCon .blog_comment_body {
-      padding: 10px 0;
+    .feedbackCon {
+      a > span {
+        color: $color-text-aux;
+      }
+
+      .blog_comment_body {
+        padding: 10px 0;
+      }
+
+      .comment_vote {
+        font-size: 12px;
+      }
     }
 
     &:last-child {
       margin-bottom: 0;
+    }
+
+    .blackcat-avatar {
+      position: absolute;
+      top: 15px;
+      left: 15px;
     }
   }
 }
@@ -70,71 +95,108 @@
 
   #comment_nav {
     padding-bottom: 10px;
+    display: none;
 
     a {
       @extend %button;
-      @extend %button-primary;
-      @extend %button-primary-ghost;
+      @extend %button-btn;
+      @extend %button-btn-ghost;
       
       margin: 0 0 0 .5em;
     }
   }
 
   &_container {
+    border-bottom: 2px solid $color-text;
+
     #commentform_title {
       display: inline-block;
       width: 100%;
-      padding: 0 0 5px 0;
+      padding: 15px 0 15px;
       margin: 0;
-      font-size: 18px;
+      font-size: 1.4em;
       background-image: none;
     }
 
     .comment_textarea {
       width: 100%;
-      border-color: $color-border;
+      margin: 0;
+      padding: 15px;
       border-radius: 0;
       background-color: transparent;
+      border: none;
+      background-color: $color-fill;
 
       .commentbox_title {
         border-bottom: 0;
       }
 
-      .commentbox_tab:hover,
-      .commentbox_tab.active {
-        border-bottom: 0;
+      .commentbox_tab {
+        margin: 0;
+        line-height: 1;
+        padding: 0 4px 0 0;
+
+        &:hover,
+        &.active {
+          border-bottom: 0;
+        }
       }
+
     }
   }
 
   &.commentform {
     p {
-      margin-top: 10px;
-      margin-bottom: 10px;
+      // margin-top: 10px;
+      // margin-bottom: 10px;
+      margin: 0;
+      display: none;
     }
 
     .commentbox_main {
 
       .commentbox_title {
+        display: block;
         width: 100%;
-        padding-top: $grid-gutter / 2;
-        padding-bottom: $grid-gutter / 2;
+        padding-bottom: 5px;
+
+        &_left {
+          float: left;
+          display: block;
+        }
+
+        &_right {
+          float: right;
+          display: block !important;
+
+          .comment_icon {
+            padding: 0 0 0 4px;
+          }
+        }
+
+        @include clearfix;
       }
     }
 
     #commentbox_opt {
+      display: block;
+      // text-align: right;
+      margin-bottom: 15px;
+      padding: 0 15px 15px;
+      background-color: $color-fill;
+
       .comment_btn {
         width: auto;
         height: auto;
 
         @extend %button;
-        @extend %button-primary;
+        @extend %button-btn;
       }
 
       a {
         @extend %button;
-        @extend %button-primary;
-        @extend %button-primary-ghost;
+        @extend %button-btn;
+        @extend %button-btn-ghost;
       }
     }
   }

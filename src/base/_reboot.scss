@@ -127,7 +127,7 @@ blockquote {
   margin: 20px 0;
   padding: 20px 1em;
   border: none;
-  background-color: $color-fill;
+  background-color: darken($color-fill, 4%);
 
   p:last-child:first-child {
     margin: 0 !important;

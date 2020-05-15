@@ -16,13 +16,14 @@
   }
 
   &:hover {
-    border-color: darken($color-border, 10%);
+    // border-color: darken($color-border, 10%);
+    border-color: $color-text;
   }
 
   &:focus {
     outline: none;
-    border-color: $color-primary;
-    box-shadow: 0 0 0 3px rgba($color-primary, .25);
+    // border-color: $color-primary;
+    // box-shadow: 0 0 0 3px rgba($color-primary, .25);
   }
 
   &[readonly] {

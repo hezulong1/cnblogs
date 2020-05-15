@@ -23,7 +23,7 @@
 <body>
   <a name="top"></a>
   <div id="page_begin_html">
-
+    <link rel="stylesheet" href="../icon/iconfont.css">
     <!-- nav toggle -->
     <div class="nav__toggle [ hamburger hamburger--squeeze ]">
       <div class="hamburger-box">
@@ -40,8 +40,10 @@
       </svg>
     </div>
     
+    <!-- loading -->
     <blackcat-spinner></blackcat-spinner>
     
+    <!-- header -->
     <blackcat-header>
       <div class="blackcat-wrapper">
         <div class="blackcat-logo item"><a></a></div>
@@ -66,6 +68,28 @@
       </div>
     </blackcat-header>
 
+    <div id="blackcat-blog-footer">
+      <!-- Me -->
+      <blackcat-me>
+        <div class="blackcat-wrapper">
+          <div class="avatar"><img></div>
+          <div class="account"></div>
+          <div class="signature"></div>
+          <div class="btns">
+            <div class="btn view">查看</div>
+            <!-- <div class="btn follow">关注</div> -->
+          </div>
+        </div>
+      </blackcat-me>
+
+      <!-- 博客底部分页 -->
+      <blackcat-pager>
+        <div class="blackcat-link-links blackcat-wrapper">
+          <a><span>Prev</span></a>
+          <a><span>Next</span></a>
+        </div>
+      </blackcat-pager>
+    </div>
   </div>
 
   <!--done-->

@@ -30,6 +30,22 @@ blackcat-spinner {
 }
 
 
+.blackcat-time {
+  font-size: 12px;
+  color: $color-placeholder;
+
+  > time,
+  > span {
+    display: inline;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+
+  i {
+    margin-right: 2px;
+  }
+}
+
 .blackcat-wrapper {
   display: block;
   margin: 0 auto;
@@ -158,5 +174,139 @@ a.blackcat-line-link {
     font-size: 20px;
     border: none 0;
     background: none;
+  }
+}
+
+@supports ((-webkit-backdrop-filter: initial) or (backdrop-filter: initial)) {
+  .blackcat-layer-search.layui-layer {
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+}
+
+.blackcat-avatar {
+  border-radius: 50%;
+  border: 1px solid $color-text;
+}
+
+blackcat-pager {
+  display: block;
+  padding: 40px 0;
+
+  .blackcat-wrapper {
+    width: 85%;
+    padding: 10px;
+    text-align: center;
+  }
+
+  a {
+    display: inline-block;
+    font-size: 1.5em;
+    margin: 0 20px;
+
+    > span {
+      color: $color-text;
+    }
+  }
+}
+
+blackcat-me {
+  display: block;
+  margin: 20px 0;
+  border: 1px solid $color-border;
+
+  .blackcat-wrapper {
+    width: 100%;
+    text-align: center;
+  }
+
+  .avatar {
+    padding-top: 25px;
+
+    img {
+      border-radius: 50%;
+      border: 1px solid $color-text;
+    }
+  }
+
+  .account {
+    font-size: 16px;
+    margin-top: 10px;
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .signature {
+    width: 85%;
+    margin: 10px auto auto;
+    font-size: 13px;
+    line-height: 1.15;
+    color: $color-placeholder;
+  }
+
+  .btns {
+    margin: 1em 0 25px;
+    text-align: center;
+
+    .btn {
+      display: inline-block;
+      width: 100px; // 57px
+      padding: 8px 4px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 12px;
+      vertical-align: middle;
+      color: $color-white;
+      background-color: $color-primary;
+      border-radius: 3px;
+      user-select: none;
+
+      &:active {
+        opacity: .8;
+      }
+
+      &.disabled {
+        opacity: .5;
+        cursor: not-allowed;
+
+        &:before {
+          content: "已";
+          display: inline;
+        }
+      }
+    }
+  }
+}
+
+.blackcat-code-wrapper {
+  display: block;
+  max-width: 100%;
+  max-height: 40em;
+  margin: 10px 0;
+  position: relative;
+
+  // &:before {
+  //   position: absolute;
+  //   content: "";
+  //   display: block;
+  //   width: 12px;
+  //   height: 12px;
+  //   margin-bottom: 1.625em;
+  //   background-color: #f56565;
+  //   border-radius: 9999px;
+  //   box-shadow: 20px 0 0 0 #fbd38d, 40px 0 0 0 #48bb78;
+  //   transition: background-color .3s, box-shadow .3s;
+  // }
+
+  > a {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    z-index: 1;
+    color: $color-placeholder;
+    text-decoration: none;
+
+    &:hover {
+      color: $color-white;
+    }
   }
 }

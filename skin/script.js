@@ -110,6 +110,10 @@
   var $rawFooter = $('#footer')
   var $rawMarkdown = $('#cnblogs_post_body')
   var $rawBlogAge = $('#profile_block').children('a:eq(1)')
+  var $rawBlogInfo = $('#blog_post_info_block')
+  var $rawPager = $('#post_next_prev')
+  var $rawBlogPrev = $rawPager.children('a:eq(1)')
+  var $rawBlogNext = $rawPager.children('a:eq(3)')
 
   var $window = $(window)
   var $body = $('body')
@@ -117,11 +121,17 @@
   var $bcLogo = $('.blackcat-logo')
   var $bcMenu = $('.blackcat-menu').first()
   var $bcSpinner = $('blackcat-spinner')
-  var $bcButton = $('[blackcat-event]')
+  var $bcPager = $('blackcat-pager')
+  var $bcMe = $('blackcat-me')
 
   config.blog = $rawBlogNavigator.attr('href')
+  config.blogPrev = { label: $rawBlogPrev.text(), date: $.trim($rawBlogPrev.attr('title').replace(/[\u4e00-\u9fa5]/g, '')), href: $rawBlogPrev.attr('href') }
+  config.blogNext = { label: $rawBlogNext.text(), date: $.trim($rawBlogNext.attr('title').replace(/[\u4e00-\u9fa5]|[(^\s*)|(\s*$)]/g, '')), href: $rawBlogNext.attr('href') }
   config.author = $rawBlogNavigator.text()
+  config.avatar = $('#author_profile_info').find('.author_avatar').attr('src')
   config.about = $rawBlogAge.attr('href')
+  config.signature = $('#blogTitle').find('h2').first().html()
+  config.follow = $('#p_b_follow').children('a').length <= 0
 
   config.menu = [{
       label: 'Home',
@@ -134,10 +144,6 @@
     {
       label: 'Setting',
       value: $('#blog_nav_admin').attr('href')
-    },
-    {
-      label: 'About Me',
-      value: config.about
     }
   ]
   var menuInner = '',
@@ -166,7 +172,6 @@
         content: '<form><input class="blackcat-search-input" type="text" spellcheck="false" autocomplete="off" placeholder="搜索内容，查询（ENTER）/ 关闭（ESC）"></form>',
         success: function ($layer) {
           var $input = $layer.find('.blackcat-search-input')
-          $input.focus()
 
           $(document).on('keydown.blackcat', function (e) {
             if (e.keyCode === 27) {
@@ -189,7 +194,18 @@
           $(document).off('keydown.blackcat')
         }
       })
+    },
+    open: function() {
+      var $this = $(this)
+      var url = $this.data('url')
+      window.open(url)
     }
+  }
+
+  var icons = {
+    eye: '<svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"></path><path fill-rule="evenodd" d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" clip-rule="evenodd"></path></svg>',
+    thumbUp: '<svg width="1em" height="1em" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M426.410667 772.096c0.170667-114.602667 0.597333-304.981333 0.597333-304.981333 0-12.544 3.754667-24.917333 10.837333-35.925334l109.312-169.045333c1.28-1.962667 0.938667-5.034667 3.328-5.034667 22.357333 0 13.482667 54.784-3.072 106.410667-13.056 29.354667-12.373333 62.634667 4.181334 90.709333 18.517333 31.488 38.314667 51.114667 75.605333 51.114667h125.013333c17.408 0 30.464 15.957333 27.050667 33.024l-37.376 185.514667c-7.338667 32-24.405333 48.042667-32 48.042666H426.410667v0.170667z" fill="#64EDAC" p-id="5914"></path><path d="M880.128 430.506667c-16.384-19.968-41.045333-31.402667-67.754667-31.402667H631.893333c22.784-70.058667 41.472-163.498667 3.328-216.32-12.288-16.981333-35.925333-37.205333-78.762666-37.205333-55.808 0-80.128 30.464-98.645334 58.965333L348.501333 373.418667c-5.290667 8.192-9.813333 16.810667-13.653333 25.6H232.362667c-35.669333 0-64.853333 28.330667-66.218667 63.658666l-39.936 300.970667-0.256 4.522667c0 60.842667 49.493333 110.336 110.336 110.336h473.6c63.744 0 118.357333-52.992 136.192-132.608l50.432-250.368c4.693333-22.954667-1.365333-46.677333-16.384-65.024z m-643.84 379.733333c-22.613333 0-41.045333-17.834667-42.069333-40.192l40.106666-302.592 85.589334-0.256v342.954667l-83.626667 0.085333z m593.322667-328.192l-50.346667 249.685333c-10.325333 46.250667-38.826667 78.506667-69.376 78.506667H388.266667c0.085333-103.424 0.597333-343.210667 0.597333-343.296 0-19.797333 5.888-39.338667 16.981333-56.490667l109.312-168.96c15.104-23.381333 21.674667-27.733333 41.301334-27.733333 16.896 0 21.504 6.314667 23.466666 8.96 15.530667 21.504 10.410667 83.541333-12.8 154.88a60.928 60.928 0 0 0 2.474667 57.429333c11.690667 19.882667 33.792 32.256 57.685333 32.256H812.373333c6.058667 0 11.690667 2.389333 14.933334 6.4 2.133333 2.645333 2.901333 5.461333 2.304 8.362667z" fill="#333C4F"></path></svg>',
+    thumbDown: '<svg width="1em" height="1em" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M597.589333 251.904c-0.170667 114.602667-0.597333 304.98133299-0.597333 304.981333 0 12.544-3.754667 24.917333-10.837333 35.925334l-109.312 169.045333c-1.28 1.96266699-0.938667 5.034667-3.328 5.034667-22.35733299 0-13.48266699-54.784 3.072-106.410667 13.056-29.354667 12.373333-62.634667-4.181334-90.70933301-18.517333-31.488-38.314667-51.114667-75.605333-51.11466699l-125.013333 0c-17.408 0-30.464-15.957333-27.050667-33.024l37.376-185.514667c7.338667-32 24.405333-48.042667 32-48.042666L597.589333 252.074667l0-0.170667z" fill="#64EDAC" p-id="1265"></path><path d="M143.872 593.493333c16.384 19.968 41.045333 31.402667 67.754667 31.402667L392.106667 624.896c-22.784 70.058667-41.472 163.498667-3.32800001 216.32 12.288 16.981333 35.925333 37.205333 78.76266601 37.205333 55.80799999 0 80.128-30.464 98.645334-58.965333L675.498667 650.581333c5.290667-8.192 9.813333-16.810667 13.653333-25.6L791.637333 624.981333c35.66933299 0 64.853333-28.330667 66.218667-63.658666l39.936-300.970667 0.256-4.522667c0-60.842667-49.493333-110.336-110.336-110.336l-473.6 0c-63.744 0-118.357333 52.992-136.19199999 132.608l-50.43200001 250.368c-4.69333301 22.954667 1.365333 46.677333 16.384 65.024z m643.84-379.73333301c22.613333 0 41.045333 17.83466701 42.069333 40.19200001l-40.106666 302.592-85.589334 0.256 0-342.954667 83.626667-0.08533301z m-593.322667 328.19200001l50.346667-249.685333c10.325333-46.250667 38.826667-78.506667 69.376-78.50666701L635.733333 213.76c-0.085333 103.424-0.597333 343.21066701-0.597333 343.296 0 19.79733299-5.888 39.338667-16.981333 56.490667l-109.312 168.96c-15.104 23.381333-21.674667 27.73333299-41.301334 27.733333-16.89599999 0-21.504-6.314667-23.466666-8.96-15.530667-21.504-10.410667-83.541333 12.8-154.88a60.928 60.928 0 0 0-2.474667-57.429333c-11.690667-19.882667-33.792-32.25599999-57.685333-32.256L211.626667 556.714667c-6.058667 0-11.690667-2.389333-14.93333399-6.4-2.133333-2.645333-2.901333-5.461333-2.30400001-8.362667z" fill="#333C4F"></path></svg>'
   }
 
   function getHash(hash) {
@@ -211,6 +227,31 @@
 
     $bcMenu.html(menuInner)
 
+    // 重新设计博客底部信息展示
+    $bcMe.find('.avatar>img').attr('src', config.avatar)
+    $bcMe.find('.account').html(config.author)
+    $bcMe.find('.signature').html(config.signature)
+    // config.follow && $bcMe.find('.follow').addClass('disabled')
+    $bcMe.find('.view').on('click.blackcat', function() {
+      window.open(config.about)
+    })
+    // $bcMe.find('.follow').on('click.blackcat', function() {
+    //   var $this = $(this)
+    //   var disabled = $this.hasClass('disabled')
+    //   if (disabled) return
+    //   $('#p_b_follow').children('a').trigger('click')
+    // })
+
+
+    var $pager = $bcPager.find('a');
+    $pager.first().attr('href', config.blogPrev.href)
+    $pager.last().attr('href', config.blogNext.href)
+
+    $('#HistoryToday').after($('#blackcat-blog-footer'))
+    
+    $('#author_profile').hide()
+    $('#post_next_prev').hide()
+    
     // 隐藏不需要的部分
     $rawHeader.hide()
     $rawSide.hide()
@@ -226,10 +267,10 @@
     ].join('')
 
     var iconCopy = '<svg height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></g></svg>'
-    $rawMarkdown.find('pre').each(function() {
-      var $this = $(this)
-      $this.append('<a blackcat-event="copy" aria-label="Copy">' + iconCopy + '</a>')
-    })
+    // $rawMarkdown.find('pre').each(function() {
+    //   var $this = $(this)
+    //   $this.append('<a blackcat-event="copy" aria-label="Copy">' + iconCopy + '</a>')
+    // })
 
     var $rawMarkdownH2 = $rawMarkdown.find('h2')
     $rawMarkdownH2.each(function () {
@@ -253,6 +294,29 @@
       }, 300)
       $target.length > 0 && (window.location.hash = $this.attr('href'))
     })
+
+    // 评论区
+    var $comments = $('#blog-comments-placeholder').find('.feedbackItem')
+    $('#blog-comments-placeholder').find('br').first().remove()
+    $comments.each(function() {
+      var $this = $(this)
+      var commentId = $this.find('.layer').attr('href').substr(1)
+      var $avatar = $this.find('#comment_' + commentId +'_avatar')
+      var isLouzhu = $this.find('.louzhu').length > 0
+      var avatarURL = $.trim($avatar.text())
+      var anchorURL = $this.find('#a_comment_author_' + commentId).attr('href')
+      var $actions = $this.find('.comment_actions a')
+      $actions.addClass('blackcat-line-link')
+      var $votes = $this.find('.feedbackCon .comment_vote a')
+      $votes.addClass('blackcat-line-link')
+      if (avatarURL) {
+        $this.append('<a blackcat-event="open" data-url="' + anchorURL +'"><img class="blackcat-avatar' + (isLouzhu ? ' is-louzhu': '') +'" src="' + avatarURL + '"></a>')
+      }
+      $this.find('#a_comment_author_' + commentId).hide()
+      $this.find('.feedbackListSubtitle').append('<strong>' + $this.find('#a_comment_author_' + commentId).text() +'</strong>')
+    })
+
+    $('#commentbox_opt').append('<span>[ Ctrl+Enter 快捷键提交 ]</span>')
 
     var $blankLinks = $('a')
 
@@ -279,11 +343,6 @@
       scrollTop: $target.offset().top
     }, 300)
 
-    $bcButton.on('click.blackcat', function(e) {
-      var $this = $(this)
-      var eventName = $this.attr('blackcat-event')
-      $.isFunction(events[eventName]) && events[eventName].call(this, e)
-    })
     // 移除博客标题的链接
     var $markdownTitle = $('#cb_post_title_url')
     var originURL = $markdownTitle.attr('href')
@@ -291,6 +350,7 @@
     var $markdownCode = $rawMarkdown.find('pre')
     $markdownCode.each(function() {
       var $this = $(this)
+      var $wrapper = $('<div class="blackcat-code-wrapper"></div>')
       var $code = $this.children('code').first()
       var classNames = $code.attr('class').split(' ')
       var type = ''
@@ -300,13 +360,28 @@
           break
         }
       }
-      type && $this.attr('blackcat-language', type)
+      type && $wrapper.attr('blackcat-language', type)
+      $this.before($wrapper)
+      $wrapper
+        .prepend('<a blackcat-event="copy" aria-label="Copy">' + iconCopy + '</a>')
+        .prepend($this)
+    })
+
+    $('[blackcat-event]').on('click.blackcat', function(e) {
+      var $this = $(this)
+      var eventName = $this.attr('blackcat-event')
+      $.isFunction(events[eventName]) && events[eventName].call(this, e)
     })
 
     $markdownTitle
       .attr('data-href', originURL)
       .removeAttr('href')
-      .after('<time class="blackcat-time">' + $('#post-date').text() +'</time>')
+      .after([
+        '<div class="blackcat-time">',
+        '<time><i class="blackcat-icon-time"></i>' + $('#post-date').text() +'</time>',
+        '<span><i class="blackcat-icon-eye"></i>' + $('#post_view_count').text() +' 次浏览</span>',
+        '</div>'
+      ].join(''))
 
     // Copyright
     $rawFooter.html('&copy; ' + config.author + ' ' + config.startDate.y + ' - ' + new Date().getFullYear())

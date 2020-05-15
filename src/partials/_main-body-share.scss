@@ -1,11 +1,12 @@
 #green_channel {
-  display: inline-block;
-  width: 100%;
+  display: block;
+  width: auto;
   margin: 0;
   padding: 0;
   border: 0;
   font-size: 12px;
   text-align: left;
+  float: left;
 
   a {
     margin-right: 10px;
@@ -44,5 +45,41 @@
 
   #green_channel_wechat {
     @include main-share-button($color-wechat);
+  }
+}
+
+#div_digg {
+  width: auto;
+  margin: 0;
+  font-size: $font-size-base;
+
+  .diggit,
+  .buryit {
+    height: 28px;
+    margin: 0;
+    padding: 0;
+    line-height: 28px;
+    background: none;
+  }
+
+  .diggit:before {
+    content: "\e643";
+    font-family: "blackcat-icon";
+    display: inline;
+    font-size: 20px;
+  }
+
+  .buryit:before {
+    content: "\e6c9";
+    font-family: "blackcat-icon";
+    display: inline;
+    font-size: 20px;
+  }
+
+  .diggnum,
+  .burynum {
+    color: $color-text-aux;
+    font-family: $font-family-base;
+    font-size: 20px;
   }
 }

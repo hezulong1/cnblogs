@@ -32,6 +32,12 @@
   background-color: $color-white;
 }
 
+%hidden {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
 @mixin main-share-button($color) {
   background-color: $color;
   border: 1px solid darken($color, 2%) !important;

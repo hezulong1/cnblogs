@@ -1,7 +1,7 @@
 // Color
 $color-white:       #fff !default;
 $color-black:       #000 !default;
-$color-blue:        #007bff !default;
+$color-blue:        #3897f0 !default;
 $color-lightblue:   #2b92e4 !default;
 $color-purple:      #816ad6 !default;
 $color-pink:        #ff94ab !default;
@@ -30,7 +30,8 @@ $color-fill: #fbfbfb;
 // Theme
 $theme-colors: (
   "primary": $color-primary,
-  "danger" : $color-danger
+  "danger" : $color-danger,
+  "btn"    : $color-text
 ) !default;
 
 // Percent

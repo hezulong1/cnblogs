@@ -165,7 +165,6 @@
     position: relative;
     padding: $font-size-base * 1.5;
     background-color: #2d3748;
-    min-width: 480px;
     // border-radius: 8px;
 
     &:before {
@@ -183,21 +182,7 @@
     > code {
       padding: 0 !important;
       border: none !important;
-    }
-
-    > a {
-      > span {
-        color: $color-placeholder !important;
-      }
-
-      &:hover > span {
-        color: $color-white !important;
-      }
-
-      position: absolute;
-      top: 18px;
-      right: 20px;
-      z-index: 1;
+      min-width: 480px;
     }
   }
 }
