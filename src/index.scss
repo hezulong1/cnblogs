@@ -30,31 +30,23 @@
 }
 
 .c_b_p_desc {
-  font-size: 12px;
-  margin: 12px 0;
+  margin: 15px 0;
 }
 
 .c_b_p_desc_readmore {
-  position: relative;
+  display: inline-block;
+  margin-top: 15px;
   padding: 0;
-  margin: 0;
+  color: $color-danger;
+  text-decoration: none;
 
-  @include unselect;
-
-  &:before {
-    content: "\20";
-    position: absolute;
-    top: 0;
-    left: -24px;
-    z-index: 1;
-    display: block;
-    width: 24px;
-    height: 100%;
-    pointer-events: none;
-    background-image: linear-gradient(to right, rgba($color-white, .3) 0%, rgba($color-white, .8) 80%);
+  &:hover {
+    color: $color-danger;
+    text-decoration: underline;
   }
 }
+
 @import "partials/media";
 @import "scrollbar";
-@import "webkit-scrollbar";
+// @import "webkit-scrollbar";
 @import "blackcat";

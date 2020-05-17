@@ -163,22 +163,22 @@
 
   pre {
     position: relative;
-    padding: $font-size-base * 1.5;
-    background-color: #2d3748;
+    // padding: $font-size-base * 1.5;
+    // background-color: #2d3748;
     // border-radius: 8px;
 
-    &:before {
-      content: "";
-      display: block;
-      width: 12px;
-      height: 12px;
-      margin-bottom: 1.625em;
-      background-color: #f56565;
-      border-radius: 9999px;
-      box-shadow: 20px 0 0 0 #fbd38d, 40px 0 0 0 #48bb78;
-      transition: background-color .3s, box-shadow .3s;
-    }
-
+    // &:before {
+    //   content: "";
+    //   display: block;
+    //   width: 12px;
+    //   height: 12px;
+    //   margin-bottom: 1.625em;
+    //   background-color: #f56565;
+    //   border-radius: 9999px;
+    //   box-shadow: 20px 0 0 0 #fbd38d, 40px 0 0 0 #48bb78;
+    //   transition: background-color .3s, box-shadow .3s;
+    // }
+    .resize-observer > code,  
     > code {
       padding: 0 !important;
       border: none !important;

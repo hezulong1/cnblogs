@@ -7,15 +7,13 @@
     margin: 0 2px;
     padding: 2px 5px;
     border: 0;
-    color: $link-color;
+    color: $color-text;
     font-size: inherit;
+    text-decoration: underline;
+    vertical-align: top;
 
     @include hover-focus {
-      color: $link-hover-color;
-    }
-
-    &:active {
-      color: $link-active-color;
+      color: $link-color;
     }
   }
 }

@@ -3,6 +3,7 @@
   height: $button-height;
   padding: $font-size-base / 2 $font-size-base;
   line-height: ($button-height - $font-size-base - 2) / $font-size-base;
+  vertical-align: middle;
   border: 1px solid transparent;
   border-radius: 0;
   background-color: transparent;

@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Bookman+Old+Style);
 
+.is-hide {
+  display: none !important;
+}
+
 blackcat-spinner {
   position: fixed;
   top: 0; right: 0; bottom: 0; left: 0;
@@ -15,7 +19,7 @@ blackcat-spinner {
     width: 40px;
     height: 40px;
     border-radius: 100%;
-    background-color: $color-primary;
+    background-color: $color-text;
     animation: bc-anim-scaleout 1s ease-in-out infinite;
   }
 }
@@ -56,8 +60,21 @@ blackcat-spinner {
 }
 
 blackcat-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba($color-white, .8);
   display: block;
-  padding: 48px $space;
+  padding: 20px $space;
+  border-bottom: 1px solid transparent;
+  transition: padding .5s ease-out, border-color .5s ease-out;
+
+  &.down {
+    padding: 10px $space;
+    border-bottom-color: rgba($color-black, .05);
+  }
 
   .item {
     float: left;
@@ -83,7 +100,7 @@ blackcat-header {
       width: 12px;
       height: 12px;
       border-radius: 100%;
-      border: 3px solid $color-primary;
+      border: 3px solid rgba($color-primary, .5);
     }
   }
 
@@ -178,7 +195,11 @@ a.blackcat-line-link {
 }
 
 @supports ((-webkit-backdrop-filter: initial) or (backdrop-filter: initial)) {
-  .blackcat-layer-search.layui-layer {
+  .layui-layer-shade {
+    backdrop-filter: blur(2px);
+  }
+
+  blackcat-header {
     backdrop-filter: saturate(180%) blur(20px);
   }
 }
@@ -213,6 +234,7 @@ blackcat-me {
   display: block;
   margin: 20px 0;
   border: 1px solid $color-border;
+  font-family: HanHei SC,PingHei,PingFang SC,STHeitiSC-Light,Helvetica Neue,Helvetica,Arial,sans-serif;
 
   .blackcat-wrapper {
     width: 100%;
@@ -223,8 +245,8 @@ blackcat-me {
     padding-top: 25px;
 
     img {
-      border-radius: 50%;
-      border: 1px solid $color-text;
+      @extend .blackcat-avatar;
+      max-width: 48px;
     }
   }
 
@@ -283,19 +305,27 @@ blackcat-me {
   max-height: 40em;
   margin: 10px 0;
   position: relative;
+  padding: 49px 21px 21px;
+  background-color: #2d3748;
+  // padding: 21px;
 
-  // &:before {
-  //   position: absolute;
-  //   content: "";
-  //   display: block;
-  //   width: 12px;
-  //   height: 12px;
-  //   margin-bottom: 1.625em;
-  //   background-color: #f56565;
-  //   border-radius: 9999px;
-  //   box-shadow: 20px 0 0 0 #fbd38d, 40px 0 0 0 #48bb78;
-  //   transition: background-color .3s, box-shadow .3s;
-  // }
+  > pre {
+    margin: 0;
+  }
+
+  &:before {
+    position: absolute;
+    top: 21px;
+    content: "";
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin-bottom: 1.625em;
+    background-color: #f56565;
+    border-radius: 9999px;
+    box-shadow: 20px 0 0 0 #fbd38d, 40px 0 0 0 #48bb78;
+    transition: background-color .3s, box-shadow .3s;
+  }
 
   > a {
     position: absolute;
@@ -308,5 +338,38 @@ blackcat-me {
     &:hover {
       color: $color-white;
     }
+  }
+}
+
+.blackcat-tags {
+  display: block;
+  @include clearfix;
+}
+
+.blackcat-tag {
+  float: left;
+  margin-bottom: .5em;
+  min-width: 33.33%;
+  text-align: center;
+  font-size: 16px;
+
+  a {
+    @include ellipsis;
+  }
+
+  em {
+    font-style: normal;
+  }
+}
+
+@include respond(sm) {
+  .blackcat-tag {
+    min-width: 25%;
+  }
+}
+
+@include respond(md) {
+  .blackcat-tag {
+    min-width: 20%;
   }
 }

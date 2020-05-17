@@ -40,10 +40,12 @@
   margin-bottom: 5.5em;
 
   .dayTitle {
+    font-size: 22px;
     @extend %main-title;
+    
 
     a {
-      color: darken($color-text, 20%);
+      text-decoration: none;
 
       &:hover {
         color: $color-text;
@@ -52,10 +54,17 @@
   }
 
   .postTitle {
-    // margin-top: 20px;
-    // border-bottom: none;
-    // font-size: 18px;
     @extend %main-post-title;
+    margin-bottom: 0;
+    padding: 0;
+
+    &:before {
+      content: "";
+      display: block;
+      width: 1.5em;
+      height: 20px;
+      border-top: 1px solid $color-text;
+    }
   }
 }
 

@@ -125,8 +125,11 @@
   var $bcMe = $('blackcat-me')
 
   config.blog = $rawBlogNavigator.attr('href')
-  config.blogPrev = { label: $rawBlogPrev.text(), date: $.trim($rawBlogPrev.attr('title').replace(/[\u4e00-\u9fa5]/g, '')), href: $rawBlogPrev.attr('href') }
-  config.blogNext = { label: $rawBlogNext.text(), date: $.trim($rawBlogNext.attr('title').replace(/[\u4e00-\u9fa5]|[(^\s*)|(\s*$)]/g, '')), href: $rawBlogNext.attr('href') }
+  if ($rawBlogPrev.length && $rawBlogNext.length) {
+    config.blogPrev = { label: $rawBlogPrev.text(), date: $.trim($rawBlogPrev.attr('title').replace(/[\u4e00-\u9fa5]/g, '')), href: $rawBlogPrev.attr('href') }
+    config.blogNext = { label: $rawBlogNext.text(), date: $.trim($rawBlogNext.attr('title').replace(/[\u4e00-\u9fa5]|[(^\s*)|(\s*$)]/g, '')), href: $rawBlogNext.attr('href') }
+  }
+  
   config.author = $rawBlogNavigator.text()
   config.avatar = $('#author_profile_info').find('.author_avatar').attr('src')
   config.about = $rawBlogAge.attr('href')
@@ -199,6 +202,9 @@
       var $this = $(this)
       var url = $this.data('url')
       window.open(url)
+    },
+    copy: function() {
+
     }
   }
 
@@ -228,13 +234,18 @@
     $bcMenu.html(menuInner)
 
     // 重新设计博客底部信息展示
-    $bcMe.find('.avatar>img').attr('src', config.avatar)
-    $bcMe.find('.account').html(config.author)
-    $bcMe.find('.signature').html(config.signature)
-    // config.follow && $bcMe.find('.follow').addClass('disabled')
-    $bcMe.find('.view').on('click.blackcat', function() {
-      window.open(config.about)
-    })
+    if (config.avatar) {
+      $bcMe.find('.avatar>img').attr('src', config.avatar)
+      $bcMe.find('.account').html(config.author)
+      $bcMe.find('.signature').html(config.signature)
+      // config.follow && $bcMe.find('.follow').addClass('disabled')
+      $bcMe.find('.view').on('click.blackcat', function() {
+        window.open(config.about)
+      })
+    } else {
+      $bcMe.hide()
+    }
+    
     // $bcMe.find('.follow').on('click.blackcat', function() {
     //   var $this = $(this)
     //   var disabled = $this.hasClass('disabled')
@@ -242,12 +253,16 @@
     //   $('#p_b_follow').children('a').trigger('click')
     // })
 
+    if ($rawBlogPrev.length && $rawBlogNext.length) {
+      var $pager = $bcPager.find('a');
+      $pager.first().attr('href', config.blogPrev.href)
+      $pager.last().attr('href', config.blogNext.href)
+    } else {
+      $bcPager.hide()
+    }
+    
 
-    var $pager = $bcPager.find('a');
-    $pager.first().attr('href', config.blogPrev.href)
-    $pager.last().attr('href', config.blogNext.href)
-
-    $('#HistoryToday').after($('#blackcat-blog-footer'))
+    $('#mainContent').append($('#blackcat-blog-footer'))
     
     $('#author_profile').hide()
     $('#post_next_prev').hide()
@@ -363,8 +378,43 @@
       type && $wrapper.attr('blackcat-language', type)
       $this.before($wrapper)
       $wrapper
-        .prepend('<a blackcat-event="copy" aria-label="Copy">' + iconCopy + '</a>')
+        .prepend('<a class="blackcat-btn-copy hint hint--top" blackcat-event aria-label="复制到剪贴板">' + iconCopy + '</a>')
         .prepend($this)
+
+      $('.blackcat-btn-copy').on('mouseleave', function() {
+        var $this = $(this)
+        setTimeout(function(){
+          $this.attr('aria-label', '复制到剪贴板')
+        }, 300)
+      })
+
+      // 代码编号
+      // var lineNumber = $code.text().split('\n').length - 1
+      // var i = 0, html = ''
+      // while (++i <= lineNumber) {
+      //   html += '<li>' + i +'</li>'
+      // }
+      // html = '<ul class="blackcat-code-line-number">' + html + '</ul>'
+      // $wrapper.append(html)
+
+      // 复制
+      var clipboard = new ClipboardJS('.blackcat-btn-copy', {
+        target: function(trigger) {
+          return $(trigger).parent().children('pre').get(0)
+        }
+      })
+
+      $("a[href ^= 'http']").attr("target", "_blank")
+
+      clipboard.on('success', function(e) {
+        $(e.trigger).attr('aria-label', '复制成功')
+        e.clearSelection()
+      })
+
+      clipboard.on('error', function(e) {
+        var errTip = 'Press ' + (/Mac/i.test(navigator.userAgent) ? '⌘' : 'Ctrl-') + 'C to copy';
+        $(e.trigger).attr('aria-label', errTip)
+      })
     })
 
     $('[blackcat-event]').on('click.blackcat', function(e) {
@@ -384,7 +434,72 @@
       ].join(''))
 
     // Copyright
-    $rawFooter.html('&copy; ' + config.author + ' ' + config.startDate.y + ' - ' + new Date().getFullYear())
+    $rawFooter.html('&copy; ' + config.author + ' ' + config.startDate.y + ' - ' + new Date().getFullYear()) 
+    // new Scrollbar({
+    //   element: $rawMain[0],
+    //   onScroll: function(scrollLeft, scrollTop) {
+    //     if (scrollTop > 100) {
+    //       $('blackcat-header, #main').addClass('down')
+    //     } else {
+    //       $('blackcat-header, #main').removeClass('down')
+    //     }
+    //   }
+    // }).create()
+    if ($('[blackcat-language]>pre>code').length) {
+      new Scrollbar($('[blackcat-language]>pre>code')[0]).create()
+    }
+
+    
+
+    $(window).on('scroll', function() {
+      if ($(this).scrollTop() > 100) {
+        $('blackcat-header').addClass('down')
+      } else {
+        $('blackcat-header').removeClass('down')
+      }
+    })
+
+    // 首页的列表
+    var $rawDays = $('#mainContent .day')
+    $rawDays.each(function() {
+      var $this = $(this)
+      var $title = $this.children('.postTitle')
+      var $content = $this.children('.postCon')
+      var desc = $this.children('.postDesc').text().trim().split(' ').filter(function(item) { return !!item })
+      var date = desc[2]
+      var time = desc[3]
+      var view = desc[$.inArray('阅读', desc) + 1].replace(/[()]/g, '')
+      
+      $title.append([
+        '<div class="blackcat-time">',
+        '<time><i class="blackcat-icon-time"></i>' + date + ' ' + time +'</time>',
+        '<span><i class="blackcat-icon-eye"></i>' + view +' 次浏览</span>',
+        '</div>'
+      ].join(''))
+
+      $content.find('a').wrap('<div></div>')
+    })
+
+    // 标签页
+    var $rawTagWrapper = $('#taglist_main')
+    var $rawTags = $rawTagWrapper.children('#taglist').find('td')
+    var html = '<div class="blcakcat-tags">'
+    $rawTags.each(function() {
+      var $tag = $(this)
+      var $link = $tag.children('a')
+
+      if ($link.length <= 0) return
+      
+      var url = $link.attr('href')
+      var label = $link.text().trim()
+      var count = $tag.children('.small').text().trim()
+      html += '<div class="blackcat-tag"><a href="' + url +'">' + label +'<em>' + count +'</em></a></div>'
+    })
+    html += '</div>'
+    $rawTagWrapper.append(html)
+    $rawTagWrapper.children('#taglist').hide()
+
+
 
     window.BLACKCAT_CONFIG = config
   }
@@ -392,7 +507,3 @@
   $(document).ready(init())
 
 })(window, jQuery, document)
-
-DOMReady(function () {
-  console.log(DOMReady)
-})

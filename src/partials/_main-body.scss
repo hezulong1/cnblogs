@@ -9,7 +9,12 @@
 h1.PostListTitle,
 h3#taglist_title {
   display: block;
-  color: darken($color-text, $hover-percent);
+  color: $color-accent;
   text-align: center;
+  font-size: 28px;
   @extend %main-title;
+}
+
+h3#taglist_title small {
+  display: none;
 }
