@@ -66,7 +66,7 @@ blackcat-header {
   display: block;
   padding: 20px $space;
   border-bottom: 1px solid transparent;
-  transition: padding .5s ease-out, border-color .5s ease-out;
+  transition: all .5s ease-out;
 
   &.down {
     height: $header-xs-height;

@@ -33,12 +33,17 @@
 /* Main */
 #mainContent {
   width: 800px;
-  margin: 0 auto;
+  margin: $header-height + 70 auto 0;
   padding: 0 10px;
+
+  &.down {
+    margin-top: $header-xs-height + 70;
+  }
 }
 
 /* Home */
 @import "partials/main-body-post";
+@import "partials/main-body-signature";
 
 .c_b_p_desc {
   margin: 15px 0;

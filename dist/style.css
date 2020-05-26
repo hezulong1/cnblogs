@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Reset */
 @import url(https://fonts.googleapis.com/css?family=Bookman+Old+Style);
 body,
@@ -231,8 +232,10 @@ blockquote {
 /* Main */
 #mainContent {
   width: 800px;
-  margin: 0 auto;
+  margin: 150px auto 0;
   padding: 0 10px; }
+  #mainContent.down {
+    margin-top: 130px; }
 
 /* Home */
 .postTitle2 {
@@ -314,6 +317,20 @@ blockquote {
   margin-bottom: 10px; }
   #post_next_prev .p_n_p_prefix {
     display: none; }
+
+#MySignature {
+  margin-top: 5em;
+  margin-bottom: 4em;
+  font-weight: 700;
+  text-align: center; }
+  #MySignature:before {
+    content: "「";
+    display: inline;
+    padding-right: 3px; }
+  #MySignature:after {
+    content: "」";
+    display: inline;
+    padding-left: 3px; }
 
 .c_b_p_desc {
   margin: 15px 0; }
@@ -499,8 +516,8 @@ blackcat-header {
   display: block;
   padding: 20px 25px;
   border-bottom: 1px solid transparent;
-  -webkit-transition: padding .5s ease-out, border-color .5s ease-out;
-  transition: padding .5s ease-out, border-color .5s ease-out; }
+  -webkit-transition: all .5s ease-out;
+  transition: all .5s ease-out; }
   blackcat-header.down {
     height: 60px;
     padding: 10px 25px;

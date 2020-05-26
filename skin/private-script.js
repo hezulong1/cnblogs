@@ -58,11 +58,44 @@ $(function(){
     })
   }
 
-  // 加载META
+  // 配置META
   function loadMeta(config) {
     $('link[rel*="icon"]').remove()
     var $favicon = $('<link rel="icon" href="' + config.blog.ico +'">')
     $('title').after($favicon)
+  }
+
+  // 配置首页
+  function loadHomeList() {
+    var $days = $('#mainContent').find('.day')
+    $days.each(function(index, item) {
+      var $this = $(this)
+      var $title = $this.children('.postTitle')
+      var $desc = $this.children('.postDesc')
+      var text
+      // 日期
+      text = $.trim($desc.text())
+      var datetime = text.slice(9, 19)
+      // 阅读数
+      text = $.trim($desc.children('.post-view-count').text())
+      var viewcount = text.replace(/[^\d]/g, '')
+      // 评论
+      text = $.trim($desc.children('.post-comment-count').text())
+      var commentcount = text.replace(/[^\d]/g, '')
+      // 推荐
+      text = $.trim($desc.children('.post-digg-count').text())
+      var diggcount = text.replace(/[^\d]/g, '')
+
+      text = ''
+
+      $title.append(['<div class="blackcat-time">',
+        '<time class="hint--bottom" aria-label="日期"><i></i>' + datetime +'</time>',
+        '<span class="hint--bottom" aria-label="浏览"><i></i>' + viewcount + '</span>',
+        '<span class="hint--bottom" aria-label="评论"><i></i>' + commentcount + '</span>',
+        '<span class="hint--bottom" aria-label="推荐"><i></i>' + diggcount + '</span>',
+      '</div>'].join(''))
+    })
+    
   }
 
   // 加载头部
@@ -92,12 +125,41 @@ $(function(){
     resize()
     $win.on('resize', resize)
 
+    // 渲染描述
+    loadHomeList()
+
     try {
-      new Scrollbar({
-        element: $main[0]
+      var scrollingElement
+      var scrollbar = new Scrollbar({
+        element: $main[0],
+        onScroll: function(x, y) {
+          if (scrollingElement) {
+            if (scrollingElement.scrollTop > 70) {
+              $('blackcat-header').addClass('down')
+              $('#mainContent').addClass('down')
+            } else {
+              $('blackcat-header').removeClass('down')
+              $('#mainContent').removeClass('down')
+            }
+          }
+        }
       }).create()
+
+      scrollingElement = scrollbar.getViewElement()
     } catch (e) {
-      //
+      $main.width('')
+      $main.height('')
+      $win.off('resize', resize)
+      $win.on('scroll', function(e) {
+        var scrollTop = document.scrollingElement.scrollTop || document.body.scrollTop || document.documentElement.scrollTop
+        if (scrollTop > 70) {
+          $('blackcat-header').addClass('down')
+          $('blackcat-header').addClass('down')
+        } else {
+          $('blackcat-header').removeClass('down')
+          $('#mainContent').removeClass('down')
+        }
+      })
     }
   }
 
@@ -125,7 +187,7 @@ $(function(){
     }
     // 加载版权
     $copyright.html('&copy;<span style="padding:0 5px">' + config.blogger.nickName + '</span>' + config.blogger.blogAge.slice(0, 4) + ' - ' + new Date().getFullYear())
-    $('#main').append(document.createComment(' blackcat:footer ')).append($wrap)
+    $('#main').append(document.createComment(' blackcat: footer ')).append($wrap)
   }
 
   var page = {
@@ -146,7 +208,7 @@ $(function(){
         // 关注
         followees: $.trim($rawProfile.find('a:eq(3)').text()),
         // 头像
-        avatar: $('#author_profile_info > a > img').attr('src') || 'https://pic.cnblogs.com/avatar/1197507/20200511165706.png' || 'https://cdn.jsdelivr.net/gh/hezulong1/cdn/image/avatar.jpg',
+        avatar: $('#author_profile_info > a > img').attr('src') || 'https://pic.cnblogs.com/avatar/1197507/20200511165706.png',
       }
 
       // 博客信息
