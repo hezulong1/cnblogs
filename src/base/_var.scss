@@ -16,10 +16,6 @@ $color-fill:        #f5f7fa !default;
 $color-weibo:       #0e2746 !default;
 $color-wechat:      #51b035 !default;
 
-// $color-primary: #18191b;
-// $color-fill: #242424;
-// $color-border: rgba($color-black, .3);
-// $color-text: #838383;
 
 $color-text: #52555a; // 标题
 // $color-text-aux: #52555a; // 正文
@@ -27,9 +23,11 @@ $color-placeholder: #a7abb3; // 辅助
 $color-danger: #e94328; // 点缀  #fbfbfb #d8d8d8
 $color-fill: #fbfbfb;
 
+$color-background: rgba($color-black, .04);
+
 $color-accent: #18191b;
 
-// Theme
+// Themex
 $theme-colors: (
   "primary": $color-primary,
   "danger" : $color-danger,

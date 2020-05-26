@@ -1,9 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Bookman+Old+Style);
 
-.is-hide {
-  display: none !important;
-}
-
 blackcat-spinner {
   position: fixed;
   top: 0; right: 0; bottom: 0; left: 0;
@@ -64,6 +60,7 @@ blackcat-header {
   top: 0;
   left: 0;
   width: 100%;
+  height: $header-height;
   z-index: 1000;
   background-color: rgba($color-white, .8);
   display: block;
@@ -72,6 +69,7 @@ blackcat-header {
   transition: padding .5s ease-out, border-color .5s ease-out;
 
   &.down {
+    height: $header-xs-height;
     padding: 10px $space;
     border-bottom-color: rgba($color-black, .05);
   }
@@ -204,36 +202,23 @@ a.blackcat-line-link {
   }
 }
 
+/* Footer */
+blackcat-footer {
+  display: block;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 .blackcat-avatar {
   border-radius: 50%;
   border: 1px solid $color-text;
 }
 
-blackcat-pager {
-  display: block;
-  padding: 40px 0;
-
-  .blackcat-wrapper {
-    width: 85%;
-    padding: 10px;
-    text-align: center;
-  }
-
-  a {
-    display: inline-block;
-    font-size: 1.5em;
-    margin: 0 20px;
-
-    > span {
-      color: $color-text;
-    }
-  }
-}
-
-blackcat-me {
+.blackcat-author {
   display: block;
   margin: 20px 0;
   border: 1px solid $color-border;
+  border-radius: 2px;
   font-family: HanHei SC,PingHei,PingFang SC,STHeitiSC-Light,Helvetica Neue,Helvetica,Arial,sans-serif;
 
   .blackcat-wrapper {
@@ -245,12 +230,11 @@ blackcat-me {
     padding-top: 25px;
 
     img {
-      @extend .blackcat-avatar;
       max-width: 48px;
     }
   }
 
-  .account {
+  .nickname {
     font-size: 16px;
     margin-top: 10px;
     line-height: 1;
@@ -285,20 +269,39 @@ blackcat-me {
       &:active {
         opacity: .8;
       }
-
-      &.disabled {
-        opacity: .5;
-        cursor: not-allowed;
-
-        &:before {
-          content: "已";
-          display: inline;
-        }
-      }
     }
   }
 }
 
+.blackcat-pager {
+  display: block;
+  padding: 40px 0;
+
+  .blackcat-wrapper {
+    width: 85%;
+    padding: 10px;
+    text-align: center;
+  }
+
+  a {
+    display: inline-block;
+    font-size: 1.5em;
+    margin: 0 20px;
+
+    > span {
+      color: $color-text;
+    }
+  }
+}
+
+.blackcat-copyright {
+  text-align: center;
+  line-height: 24px;
+  color: $color-text;
+  padding: 50px 0 60px;
+}
+
+/**/
 .blackcat-code-wrapper {
   display: block;
   max-width: 100%;

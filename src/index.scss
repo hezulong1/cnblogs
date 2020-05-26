@@ -4,30 +4,41 @@
 @import
   "base/reset",
   "base/reboot";
-@import
-  "base/input",
-  "base/button",
-  "base/tag",
-  "base/main";
-@import
-  "partials/header",
-  "partials/main",
-  "partials/footer",
-  "partials/_extra";
+@import "base/main";
+// @import
+//   "base/input",
+//   "base/button",
+//   "base/tag",
+//   "base/main";
+// @import
+//   "partials/header",
+//   "partials/main",
+//   "partials/footer",
+//   "partials/_extra";
 
-#green_channel>span,
-#author_profile_follow>span,
-#p_b_follow>span {
-  display: inline-block;
-  color: $color-white !important;
-  padding: 2px 4px;
-  background-color: $color-danger !important;;
-  font-size: 12px;
+// #green_channel>span,
+// #author_profile_follow>span,
+// #p_b_follow>span {
+//   display: inline-block;
+//   color: $color-white !important;
+//   padding: 2px 4px;
+//   background-color: $color-danger !important;;
+//   font-size: 12px;
+// }
+
+// #author_profile a:hover {
+//   text-decoration: none !important;
+// }
+
+/* Main */
+#mainContent {
+  width: 800px;
+  margin: 0 auto;
+  padding: 0 10px;
 }
 
-#author_profile a:hover {
-  text-decoration: none !important;
-}
+/* Home */
+@import "partials/main-body-post";
 
 .c_b_p_desc {
   margin: 15px 0;
@@ -46,7 +57,14 @@
   }
 }
 
-@import "partials/media";
+// @import "partials/media";
 @import "scrollbar";
-// @import "webkit-scrollbar";
+
+.hide,
+#header,
+#footer,
+#sideBar {
+  @extend template;
+}
+
 @import "blackcat";

@@ -11,7 +11,7 @@ function build(cb) {
   return src('src/index.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
-    .pipe(cleanCss())
+    // .pipe(cleanCss())
     .pipe(rename('style.css'))
     .pipe(dest('dist'));
 }

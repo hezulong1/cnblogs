@@ -31,17 +31,17 @@
   // }
 }
 
-#sideBar {
-  flex: 0 0 $aside-width;
-  max-width: $aside-width;
-  padding: 0 0 0 25px;
-  border-right: 1px solid $color-border;
-  transition: transform $transition;
+// #sideBar {
+//   flex: 0 0 $aside-width;
+//   max-width: $aside-width;
+//   padding: 0 0 0 25px;
+//   border-right: 1px solid $color-border;
+//   transition: transform $transition;
 
-  @import "main-side";
-  @import "main-side-calendar";
-  @import "main-side-content";
-}
+//   @import "main-side";
+//   @import "main-side-calendar";
+//   @import "main-side-content";
+// }
 
 #mainContent {
   // flex: auto;
