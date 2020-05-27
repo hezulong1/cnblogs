@@ -59,14 +59,14 @@ blackcat-header {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 1;
   display: block;
   width: 100%;
   height: $header-height;
   padding: 20px $space;
   background-color: rgba($color-white, .8);
   border-bottom: 1px solid transparent;
-  transition: padding .5s ease-out, border-color .5s ease-out, top .2s ease-out;
+  transition: all .5s ease-out;
 
   &.down {
     height: $header-xs-height;

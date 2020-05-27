@@ -38,8 +38,9 @@ hm.src = "https://hm.baidu.com/hm.js?7fe74da29e98c818e083c29dee94a5ba";
 var s = document.getElementsByTagName("script")[0]; 
 s.parentNode.insertBefore(hm, s);
 })();
-$(function(){window.cnblogs_post_body &&  new Viewer(window.cnblogs_post_body)});
 $(function(){
+  window.cnblogs_post_body &&  new Viewer(window.cnblogs_post_body)
+
   var storage = window.localStorage || window.sessionStorage
   var $load = $('<blackcat-spinner data-timestamp="' + new Date().getTime() + '" />')
 
@@ -189,33 +190,19 @@ $(function(){
     if (config.markdown.id) {
       $('blackcat-header').addClass('static')
       $('#mainContent').addClass('static')
-    } else {
-      $('blackcat-header').removeClass('static')
-      $('#mainContent').removeClass('static')
     }
 
     try {
-      var scrollingElement
-      var scrollbar = new Scrollbar({
+      new Scrollbar({
         element: $main[0],
         onScroll: function(x, y) {
-          if (scrollingElement) {
-            // if (!config.markdown.id) {
-            //   $('blackcat-header').css('top', scrollingElement.scrollTop)
-            // }
-            
-            if (scrollingElement.scrollTop > 70) {
-              $('blackcat-header').addClass('down')
-              $('#mainContent').addClass('down')
-            } else {
-              $('blackcat-header').removeClass('down')
-              $('#mainContent').removeClass('down')
-            }
+          if (y > 70) {
+            $('blackcat-header').addClass('down')
+          } else {
+            $('blackcat-header').removeClass('down')
           }
         }
       }).create()
-
-      scrollingElement = scrollbar.getViewElement()
     } catch (e) {
       $main.width('')
       $main.height('')
@@ -224,10 +211,8 @@ $(function(){
         var scrollTop = document.scrollingElement.scrollTop || document.body.scrollTop || document.documentElement.scrollTop
         if (scrollTop > 70) {
           $('blackcat-header').addClass('down')
-          $('blackcat-header').addClass('down')
         } else {
           $('blackcat-header').removeClass('down')
-          $('#mainContent').removeClass('down')
         }
       })
     }

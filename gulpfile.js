@@ -13,11 +13,11 @@ function build(cb) {
     .pipe(autoprefixer())
     .pipe(cleanCss())
     .pipe(rename('style.css'))
-    .pipe(dest('dist'));
+    .pipe(dest('src'));
 }
 
 exports.build = build;
 
 exports.default = function() {
-  watch('src/**/*', { delay: 500 }, build);
+  watch('src/scss/**/*', { delay: 500 }, build);
 }
