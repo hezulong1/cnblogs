@@ -59,19 +59,23 @@ blackcat-header {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1000;
+  display: block;
   width: 100%;
   height: $header-height;
-  z-index: 1000;
-  background-color: rgba($color-white, .8);
-  display: block;
   padding: 20px $space;
+  background-color: rgba($color-white, .8);
   border-bottom: 1px solid transparent;
-  transition: all .5s ease-out;
+  transition: padding .5s ease-out, border-color .5s ease-out, top .2s ease-out;
 
   &.down {
     height: $header-xs-height;
     padding: 10px $space;
-    border-bottom-color: rgba($color-black, .05);
+    border-bottom-color: $color-border;
+  }
+
+  &.static {
+    position: static;
   }
 
   .item {
@@ -87,19 +91,6 @@ blackcat-header {
   .blackcat-logo {
     position: relative;
     margin-right: 40px;
-
-    &:after {
-      content: "";
-      position: absolute;
-      top: 8px;
-      right: -6px;
-      z-index: -1;
-      display: block;
-      width: 12px;
-      height: 12px;
-      border-radius: 100%;
-      border: 3px solid rgba($color-primary, .5);
-    }
   }
 
   .blackcat-wrapper {
@@ -123,11 +114,12 @@ a[target^="_blank"] {
   display: block;
 
   a {
-    font-size: 16px;
+    font-size: 20px;
     text-decoration: none;
+    color: $color-accent;
 
     &:hover {
-      color: inherit;
+      color: $color-accent;
     }
   }
 }
@@ -137,12 +129,14 @@ a.blackcat-line-link {
   text-decoration: none;
 
   & > span {
+    display: inline-block;
     position: relative;
     white-space: nowrap;
+    line-height: 1.142857;
 
     &:after {
       content: "";
-      display: block;
+      display: inline-block;
       width: 0;
       height: 1px;
       background-color: $color-text;
@@ -375,4 +369,26 @@ blackcat-footer {
   .blackcat-tag {
     min-width: 20%;
   }
+}
+
+// Home - 阅读全文
+.blackcat-readmore {
+  margin-top: 15px;
+
+  a {
+    color: $color-danger;
+    text-decoration: none;
+
+    & > span:after {
+      background-color: $color-danger;
+    }
+  }
+}
+
+// Home - 置顶
+.blackcat-badge {
+  font-size: 80%;
+  background-color: $color-accent;
+  color: $color-white;
+  padding: 1px 4px;
 }

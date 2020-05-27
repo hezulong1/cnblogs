@@ -29,15 +29,28 @@
 // #author_profile a:hover {
 //   text-decoration: none !important;
 // }
+html, body, #home, #main {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 
 /* Main */
+#home, #main {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background-color: transparent !important;
+}
+
 #mainContent {
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
   margin: $header-height + 70 auto 0;
   padding: 0 10px;
 
-  &.down {
-    margin-top: $header-xs-height + 70;
+  &.static {
+    margin-top: 70px;
   }
 }
 
@@ -47,18 +60,9 @@
 
 .c_b_p_desc {
   margin: 15px 0;
-}
 
-.c_b_p_desc_readmore {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 0;
-  color: $color-danger;
-  text-decoration: none;
-
-  &:hover {
-    color: $color-danger;
-    text-decoration: underline;
+  .desc_img {
+    margin-left: 10px;
   }
 }
 
@@ -68,7 +72,8 @@
 .hide,
 #header,
 #footer,
-#sideBar {
+#sideBar,
+.c_b_p_desc_readmore {
   @extend template;
 }
 

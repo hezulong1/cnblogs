@@ -17,6 +17,11 @@ $(function(){
     removeStore: function removeStore(name) {
       if (!name) return
       storage.removeItem(name)
+    },
+    openWindow: function(url) {
+      url = $.trim(url)
+      // Note：博客园中不可直接使用 window.open 方法
+      url && window['op' + 'en'](url)
     }
   }
 
@@ -71,6 +76,7 @@ $(function(){
     $days.each(function(index, item) {
       var $this = $(this)
       var $title = $this.children('.postTitle')
+      var $content = $this.children('.postCon')
       var $desc = $this.children('.postDesc')
       var text
       // 日期
@@ -88,12 +94,21 @@ $(function(){
 
       text = ''
 
+      // 重绘置顶图标
+      var $postTitle = $title.children('.postTitle2')
+      $postTitle.length > 0 && $postTitle.html($postTitle.text().replace(/\[置顶\]/, '<span class="blackcat-badge">置顶</span>'))
+
+      // 重绘缩略信息
       $title.append(['<div class="blackcat-time">',
-        '<time class="hint--bottom" aria-label="日期"><i></i>' + datetime +'</time>',
-        '<span class="hint--bottom" aria-label="浏览"><i></i>' + viewcount + '</span>',
-        '<span class="hint--bottom" aria-label="评论"><i></i>' + commentcount + '</span>',
-        '<span class="hint--bottom" aria-label="推荐"><i></i>' + diggcount + '</span>',
+        '<time class="hint--bottom" aria-label="日期"><i class="blackcat-icon-time"></i>' + datetime +'</time>',
+        '<span class="hint--bottom" aria-label="浏览"><i class="blackcat-icon-eye"></i>' + viewcount + '</span>',
+        '<span class="hint--bottom" aria-label="评论"><i class="blackcat-icon-comment"></i>' + commentcount + '</span>',
+        '<span class="hint--bottom" aria-label="推荐"><i class="blackcat-icon-thumb_up"></i>' + diggcount + '</span>',
       '</div>'].join(''))
+
+      // 重绘阅读全文
+      var $readmore = $content.find('.c_b_p_desc_readmore')
+      $content.append('<div class="blackcat-readmore"><a class="blackcat-line-link" href="' + $readmore.attr('href') + '"><span>阅读全文</span></a></div>')
     })
     
   }
@@ -112,11 +127,13 @@ $(function(){
     $nav.html(options.map(function(opt) {
       return '<li><a href="' + opt.href + '"><span>' + opt.name + '</span></a></li>'
     }))
+
+    $('#home').prepend($wrap).prepend(document.createComment(' blackcat: header '))
   }
 
   // 加载主体
   function loadMain(config) {
-    var $main = $('#main')
+    var $main = $('#home')
     var $win = $(window)
     var resize = function() {
       $main.width(window.innerWidth)
@@ -128,12 +145,24 @@ $(function(){
     // 渲染描述
     loadHomeList()
 
+    if (config.markdown.id) {
+      $('blackcat-header').addClass('static')
+      $('#mainContent').addClass('static')
+    } else {
+      $('blackcat-header').removeClass('static')
+      $('#mainContent').removeClass('static')
+    }
+
     try {
       var scrollingElement
       var scrollbar = new Scrollbar({
         element: $main[0],
         onScroll: function(x, y) {
           if (scrollingElement) {
+            if (!config.markdown.id) {
+              $('blackcat-header').css('top', scrollingElement.scrollTop)
+            }
+            
             if (scrollingElement.scrollTop > 70) {
               $('blackcat-header').addClass('down')
               $('#mainContent').addClass('down')
@@ -187,7 +216,7 @@ $(function(){
     }
     // 加载版权
     $copyright.html('&copy;<span style="padding:0 5px">' + config.blogger.nickName + '</span>' + config.blogger.blogAge.slice(0, 4) + ' - ' + new Date().getFullYear())
-    $('#main').append(document.createComment(' blackcat: footer ')).append($wrap)
+    $('#home').append(document.createComment(' blackcat: footer ')).append($wrap)
   }
 
   var page = {
@@ -261,14 +290,60 @@ $(function(){
     bindEvents: function() {
       var config = page.config()
 
-      // 配置搜索
-      function search(keyword) {
-        keyword = encodeURIComponent('blog: ' + config.blog.app + ' ' + keyword)
-        window.location = 'http://zzk.cnblogs.com/s?w=' + keyword
+      var evts = {
+        // 配置搜索
+        search: function() {
+          if (!window.layer) return
+
+          layer.open({
+            type: 1,
+            title: false,
+            closeBtn: false,
+            shade: [0.6, '#fff'],
+            shadeClose: true,
+            maxWidth: 1000,
+            skin: 'blackcat-layer-search',
+            content: '<input autocomplete="off" placeholder="搜索内容，查询{ENTER}／关闭{ESC}" type="text" name="w">',
+            success: function(layero, index){
+              var input = layero.find('input')
+              input.focus()
+              $(document).on('keydown.blackcat', function(e) {
+                var keyCode = e.keyCode || e.which
+                if (keyCode === 13) {
+                  var keyword = input.val()
+                  if (keyword.replace(/\s/g, '') === '') {
+                    return false
+                  }
+                  keyword = encodeURIComponent('blog: ' + config.blog.app + ' ' + keyword)
+                  util.openWindow('http://zzk.cnblogs.com/s?w=' + keyword)
+                }
+
+                if (keyCode === 13 || keyCode === 27) {
+                  layer.close(index)
+                }
+              })
+            },
+            end: function() {
+              $(document).off('keydown.blackcat')
+            }
+          })
+        }
       }
 
-      
+      $('[blackcat-event]').on('click.blackcat', function(e) {
+        var $this = $(this)
+        var type = $this.attr('blackcat-event')
+        $.isFunction(evts[type]) && evts[type].call(this, e)
+      })
 
+      $('.blackcat-link-links a, a.blackcat-link-link').on('click', function(e) {
+        e.preventDefault()
+        var href = $(this).attr('href')
+        var isBlank = $(this).attr('target') === '_blank' // || /^http(s*):\/\//.test(href)
+        if (href) {
+          isBlank ? util.openWindow(href) : (window.location = href)
+        }
+      })
     },
 
     cache: function() {
@@ -282,7 +357,8 @@ $(function(){
     },
 
     init: function () {
-      
+      page.config()
+
       page.cache()
       page.on_resize()
       page.on_scroll()
@@ -290,12 +366,12 @@ $(function(){
       page.scrollToTop()
       page.collapseSidebar()
 
-      page.bindEvents()
-
       loadMeta(window.BLACKCAT_CONFIG)
       loadHeader(window.BLACKCAT_CONFIG)
       loadFooter(window.BLACKCAT_CONFIG)
       loadMain(window.BLACKCAT_CONFIG)
+
+      page.bindEvents()
 
       $load.addClass('hide')
     },
