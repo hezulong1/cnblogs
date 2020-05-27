@@ -1,21 +1,17 @@
 {
   "name": "cnblogs",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "cnblogs styles",
-  "main": "index.js",
   "scripts": {
     "dev": "gulp",
     "build": "gulp build",
-    "rollup": "rollup -c"
+    "dev:js": "rollup -c -w",
+    "build:js": "rollup -c"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hezulong1/cnblogs.git"
   },
-  "keywords": [
-    "cnblogs",
-    "style"
-  ],
   "author": "hezulong1",
   "license": "ISC",
   "bugs": {

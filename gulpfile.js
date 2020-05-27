@@ -8,10 +8,10 @@ const rename = require('gulp-rename');
 function build(cb) {
   cb();
 
-  return src('src/index.scss')
+  return src('src/scss/index.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
-    // .pipe(cleanCss())
+    .pipe(cleanCss())
     .pipe(rename('style.css'))
     .pipe(dest('dist'));
 }

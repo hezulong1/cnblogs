@@ -1,3 +1,44 @@
+<!-- blackcat: footer -->
+<blackcat-footer>
+  <!-- blackcat: author -->
+  <div class="blackcat-author hide">
+    <div class="blackcat-wrapper">
+      <div class="avatar"><img class="blackcat-avatar"></div>
+      <div class="nickname"></div>
+      <div class="signature"></div>
+      <div class="btns"><div class="btn" blackcat-event="view">关注</div></div>
+    </div>
+  </div>
+  <!-- blackcat: pager -->
+  <div class="blackcat-pager hide">
+    <div class="blackcat-link-links blackcat-wrapper">
+      <a><span>Prev</span></a>
+      <a><span>Next</span></a>
+    </div>
+  </div>
+  <!-- blackcat: copyright -->
+  <div class="blackcat-copyright">
+    <div class="blackcat-wrapper"></div>
+  </div>
+</blackcat-footer>
+<!-- blackcat: scripts -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css/hint.base.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/viewerjs@1.5.0/dist/viewer.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hezulong1/cnblogs@pro/icon/iconfont.css">
+<script src="https://cdn.jsdelivr.net/npm/viewerjs@1.5.0/dist/viewer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script src="https://blog-static.cnblogs.com/files/blackcat/blackcat-scrollbar.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/layer/2.3/layer.js"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+var hm = document.createElement("script");
+hm.src = "https://hm.baidu.com/hm.js?7fe74da29e98c818e083c29dee94a5ba";
+var s = document.getElementsByTagName("script")[0]; 
+s.parentNode.insertBefore(hm, s);
+})();
+$(function(){window.cnblogs_post_body &&  new Viewer(window.cnblogs_post_body)});
 $(function(){
   var storage = window.localStorage || window.sessionStorage
   var $load = $('<blackcat-spinner data-timestamp="' + new Date().getTime() + '" />')
@@ -464,3 +505,5 @@ $(function(){
   $('body').append($load)
   run()
 })
+</script>
+
