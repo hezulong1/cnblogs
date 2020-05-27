@@ -423,8 +423,6 @@ html, body, #home, #main {
     padding: 0 !important;
     border: 0 !important;
     overflow: scroll;
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch; }
   .scrollable-wrapper.is-hidden-default > .view {

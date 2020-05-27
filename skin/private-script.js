@@ -159,9 +159,9 @@ $(function(){
         element: $main[0],
         onScroll: function(x, y) {
           if (scrollingElement) {
-            if (!config.markdown.id) {
-              $('blackcat-header').css('top', scrollingElement.scrollTop)
-            }
+            // if (!config.markdown.id) {
+            //   $('blackcat-header').css('top', scrollingElement.scrollTop)
+            // }
             
             if (scrollingElement.scrollTop > 70) {
               $('blackcat-header').addClass('down')
