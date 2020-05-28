@@ -138,11 +138,24 @@ $(function(){
       var height = this.offsetHeight
       $this.height(height)
 
+      var paddingBottom = 0
+
       try {
         $this.attr('data-index', index)
         new Scrollbar({
           element: item,
-          useShadow: true
+          useShadow: true,
+          beforeCreate: function() {
+            paddingBottom = parseInt($this.css('paddingBottom'))
+          },
+          created: function() {
+            var $view = $this.children('.view')
+            $view.css('height', 'calc(100% - 40px)')
+          },
+          onUpdate: function() {
+            var $observer = $this.find('.view .resize-observer')
+            $observer.css('paddingBottom', paddingBottom + 40 +'px')
+          }
         }).create()
       } catch (e) {
         $this.removeAttr('data-index')
