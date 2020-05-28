@@ -295,49 +295,6 @@ blackcat-footer {
   padding: 50px 0 60px;
 }
 
-/**/
-.blackcat-code-wrapper {
-  display: block;
-  max-width: 100%;
-  max-height: 40em;
-  margin: 10px 0;
-  position: relative;
-  padding: 49px 21px 21px;
-  background-color: #2d3748;
-  // padding: 21px;
-
-  > pre {
-    margin: 0;
-  }
-
-  &:before {
-    position: absolute;
-    top: 21px;
-    content: "";
-    display: block;
-    width: 12px;
-    height: 12px;
-    margin-bottom: 1.625em;
-    background-color: #f56565;
-    border-radius: 9999px;
-    box-shadow: 20px 0 0 0 #fbd38d, 40px 0 0 0 #48bb78;
-    transition: background-color .3s, box-shadow .3s;
-  }
-
-  > a {
-    position: absolute;
-    top: 18px;
-    right: 20px;
-    z-index: 1;
-    color: $color-placeholder;
-    text-decoration: none;
-
-    &:hover {
-      color: $color-white;
-    }
-  }
-}
-
 .blackcat-tags {
   display: block;
   @include clearfix;
@@ -391,4 +348,13 @@ blackcat-footer {
   background-color: $color-accent;
   color: $color-white;
   padding: 1px 4px;
+}
+
+blackcat-extra {
+  display: inline;
+  margin-left: 4px;
+
+  a:hover & svg #arrow {
+    transform: translate(1px,-1px);
+  }
 }
