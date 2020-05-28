@@ -49,6 +49,7 @@ html, body, #home {
 
 /* Home */
 @import "partials/main-body-post";
+@import "partials/main-body-markdown";
 @import "partials/main-body-signature";
 
 .c_b_p_desc {
@@ -66,7 +67,8 @@ html, body, #home {
 #header,
 #footer,
 #sideBar,
-.c_b_p_desc_readmore {
+.c_b_p_desc_readmore,
+#topics .postDesc {
   @extend template;
 }
 

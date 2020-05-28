@@ -105,6 +105,52 @@ $(function(){
     })
   }
 
+  // 配置文章
+  function loadMarkdown(config) {
+    if (!config.markdown.id) return
+    var $wrapper = $('#topics .post')
+    var $desc = $wrapper.children('.postDesc')
+    var $title = $wrapper.children('.postTitle')
+    
+    // 日期
+    var datetime = $.trim($desc.find('#post-date').text())
+    // 阅读数
+    var viewcount = $.trim($desc.find('#post_view_count').text())
+    // 评论
+    var commentcount = $.trim($desc.find('#post_comment_count').text())
+    // 推荐
+    var diggcount = $.trim($('#digg_count').text())
+
+    // 重绘缩略信息
+    $title.append(['<div class="blackcat-time">',
+      '<time class="hint--bottom" aria-label="日期"><i class="blackcat-icon-time"></i>' + datetime +'</time>',
+      '<span class="hint--bottom" aria-label="浏览"><i class="blackcat-icon-eye"></i>' + viewcount + '</span>',
+      '<span class="hint--bottom" aria-label="评论"><i class="blackcat-icon-comment"></i>' + commentcount + '</span>',
+      '<span class="hint--bottom" aria-label="推荐"><i class="blackcat-icon-thumb_up"></i>' + diggcount + '</span>',
+    '</div>'].join(''))
+
+    // 重绘文章的展示
+    var $markdown = $wrapper.find('#cnblogs_post_body')
+    // 为了兼容虚拟滚动条，为 pre 配置宽高
+    $markdown.find('pre').each(function(index, item) {
+      var $this = $(this)
+      $this.attr('data-timestamp', new Date().getTime())
+      var height = this.offsetHeight
+      $this.height(height)
+
+      try {
+        $this.attr('data-index', index)
+        new Scrollbar({
+          element: item,
+          useShadow: true
+        }).create()
+      } catch (e) {
+        $this.removeAttr('data-index')
+      }
+    })
+
+  }
+
   // 配置META
   function loadMeta(config) {
     $('link[rel*="icon"]').remove()
@@ -186,6 +232,8 @@ $(function(){
 
     // 渲染描述
     loadHomeList()
+    // 文章
+    loadMarkdown(config)
 
     if (config.markdown.id) {
       $('blackcat-header').addClass('static')

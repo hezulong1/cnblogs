@@ -1,7 +1,7 @@
 $black: #000;
-$background: #787878;
+$background: $color-black;
 $gutter: 2px;
-$size: 8px;
+$size: 14px;
 
 $wrapper: scrollable-wrapper;
 $view: view;
@@ -17,6 +17,8 @@ $natural: is-default;
 $prevent: is-hidden-default;
 $unselect: is-unselect;
 
+$active: is-active;
+
 .#{$wrapper} {
   position: relative;
   width: 100%;
@@ -30,9 +32,9 @@ $unselect: is-unselect;
     right: $gutter;
     bottom: $gutter;
     z-index: 1;
-    border-radius: $size;
-    opacity: 0;
-    transition: opacity 680ms linear;
+    border-radius: 0;
+    // opacity: 0;
+    // transition: opacity 680ms linear;
     pointer-events: none;
     box-sizing: border-box;
 
@@ -54,9 +56,9 @@ $unselect: is-unselect;
   &:hover > .#{$track},
   &:focus > .#{$track},
   &:active > .#{$track} {
-    opacity: 1;
+    // opacity: 1;
     pointer-events: auto;
-    transition: opacity 120ms linear;
+    // transition: opacity 120ms linear;
   }
 
   // Thumb
@@ -64,25 +66,65 @@ $unselect: is-unselect;
     width: 0;
     height: 0;
     border-radius: inherit;
-    background-color: rgba($background, .5);
+    // background-color: rgba($background, .5);
     transform: translate3d(0,0,0);
     box-sizing: border-box;
 
-    &:hover {
+    position: relative;
+
+    &:before {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background-color: rgba($background, .5);
+      transition: width 100ms linear, height 100ms linear, background-color 100ms linear;
+    }
+
+    &:hover:before {
       background-color: rgba($background, .6);
     }
 
-    &:active {
+    &:active:before {
       background-color: rgba($background, .75);
     }
+
+    // &:hover {
+    //   background-color: rgba($background, .6);
+    // }
+
+    // &:active {
+    //   background-color: rgba($background, .75);
+    // }
   }
 
   .#{$track}.#{$v} .#{$thumb} {
     width: 100%;
+
+    &:before {
+      width: 20%;
+      height: 100%; 
+    }
   }
 
   .#{$track}.#{$h} .#{$thumb} {
     height: 100%;
+
+    &:before {
+      height: 20%;
+      width: 100%;
+    }
+
+  }
+
+  .#{$track}:hover .#{$thumb}:before,
+  .#{$track} .#{$thumb}.#{$active}:before {
+    width: 100%;
+    height: 100%;
+    transition: width .3s .2s linear, height .3s .2s linear, background-color .3s linear;
   }
   
   // Shadow

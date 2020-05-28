@@ -8,7 +8,7 @@
   h6 {
     line-height: inherit;
     font-weight: $font-weight-base;
-    color: $color-text;
+    color: $color-accent;
   }
 
   h1 {
@@ -145,7 +145,6 @@
   }
 
   code {
-    max-height: 40em;
     margin: 0 !important;
     padding: 3px 6px !important;
     border: none !important;
@@ -155,6 +154,10 @@
     background-color: $color-fill !important;
     font-size: 87.5% !important;
     word-wrap: break-word;
+
+    &.hljs {
+      font-family: $font-family-monospace !important;
+    }
   }
 
   a > code {
@@ -163,26 +166,50 @@
 
   pre {
     position: relative;
-    // padding: $font-size-base * 1.5;
-    // background-color: #2d3748;
-    // border-radius: 8px;
+    max-height: 40em;
+    padding: 0 $font-size-base $font-size-base;
+    background-color: #2d3748;
 
-    // &:before {
-    //   content: "";
-    //   display: block;
-    //   width: 12px;
-    //   height: 12px;
-    //   margin-bottom: 1.625em;
-    //   background-color: #f56565;
-    //   border-radius: 9999px;
-    //   box-shadow: 20px 0 0 0 #fbd38d, 40px 0 0 0 #48bb78;
-    //   transition: background-color .3s, box-shadow .3s;
-    // }
+    &:before {
+      content: "";
+      display: block;
+      width: 12px;
+      height: 12px;
+      margin: $font-size-base;
+      background-color: #f56565;
+      border-radius: 9999px;
+      box-shadow: 20px 0 0 0 #fbd38d, 40px 0 0 0 #48bb78;
+      transition: background-color .3s, box-shadow .3s;
+    }
+
+    // Scrollbar
     .resize-observer > code,  
     > code {
       padding: 0 !important;
       border: none !important;
       min-width: 480px;
+    }
+
+    .shadow.is-vertical {
+      top: 2 * $font-size-base + 12;
+    }
+
+    .scrollbar.is-vertical {
+      top: 2 * $font-size-base + 12 + 2;
+    }
+
+    .thumb {
+      &:before {
+        background-color: rgba($color-white, .5);
+      }
+  
+      &:hover:before {
+        background-color: rgba($color-white, .6);
+      }
+    
+      &:active:before {
+        background-color: rgba($color-white, .75);
+      }
     }
   }
 }
