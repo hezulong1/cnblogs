@@ -33,8 +33,8 @@ $active: is-active;
     bottom: $gutter;
     z-index: 1;
     border-radius: 0;
-    // opacity: 0;
-    // transition: opacity 680ms linear;
+    opacity: 0;
+    transition: opacity 680ms linear;
     pointer-events: none;
     box-sizing: border-box;
 
@@ -56,9 +56,9 @@ $active: is-active;
   &:hover > .#{$track},
   &:focus > .#{$track},
   &:active > .#{$track} {
-    // opacity: 1;
+    opacity: 1;
     pointer-events: auto;
-    // transition: opacity 120ms linear;
+    transition: opacity 120ms linear;
   }
 
   // Thumb
