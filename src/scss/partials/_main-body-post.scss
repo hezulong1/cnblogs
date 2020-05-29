@@ -42,7 +42,6 @@
   a {
     text-decoration: none;
     color: $color-accent;
-    font-size: 24px;
 
     &:hover {
       color: $color-accent;
@@ -54,7 +53,7 @@
   margin-bottom: 5.5em;
 
   .dayTitle {
-    font-size: 22px;
+    font-size: 20px; // h2
     @extend %main-title;
     
 
@@ -145,5 +144,47 @@
 
   .p_n_p_prefix {
     display: none;
+  }
+}
+
+#green_channel {
+  width: 100%;
+  border: 0;
+  background-color: $color-background;
+  padding: 20px 1em;
+  font-size: 1em;
+  margin: 15px 0;
+}
+
+#div_digg {
+  float: none;
+  width: 100%;
+  margin: 15px 0;
+  text-align: center;
+
+  > .diggit {
+    background: none;
+    float: none;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background: none;
+  
+    .diggnum {
+      float: none;
+      width: auto;
+      height: auto;
+      padding: 6px 14px;
+      color: $color-text;
+  
+      &:before {
+        content: "\e60c";
+        font-family: "blackcat-icon" !important;
+        font-size: 1em;
+        font-style: normal;
+        margin-right: 3px;
+      }
+    }
   }
 }

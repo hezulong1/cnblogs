@@ -4,9 +4,9 @@
 
   border-top: 2px solid $color-text;
 
-  #comment_pager_top {
-    display: none;
-  }
+  // #comment_pager_top {
+  //   display: none;
+  // }
 
   .feedback_area_title {
     display: inline-block;
@@ -21,7 +21,7 @@
     position: relative;
     margin-top: 10px;
     padding: 10px 15px 10px 80px;
-    background-color: $color-fill;
+    background-color: $color-background;
 
     .feedbackListSubtitle {
       padding-bottom: 5px;
@@ -52,14 +52,19 @@
       }
     }
 
-    &:last-child {
-      margin-bottom: 0;
-    }
-
     .blackcat-avatar {
       position: absolute;
       top: 15px;
       left: 15px;
+      transition: border-color .3s ease-out;
+    }
+
+    a:hover > .blackcat-avatar {
+      border-color: $color-primary
+    }
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
@@ -72,23 +77,34 @@
     width: 40%;
     min-width: 2em;
     background-image: none;
-    @extend %input;
+    // @extend %input;
   }
 
   #tbCommentBody {
     width: 100%;
     font-family: inherit;
-    @extend %textarea;
+    // @extend %textarea;
   }
 
   #divCommentShow {
     .comment_my_posted {
-      margin-bottom: $grid-gutter;
+
+      > img {
+        @extend template;
+      }
 
       .bq_post_comment {
-        margin: $grid-gutter / 2 0 0 0;
-        padding: $grid-gutter / 4 $grid-gutter / 2;
-        border: 1px solid $color-border;
+        margin: 20px 0;
+        padding: 20px 1em;
+        border: 0;
+
+        p {
+          margin: 0 0 7px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
       }
     }
   }
@@ -98,9 +114,9 @@
     display: none;
 
     a {
-      @extend %button;
-      @extend %button-btn;
-      @extend %button-btn-ghost;
+      // @extend %button;
+      // @extend %button-btn;
+      // @extend %button-btn-ghost;
       
       margin: 0 0 0 .5em;
     }
@@ -123,9 +139,8 @@
       margin: 0;
       padding: 15px;
       border-radius: 0;
-      background-color: transparent;
       border: none;
-      background-color: $color-fill;
+      background-color: $color-background;
 
       .commentbox_title {
         border-bottom: 0;
@@ -150,7 +165,7 @@
       // margin-top: 10px;
       // margin-bottom: 10px;
       margin: 0;
-      display: none;
+      // display: none;
     }
 
     .commentbox_main {
@@ -180,24 +195,44 @@
 
     #commentbox_opt {
       display: block;
-      // text-align: right;
       margin-bottom: 15px;
       padding: 0 15px 15px;
-      background-color: $color-fill;
+      background-color: $color-background;
 
       .comment_btn {
         width: auto;
-        // height: auto;
+        height: auto;
+        display: inline-block;
+        padding: $font-size-base / 2 $font-size-base;
+        border-radius: 0;
+        border: 0;
+        background-color: $color-accent;
+        color: $color-white;
+        font-size: $font-size-base;
+        font-weight: $font-weight-base;
+        transition: opacity .3s;
+        cursor: pointer;
 
-        @extend %button;
-        @extend %button-btn;
+        &:hover {
+          opacity: .8;
+        }
+
+        &:focus {
+          outline: 0;
+        }
+
+        &:active {
+          opacity: .95;
+        }
       }
 
       a {
-        @extend %button;
-        @extend %button-btn;
-        @extend %button-btn-ghost;
+        text-decoration: none;
       }
+    }
+
+    #tip_comment2 {
+      @extend template;
     }
   }
 }

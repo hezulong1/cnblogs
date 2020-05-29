@@ -1,24 +1,37 @@
-// 相关博文, 最新 it 新闻
-#under_post_news,
-#under_post_kb {
-  // display: none;
-  margin-top: $grid-gutter * 2;
-  margin-bottom: $grid-gutter;
-  font-size: 12px;
-  
-  a {
-    color: $color-text;
-
-    @include hover-focus {
-      color: darken($color-text, $hover-percent);
-    }
-  }
-}
-
-// 广告
+// 广告, 最新 it 新闻
 #ad_t2,
 #cnblogs_c1,
-#cnblogs_c2 {
-  display: none;
-  font-size: 12px;
+#cnblogs_c2,
+#under_post_kb,
+.ad_text_commentbox {
+  @extend template;
+}
+
+// 相关博文
+#under_post_news {
+  .recomm-block {
+    display: block;
+    max-width: 100%;
+    padding: 15px 0;
+    margin: 0;
+    border-bottom: 2px solid $color-text;
+    
+    b {
+      display: block;
+      font-weight: normal;
+      font-size: 1.4em;
+      padding: 0;
+      margin-bottom: 15px;
+    }
+
+    a {
+      font-size: 1.2em;
+      line-height: 2em;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }

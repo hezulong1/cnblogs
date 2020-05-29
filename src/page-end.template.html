@@ -39,8 +39,6 @@ var s = document.getElementsByTagName("script")[0];
 s.parentNode.insertBefore(hm, s);
 })();
 $(function(){
-  window.cnblogs_post_body &&  new Viewer(window.cnblogs_post_body)
-
   var storage = window.localStorage || window.sessionStorage
   var $load = $('<blackcat-spinner data-timestamp="' + new Date().getTime() + '" />')
 
@@ -196,8 +194,8 @@ $(function(){
       }
     })
     // 添加锚点
-    var $h2 = $markdown.children('h2')
-    $h2.each(function(index, item) {
+    var $h = $markdown.children('h2, h3, h4, h5')
+    $h.each(function(index, item) {
       var $this = $(this)
       var url = '#' + $this.attr('id')
       $this.append('<a href="' + url +'"><span>#</span></a>')
@@ -223,8 +221,57 @@ $(function(){
       var url = $(this).attr('href')
       url && util.goTo(url, $markdown)
     })
+    // 图片缩略
+    $markdown.length > 0 && Viewer && new Viewer($markdown[0])
   }
 
+  // 配置评论
+  function loadComment(config) {
+    if (!config.markdown.id) return
+    var $wrapper = $('#blog-comments-placeholder')
+    var comments = []
+
+    // 移除多余的 br
+    $wrapper.children('br').first().remove()
+    $('#under_post_news .recomm-block').children('br:eq(0)').remove()
+    // 获取信息/补充头像
+    $wrapper.children('.feedbackItem').each(function() {
+      var $this = $(this)
+      var $title = $this.find('.feedbackListSubtitle')
+      var $content = $this.find('.feedbackCon')
+
+      var commentId = $title.children('.layer').attr('href')
+      var commentAuthor = { blog: '', nickName: '', avatar: '' }
+      var commentDate = $.trim($title.children('.comment_date').text())
+      if (commentId) {
+        commentId = commentId.slice(1)
+        var $author = $title.children('#a_comment_author_' + commentId)
+        var $avatar = $content.children('#comment_' + commentId + '_avatar')
+        commentAuthor.blog = $author.attr('href') || ''
+        commentAuthor.nickName = $.trim($author.text()) || ''
+        commentAuthor.avatar = $.trim($avatar.text()) || ''
+        // 移除链接
+        $author.addClass('hide')
+        $author.after('<span style="font-size: 1em;" class="blackcat-time">' + commentAuthor.nickName + '</span>')
+      }
+      var isLouzhu = $title.children('.louzhu').length > 0
+
+      comments.push({
+        id: commentId,
+        date: commentDate,
+        author: commentAuthor,
+        louzhu: isLouzhu
+      })
+
+      if (commentAuthor.avatar && commentAuthor.blog) {
+        $this.append('<a href="' + commentAuthor.blog + '" target="_blank"><img class="blackcat-avatar" src="' + commentAuthor.avatar +'"></a>')
+      }
+
+      // 移除CTRL+ENTER提示
+      $('#tip_comment2').next().addClass('hide')
+    })
+    config.markdown && (config.markdown.comments = comments) 
+  }
   // 配置META
   function loadMeta(config) {
     $('link[rel*="icon"]').remove()
@@ -281,13 +328,13 @@ $(function(){
     var $logo = $wrap.find('.blackcat-logo a')
     var $nav = $wrap.find('.blackcat-menu:eq(0)')
     var options = [
-      { name: 'Home', href: config.blog.home },
-      { name: 'Take Note', href: config.blog.takeNote },
-      { name: 'Setting', href: config.blog.setting }
+      { name: 'Home', href: config.blog.home, hideXs: false },
+      { name: 'Take Note', href: config.blog.takeNote, hideXs: true },
+      { name: 'Setting', href: config.blog.setting, hideXs: true }
     ]
     $logo.html('<span>' + config.blog.title + '</span>').attr('href', config.blog.home)
     $nav.html(options.map(function(opt) {
-      return '<li><a href="' + opt.href + '"><span>' + opt.name + '</span></a></li>'
+      return '<li' + (opt.hideXs ? ' class="hide-xs"' : '') +'><a href="' + opt.href + '"><span>' + opt.name + '</span></a></li>'
     }))
 
     $('#home').prepend($wrap).prepend(document.createComment(' blackcat: header '))
@@ -308,6 +355,8 @@ $(function(){
     loadHomeList()
     // 文章
     loadMarkdown(config)
+    // 评论
+    loadComment(config)
 
     if (config.markdown.id) {
       $('blackcat-header').addClass('static')
@@ -422,15 +471,17 @@ $(function(){
         id: window.cb_entryId, // 获取阅读数 loadViewCount()
         // 生成日期
         create: window.cb_entryCreatedDate || '',
-        // 允许评论
-        allowComment: window.allowComments || false,
         // 上一篇
         prev: {},
         // 下一篇
-        next: {}
+        next: {},
+        // 允许评论
+        allowComment: window.allowComments || false,
+        // 评论
+        comments: []
       }
       
-      return window.BLACKCAT_CONFIG = {
+      return {
         blogger: blogger,
         blog: blog,
         markdown: markdown
@@ -513,7 +564,7 @@ $(function(){
     },
 
     init: function () {
-      page.config()
+      var config = window.BLACKCAT_CONFIG = page.config()
 
       page.cache()
       page.on_resize()
@@ -522,10 +573,10 @@ $(function(){
       page.scrollToTop()
       page.collapseSidebar()
 
-      loadMeta(window.BLACKCAT_CONFIG)
-      loadHeader(window.BLACKCAT_CONFIG)
-      loadFooter(window.BLACKCAT_CONFIG)
-      loadMain(window.BLACKCAT_CONFIG)
+      loadMeta(config)
+      loadHeader(config)
+      loadFooter(config)
+      loadMain(config)
 
       page.bindEvents()
 
@@ -592,16 +643,18 @@ $(function(){
     var isHeaderLoaded = $('blackcat-header').length > 0
     var isFooterLoaded = $('blackcat-footer').length > 0
     var isFaviconLoaded = $('link[rel*="icon"]').length > 0
-    
+    var isCommandLoaded = window.allowComments === true && $.trim($('#blog-comments-placeholder').text()) !== ''
+    var loaded = (isSidebarLoaded && isHeaderLoaded && isFooterLoaded && isFaviconLoaded)
 
-    if (
-      isSidebarLoaded &&
-      isHeaderLoaded &&
-      isFooterLoaded &&
-      isFaviconLoaded
-    ) {
-      page.init()
-      count = 0
+    if (window.cb_entryId) {
+      loaded = loaded && isCommandLoaded
+    }
+
+    if (loaded) {
+      setTimeout(function() {
+        page.init()
+        count = 0
+      }, 2000)
     } else {
       timer = setTimeout(function() {
         clearTimeout(timer)
@@ -621,4 +674,3 @@ $(function(){
   run()
 })
 </script>
-

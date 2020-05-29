@@ -51,12 +51,16 @@ html, body, #home {
 @import "partials/main-body-post";
 @import "partials/main-body-markdown";
 @import "partials/main-body-signature";
+@import "partials/main-body-comment";
+@import "partials/main-body-ad";
 
 .c_b_p_desc {
   margin: 15px 0;
 
   .desc_img {
     margin-left: 10px;
+    max-height: 80px;
+    border: 1px solid $color-accent;
   }
 }
 
@@ -68,8 +72,12 @@ html, body, #home {
 #footer,
 #sideBar,
 .c_b_p_desc_readmore,
-.postDesc {
+.postDesc,
+#post_next_prev,
+#author_profile,
+#div_digg .buryit {
   @extend template;
 }
 
 @import "blackcat";
+@import "partials/media";

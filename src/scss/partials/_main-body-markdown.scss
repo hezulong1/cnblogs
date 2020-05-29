@@ -12,12 +12,12 @@
   }
 
   h1 {
-    font-size: $font-size-base * 2;
+    font-size: $font-size-base + 10;
   }
   
   h2 {
     position: relative;
-    font-size: $font-size-base + 8;
+    font-size: $font-size-base + 6;
   }
   
   h3 {
@@ -47,22 +47,11 @@
     }
   }
 
-  // h2:before {
-  //   content: "";
-  //   position: absolute;
-  //   top: 0;
-  //   left: -15px;
-  //   display: block;
-  //   width: 5px;
-  //   height: 100%;
-  //   background-color: $color-primary;
-  // }
-
   a > span {
-    color: $color-text-aux;
+    color: $color-text;
   }
 
-  h2 {
+  h2, h3, h4, h5 {
     > a {
       opacity: 0;
       transition: opacity 150ms ease;
@@ -113,6 +102,10 @@
       min-width: 120px;
     }
   }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .cnblogs-markdown,
@@ -126,6 +119,11 @@
   samp {
     font-family: $font-family-monospace !important;
     font-size: $font-size-base !important;
+  }
+
+  code {
+    display: inline;
+    font-family: "Courier New",STSong,Helvetica,Tahoma,Arial,sans-serif !important;
   }
 
   kbd {
