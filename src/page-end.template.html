@@ -468,7 +468,7 @@ $(function(){
       // 文章信息
       var markdown = {
         // 编号
-        id: window.cb_entryId, // 获取阅读数 loadViewCount()
+        id: window.cb_entryId, // 获取阅读数 loadViewCount() // currentBlogId
         // 生成日期
         create: window.cb_entryCreatedDate || '',
         // 上一篇
@@ -480,11 +480,42 @@ $(function(){
         // 评论
         comments: []
       }
+
+      var api = {
+        comment: {
+          getCount: function(id, callback) {
+            return $.ajax({
+              url: blog.base + 'GetCommentCount.aspx',
+              data: { postId: id, '@t': new Date().getTime() },
+              type: 'GET',
+              dataType: 'text',
+              cache: false,
+              success: function(count) {
+                callback && callback(count)
+              }
+            })
+          },
+          getContent: function(params, callback) {
+            return $.ajax({
+              url: blog.base + 'GetComments.aspx?t=' + new Date().getTime(),
+              data: params,
+              type: 'GET',
+              dataType: "text",
+              cache: false,
+              success: function(res) {
+                var $res = $('<div>' + res + '</div>')
+                callback && callback(res)
+              }
+            })
+          }
+        }
+      }
       
       return {
         blogger: blogger,
         blog: blog,
-        markdown: markdown
+        markdown: markdown,
+        api: api
       }
     },
 
@@ -643,7 +674,8 @@ $(function(){
     var isHeaderLoaded = $('blackcat-header').length > 0
     var isFooterLoaded = $('blackcat-footer').length > 0
     var isFaviconLoaded = $('link[rel*="icon"]').length > 0
-    var isCommandLoaded = window.allowComments === true && $.trim($('#blog-comments-placeholder').text()) !== ''
+    var isCommandLoaded = window.allowComments === true
+    // var isCommandLoaded = window.allowComments === true && $.trim($('#blog-comments-placeholder').text()) !== ''
     var loaded = (isSidebarLoaded && isHeaderLoaded && isFooterLoaded && isFaviconLoaded)
 
     if (window.cb_entryId) {
